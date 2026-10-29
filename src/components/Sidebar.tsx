@@ -23,11 +23,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onInstallClick
 }) => {
   const menuItems = [
-    { id: 'dashboard', icon: Home, label: 'Tabelion' },
+    { id: 'dashboard', icon: Home, label: 'Inicio' },
     { id: 'clients', icon: Users, label: 'Agenda' },
-    { id: 'audit', icon: FileSearch, label: 'Auditoría DGR' },
+    { id: 'audit', icon: FileSearch, label: 'Auditoría' },
     { id: 'calculator', icon: Calculator, label: 'Cálculos' },
-    { id: 'chat', icon: MessageSquare, label: 'ELO AI' },
+    { id: 'chat', icon: MessageSquare, label: 'Tabelion' },
     { id: 'settings', icon: Settings, label: 'Escribano' },
   ];
 
@@ -35,7 +35,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     ? formatNotaryDisplayTitle(notaryProfile)
     : (user?.displayName || 'Esc. Titular');
 
-  const officeLabel = notaryProfile?.officeName || 'El espacio inteligente del escribano';
+  const officeLabel = notaryProfile?.officeName || 'Estudio Notarial';
   const locationLabel = notaryProfile?.city
     ? `${notaryProfile.city}, ${notaryProfile.department || 'UY'}`
     : 'Uruguay';
@@ -43,39 +43,38 @@ export const Sidebar: React.FC<SidebarProps> = ({
   return (
     <>
       {/* DESKTOP SIDEBAR (PC) */}
-      <aside className="hidden md:flex w-20 lg:w-64 h-full bg-[#0a0a0d] border-r border-neutral-800/80 flex-col items-center lg:items-stretch transition-all duration-300 no-print shrink-0 relative">
-        <div className="p-5 flex items-center gap-3.5 border-b border-neutral-900 relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-amber-500/40 to-transparent"></div>
-          <div className="w-10 h-10 bg-neutral-950 border border-amber-500/35 rounded-xl flex items-center justify-center font-tabelion font-black text-lg tabelion-gold-text shadow-lg shadow-amber-500/10 shrink-0">
+      <aside className="hidden md:flex w-20 lg:w-60 h-full bg-[#151412] border-r border-[#24221e] flex-col items-center lg:items-stretch transition-all duration-300 no-print shrink-0">
+        <div className="p-6 flex items-center gap-3.5 border-b border-[#22201c]">
+          <div className="w-9 h-9 bg-[#1c1b18] border border-[#36332e] rounded-lg flex items-center justify-center font-tabelion font-semibold text-base text-[#d4bc98] shrink-0">
             T
           </div>
           <div className="hidden lg:block overflow-hidden">
-            <h1 className="text-base font-tabelion font-black leading-none text-white uppercase tracking-[0.18em] truncate">
+            <h1 className="text-sm font-tabelion font-semibold leading-none text-[#f2efe9] uppercase tracking-[0.2em] truncate">
               TABELION
             </h1>
-            <p className="text-[8px] text-amber-400/90 font-bold uppercase tracking-[0.16em] mt-1.5 truncate">
+            <p className="text-[11px] font-academic italic text-[#857f74] mt-1 truncate">
               {officeLabel}
             </p>
           </div>
         </div>
 
-        <nav className="flex-1 px-3 py-6 space-y-2 flex flex-col items-center lg:items-stretch overflow-y-auto">
+        <nav className="flex-1 px-3 py-6 space-y-1.5 flex flex-col items-center lg:items-stretch overflow-y-auto">
           {menuItems.map((item) => (
             <button
               key={item.id}
               onClick={() => setActiveTab(item.id)}
               className={cn(
-                "w-full flex items-center justify-center lg:justify-start gap-3 p-3 lg:px-4 lg:py-3 rounded-xl text-xs font-black uppercase tracking-wider transition-all group cursor-pointer",
+                "w-full flex items-center justify-center lg:justify-start gap-3.5 p-3 lg:px-4 lg:py-2.5 rounded-xl text-xs font-medium tracking-wider transition-all group cursor-pointer",
                 activeTab === item.id
-                  ? "bg-neutral-900 text-white border border-amber-500/30 shadow-xl shadow-black/40"
-                  : "text-neutral-500 hover:text-neutral-200 hover:bg-neutral-900/50"
+                  ? "bg-[#201f1c] text-[#f2efe9] border border-[#33302a]"
+                  : "text-[#857f74] hover:text-[#e4dfd5] hover:bg-[#1a1916]"
               )}
               title={item.label}
             >
               <item.icon
-                size={18}
+                size={17}
                 className={cn(
-                  activeTab === item.id ? "text-amber-400" : "group-hover:text-neutral-200"
+                  activeTab === item.id ? "text-[#c5a880]" : "text-[#7d786f] group-hover:text-[#cfc9be]"
                 )}
               />
               <span className="hidden lg:block">{item.label}</span>
@@ -85,29 +84,27 @@ export const Sidebar: React.FC<SidebarProps> = ({
           {onInstallClick && (
             <button
               onClick={onInstallClick}
-              className="w-full flex items-center justify-center lg:justify-start gap-3 p-3 lg:px-4 lg:py-2.5 mt-4 rounded-xl text-[10px] font-black uppercase tracking-widest text-emerald-400 bg-emerald-950/20 border border-emerald-800/30 hover:bg-emerald-950/40 transition-all cursor-pointer"
-              title="Instalar App Tabelion en PC o Celular"
+              className="w-full flex items-center justify-center lg:justify-start gap-3 p-3 lg:px-4 lg:py-2.5 mt-4 rounded-xl text-[11px] font-medium tracking-wider text-[#cfc9be] bg-[#1a1916] border border-[#292723] hover:border-[#3d3932] transition-all cursor-pointer"
+              title="Instalar aplicación en PC o Celular"
             >
-              <Download size={16} />
+              <Download size={15} className="text-[#c5a880]" />
               <span className="hidden lg:block">Instalar App</span>
             </button>
           )}
         </nav>
 
-        <div className="p-3 border-t border-neutral-800/80 space-y-2">
+        <div className="p-3 border-t border-[#22201c] space-y-2">
           <div
             onClick={() => setActiveTab('settings')}
-            className="hidden lg:flex items-center gap-3 px-2.5 py-2.5 rounded-xl bg-neutral-900/60 hover:bg-neutral-900 border border-neutral-800/80 hover:border-amber-500/30 cursor-pointer transition-all"
-            title="Editar datos personales del escribano"
+            className="hidden lg:flex items-center gap-3 px-3 py-2.5 rounded-xl bg-[#1a1916] hover:bg-[#201f1c] border border-[#262420] cursor-pointer transition-all"
+            title="Configuración del escribano"
           >
-            <img
-              src={user?.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(notaryProfile?.fullName || 'Tabelion')}&background=18181b&color=d4af37&bold=true`}
-              alt="Profile"
-              className="w-8 h-8 rounded-lg border border-amber-500/30 shrink-0"
-            />
+            <div className="w-8 h-8 rounded-lg bg-[#24221e] border border-[#36332e] flex items-center justify-center font-tabelion text-xs text-[#d4bc98] shrink-0">
+              {(notaryProfile?.fullName || 'E').trim().charAt(0).toUpperCase()}
+            </div>
             <div className="flex-1 overflow-hidden">
-              <p className="text-[11px] font-black text-white truncate">{displayName}</p>
-              <p className="text-[9px] text-neutral-500 truncate uppercase font-bold tracking-tight">
+              <p className="text-xs font-medium text-[#ece8df] truncate">{displayName}</p>
+              <p className="text-[10px] text-[#7d786f] truncate">
                 {locationLabel}
               </p>
             </div>
@@ -117,19 +114,19 @@ export const Sidebar: React.FC<SidebarProps> = ({
             {notaryProfile?.pinEnabled && notaryProfile?.securityPin && onLockNow && (
               <button
                 onClick={onLockNow}
-                className="flex-1 flex items-center justify-center gap-2 p-2.5 rounded-xl text-[10px] font-black uppercase tracking-wider text-amber-400 bg-amber-950/15 hover:bg-amber-950/30 border border-amber-900/30 transition-all cursor-pointer"
+                className="flex-1 flex items-center justify-center gap-2 p-2 rounded-lg text-[10px] font-medium tracking-wider text-[#c5a880] bg-[#1c1b18] hover:bg-[#24221e] border border-[#2c2a25] transition-all cursor-pointer"
                 title="Bloquear pantalla con PIN"
               >
-                <Lock size={14} />
+                <Lock size={13} />
                 <span className="hidden lg:inline">Bloquear</span>
               </button>
             )}
             <button
               onClick={onSignOut}
-              className="flex-1 flex items-center justify-center gap-2 p-2.5 rounded-xl text-[10px] font-black uppercase tracking-wider text-neutral-500 hover:text-red-400 hover:bg-red-950/15 transition-all cursor-pointer"
+              className="flex-1 flex items-center justify-center gap-2 p-2 rounded-lg text-[10px] font-medium tracking-wider text-[#7d786f] hover:text-[#e4dfd5] hover:bg-[#1c1b18] transition-all cursor-pointer"
               title="Cerrar sesión"
             >
-              <LogOut size={14} />
+              <LogOut size={13} />
               <span className="hidden lg:inline">Salir</span>
             </button>
           </div>
@@ -137,7 +134,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       </aside>
 
       {/* MOBILE BOTTOM NAVIGATION BAR (CELULAR) */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#0a0a0d]/95 backdrop-blur-md border-t border-neutral-800 px-1 py-1.5 flex items-center justify-around no-print">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#151412]/95 backdrop-blur-md border-t border-[#24221e] px-1 py-1.5 flex items-center justify-around no-print">
         {menuItems.map((item) => {
           const active = activeTab === item.id;
           return (
@@ -146,11 +143,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
               onClick={() => setActiveTab(item.id)}
               className={cn(
                 "flex flex-col items-center justify-center py-1.5 px-2.5 rounded-xl transition-all",
-                active ? "text-amber-400 bg-amber-500/10" : "text-neutral-500"
+                active ? "text-[#d4bc98] bg-[#201f1c]" : "text-[#7d786f]"
               )}
             >
-              <item.icon size={18} />
-              <span className="text-[8px] font-black uppercase tracking-wider mt-1">
+              <item.icon size={17} />
+              <span className="text-[9px] font-medium tracking-wide mt-1">
                 {item.label}
               </span>
             </button>

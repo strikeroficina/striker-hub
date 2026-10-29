@@ -1,15 +1,15 @@
 {
   "id": "/",
-  "name": "TABELION — El espacio inteligente del escribano Uruguayo",
+  "name": "Tabelion — El espacio inteligente del escribano Uruguayo",
   "short_name": "Tabelion",
-  "description": "TABELION: El espacio inteligente del escribano Uruguayo. Auditoría registral contra Manual DGR, liquidación de impuestos (ITP, IRPF, AEU), Agenda y Copiloto ELO.",
+  "description": "Tabelion: El espacio inteligente del escribano Uruguayo. Auditoría registral, liquidación tributaria, agenda y consulta normativa.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
   "orientation": "any",
-  "background_color": "#09090b",
-  "theme_color": "#09090b",
+  "background_color": "#121210",
+  "theme_color": "#121210",
   "categories": ["business", "productivity", "finance"],
   "icons": [
     {
@@ -19,13 +19,13 @@
       "purpose": "any maskable"
     },
     {
-      "src": "https://ui-avatars.com/api/?name=T&background=09090b&color=d4af37&size=192&bold=true",
+      "src": "https://ui-avatars.com/api/?name=T&background=141311&color=e6dec8&size=192&bold=true",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "https://ui-avatars.com/api/?name=T&background=09090b&color=d4af37&size=512&bold=true",
+      "src": "https://ui-avatars.com/api/?name=T&background=141311&color=e6dec8&size=512&bold=true",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"

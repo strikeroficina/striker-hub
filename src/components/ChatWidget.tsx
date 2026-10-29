@@ -143,7 +143,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({
           name: params.name,
           email: params.email || '',
           phone: params.phone || '',
-          observations: params.observations || 'Agendado por el Copiloto ELO'
+          observations: params.observations || 'Registrado en Tabelion'
         });
         window.dispatchEvent(new CustomEvent('elo-agenda-updated', { detail: { selectId: newClient.id } }));
         executedNotices.push(`✓ Cliente agendado en Agenda: ${params.name}`);
@@ -292,10 +292,10 @@ ${agendaSummary}`;
       console.error(error);
       let textToShow = '';
       if (error.name === 'GeminiUnavailableError' || error.message === 'UNAVAILABLE' || error.status === 503) {
-        textToShow = '⏳ ELO está procesando un alto volumen de documentos en este momento. Por favor, aguarde unos segundos y vuelva a enviar su consulta.';
+        textToShow = '⏳ Tabelion está procesando un alto volumen de documentos en este momento. Por favor, aguarde unos segundos y vuelva a enviar su consulta.';
       } else {
-        const errorMessage = error.message || 'Lo siento, ocurrió un error al procesar tu solicitud. Verifica la clave API en el ícono de llave arriba a la derecha.';
-        textToShow = `⚠️ **Error del Sistema:** ${errorMessage}`;
+        const errorMessage = error.message || 'Ocurrió un error al procesar la solicitud. Verifica la clave API en el ícono de llave arriba a la derecha.';
+        textToShow = `⚠️ **Aviso:** ${errorMessage}`;
       }
       setMessages(prev => [...prev, { role: 'model', parts: [{ text: textToShow }] }]);
     } finally {
@@ -315,12 +315,12 @@ ${agendaSummary}`;
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-20 md:bottom-6 right-4 md:right-6 w-14 h-14 md:w-16 md:h-16 bg-slate-800 border border-slate-700/50 rounded-full flex items-center justify-center shadow-2xl z-[9999] group hover:bg-slate-700 transition-colors no-print"
+            className="fixed bottom-20 md:bottom-6 right-4 md:right-6 w-14 h-14 bg-[#1c1b18] border border-[#36332e] rounded-full flex items-center justify-center shadow-2xl z-[9999] group hover:border-[#c5a880] transition-all no-print cursor-pointer"
           >
-            <Bot className="text-blue-400 group-hover:text-blue-300 transition-colors" size={28} />
-            <div className="absolute -top-1 -right-1 w-4 h-4 bg-emerald-500 border-2 border-slate-900 rounded-full"></div>
-            <div className="absolute right-20 bg-slate-900 border border-slate-800 px-3 py-2 rounded-xl text-[10px] font-black text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all pointer-events-none transform translate-x-2 group-hover:translate-x-0 tracking-widest shadow-xl">
-              CONSULTAR A ELO
+            <span className="font-tabelion font-semibold text-lg text-[#d4bc98]">T</span>
+            <div className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-[#7a917c] border-2 border-[#121210] rounded-full"></div>
+            <div className="absolute right-16 bg-[#171614] border border-[#2c2a25] px-3 py-1.5 rounded-lg text-[10px] font-medium text-[#ece8df] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all pointer-events-none tracking-wider shadow-xl">
+              Tabelion
             </div>
           </motion.button>
         )}
@@ -346,14 +346,13 @@ ${agendaSummary}`;
             {/* Header */}
             <div className="p-4 border-b border-slate-800/50 flex items-center justify-between bg-slate-900/50 flex-shrink-0">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-neutral-950 border border-amber-500/35 rounded-xl flex items-center justify-center font-tabelion font-black tabelion-gold-text text-base">
+                <div className="w-9 h-9 bg-[#1c1b18] border border-[#36332e] rounded-lg flex items-center justify-center font-tabelion font-semibold text-[#d4bc98] text-sm">
                   T
                 </div>
                 <div>
-                  <h2 className="font-tabelion font-black text-xs text-white uppercase tracking-[0.16em]">TABELION // ELO</h2>
-                  <p className="text-[9px] text-emerald-500 font-black uppercase tracking-widest flex items-center gap-1.5 mt-0.5">
-                    <span className="w-1 h-1 bg-emerald-500 rounded-full animate-pulse"></span>
-                    PRECISIÓN STRIKER • DGR-UY ACTIVO
+                  <h2 className="font-tabelion font-semibold text-xs text-[#f2efe9] uppercase tracking-[0.18em]">TABELION</h2>
+                  <p className="text-[11px] font-academic italic text-[#9e988e]">
+                    El espacio inteligente del escribano Uruguayo
                   </p>
                 </div>
               </div>
@@ -470,7 +469,7 @@ ${agendaSummary}`;
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-                  placeholder="Orden directa: liquidar, auditar, agendar o consultar norma..."
+                  placeholder="Consultar norma, liquidar impuesto, auditar o agendar..."
                   className="flex-1 bg-slate-800/50 border border-slate-700/50 rounded-xl px-4 py-3 text-xs focus:outline-none focus:border-blue-500/50 transition-all placeholder:text-slate-500 text-white shadow-inner"
                 />
                 <button

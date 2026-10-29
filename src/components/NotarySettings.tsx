@@ -104,20 +104,12 @@ export const NotarySettings: React.FC<NotarySettingsProps> = ({
     <div className="max-w-5xl mx-auto py-4 sm:py-6 px-1 sm:px-4 space-y-6 font-sans pb-24">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-800 pb-5">
-        <div>
-          <div className="flex items-center gap-2.5">
-            <span className="px-2 py-0.5 bg-amber-500/15 border border-amber-500/30 text-amber-400 text-[9px] font-tabelion font-black uppercase tracking-[0.18em] rounded">
-              TABELION • CONFIGURACIÓN DEL ESTUDIO
-            </span>
-            <span className="text-[9px] font-mono text-emerald-400 uppercase tracking-widest">
-              • LEY 18.331 ACTIVA
-            </span>
-          </div>
-          <h1 className="text-2xl sm:text-3xl font-tabelion font-black text-white uppercase tracking-[0.12em] mt-1">
-            Datos del Escribano & Seguridad
+        <div className="space-y-1">
+          <h1 className="text-2xl font-tabelion font-semibold text-[#f2efe9] uppercase tracking-[0.14em]">
+            Datos del Escribano
           </h1>
-          <p className="text-neutral-500 text-xs font-bold uppercase tracking-widest mt-0.5">
-            El espacio inteligente del escribano Uruguayo • Membrete Oficial, Ciberseguridad e Instalación PC/Celular
+          <p className="text-[#857f74] text-sm font-academic italic">
+            Identidad profesional, membrete de informes, seguridad e instalación
           </p>
         </div>
 
@@ -202,8 +194,8 @@ export const NotarySettings: React.FC<NotarySettingsProps> = ({
                   Identidad Profesional del Titular
                 </h2>
               </div>
-              <span className="text-[9px] text-neutral-500 font-bold uppercase tracking-widest">
-                Sincronizado con ELO & PDF
+              <span className="text-[9px] text-neutral-500 font-medium uppercase tracking-widest">
+                Sincronizado con Informes PDF
               </span>
             </div>
 
@@ -267,8 +259,8 @@ export const NotarySettings: React.FC<NotarySettingsProps> = ({
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-[9px] text-neutral-400 font-black uppercase tracking-widest block">
-                Especialidad Notarial Principal (Contexto Operativo para ELO)
+              <label className="text-[9px] text-neutral-400 font-medium uppercase tracking-widest block">
+                Especialidad Notarial Principal
               </label>
               <input
                 type="text"
@@ -417,8 +409,8 @@ export const NotarySettings: React.FC<NotarySettingsProps> = ({
             <div className="flex items-center justify-between border-b border-neutral-800 pb-3">
               <div className="flex items-center gap-2.5">
                 <ShieldCheck className="text-amber-400" size={16} />
-                <h2 className="text-xs font-black text-white uppercase tracking-widest">
-                  Protocolo de Ciberseguridad ELO
+                <h2 className="text-xs font-semibold text-white uppercase tracking-widest">
+                  Protocolo de Seguridad Notarial
                 </h2>
               </div>
               <span className="text-[9px] font-mono text-amber-400 font-bold uppercase">

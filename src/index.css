@@ -1,85 +1,153 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Cinzel", Georgia, serif;
+  --font-display: "Cinzel", "Cormorant Garamond", Georgia, serif;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
-  
-  --color-brand-primary: #2563eb;
-  --color-brand-secondary: #1d4ed8;
-  --color-brand-gold: #d4af37;
-  --color-brand-bg: #08080a;
-  --color-brand-card: #0c0c0f;
-  --color-brand-inner: #08080a;
-  --color-brand-border: #232329;
+
+  /* Paleta Zen Académica: Piedra Cálida, Papiro, Grafito de Estudio y Bronce Mate */
+  --color-brand-primary: #b89b72;
+  --color-brand-secondary: #9e825b;
+  --color-brand-gold: #c5a880;
+  --color-brand-bg: #121210;
+  --color-brand-card: #171614;
+  --color-brand-inner: #121210;
+  --color-brand-border: #262420;
+
+  /* Unificación cromática de grises hacia piedra cálida de biblioteca */
+  --color-neutral-950: #11110f;
+  --color-neutral-900: #171614;
+  --color-neutral-850: #1d1c19;
+  --color-neutral-800: #262420;
+  --color-neutral-700: #36332e;
+  --color-neutral-600: #5c574f;
+  --color-neutral-500: #857f74;
+  --color-neutral-400: #aba498;
+  --color-neutral-300: #cfc9be;
+  --color-neutral-200: #e4dfd5;
+  --color-neutral-100: #f2efe9;
+
+  --color-slate-950: #11110f;
+  --color-slate-900: #171614;
+  --color-slate-850: #1d1c19;
+  --color-slate-800: #262420;
+  --color-slate-700: #36332e;
+  --color-slate-600: #5c574f;
+  --color-slate-500: #857f74;
+  --color-slate-400: #aba498;
+  --color-slate-300: #cfc9be;
+  --color-slate-200: #e4dfd5;
+  --color-slate-100: #f2efe9;
+
+  /* Unificación de acentos hacia un único tono noble: Bronce / Pergamino Cálido */
+  --color-blue-950: #211d17;
+  --color-blue-900: #2e281f;
+  --color-blue-800: #453b2d;
+  --color-blue-700: #8c7350;
+  --color-blue-600: #a68a64;
+  --color-blue-500: #c5a880;
+  --color-blue-400: #d4bc98;
+  --color-blue-300: #e3d2b6;
+
+  --color-amber-950: #211d17;
+  --color-amber-900: #2e281f;
+  --color-amber-800: #453b2d;
+  --color-amber-600: #a68a64;
+  --color-amber-500: #c5a880;
+  --color-amber-400: #d4bc98;
+
+  /* Salvia apagada y serena para estados activos */
+  --color-emerald-950: #171d18;
+  --color-emerald-900: #212a22;
+  --color-emerald-800: #2f3c31;
+  --color-emerald-600: #637865;
+  --color-emerald-500: #7a917c;
+  --color-emerald-400: #9ab09c;
+
+  /* Eliminación de violetas e índigos estridentes -> Piedra / Pergamino */
+  --color-purple-500: #c5a880;
+  --color-purple-400: #d4bc98;
+  --color-indigo-500: #c5a880;
+  --color-indigo-400: #d4bc98;
 }
 
 @layer base {
   body {
-    @apply bg-brand-bg text-neutral-400 font-sans antialiased;
-    background-image: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.045) 0%, rgba(37, 99, 235, 0.03) 35%, transparent 70%);
+    @apply bg-[#121210] text-[#aba498] font-sans antialiased;
+    background-image: radial-gradient(circle at 50% 0%, rgba(197, 168, 128, 0.04) 0%, transparent 65%);
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-bold tracking-tight text-white;
+    @apply font-semibold tracking-normal text-[#ece8df];
   }
 }
 
-/* Fuente de impacto inspirada en inscripciones romanas clásicas (El Tabelión) */
+/* Tipografía clásica inspirada en el Tabelión y la academia humanista */
 .font-tabelion {
-  font-family: "Cinzel", Georgia, serif;
-  letter-spacing: 0.14em;
+  font-family: "Cinzel", "Cormorant Garamond", Georgia, serif;
+  letter-spacing: 0.16em;
+}
+
+.font-academic {
+  font-family: "Cormorant Garamond", Georgia, serif;
 }
 
 .tabelion-gold-text {
-  background: linear-gradient(135deg, #fff6d6 0%, #e5c158 48%, #b38728 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #d4bc98;
 }
 
 .bento-card {
-  @apply bg-[#0c0c0f] border border-neutral-800/90 rounded-3xl p-8 transition-all;
+  @apply bg-[#171614] border border-[#262420] rounded-2xl p-8 transition-all;
 }
 
 .inner-card {
-  @apply bg-[#08080a] border border-neutral-800/80 rounded-2xl p-5;
+  @apply bg-[#121210] border border-[#262420] rounded-xl p-5;
 }
 
 .btn-primary {
-  @apply px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-lg transition-all active:scale-95 disabled:opacity-50 disabled:pointer-events-none uppercase tracking-wider;
+  @apply px-4 py-2.5 bg-[#a68a64] hover:bg-[#b89b72] text-[#121210] font-semibold text-xs rounded-xl transition-all active:scale-98 disabled:opacity-50 disabled:pointer-events-none tracking-wider;
 }
 
 .btn-secondary {
-  @apply px-4 py-2 bg-neutral-800 hover:bg-neutral-700 text-neutral-200 font-bold text-xs rounded-lg transition-all active:scale-95 uppercase tracking-wider;
+  @apply px-4 py-2.5 bg-[#201f1c] hover:bg-[#2a2824] text-[#e4dfd5] font-medium text-xs rounded-xl border border-[#2e2c27] transition-all active:scale-98 tracking-wider;
 }
 
 .input-field {
-  @apply w-full px-4 py-2 bg-neutral-950 border border-neutral-800 rounded-xl focus:outline-none focus:border-amber-500/70 text-white text-sm transition-colors;
+  @apply w-full px-4 py-2.5 bg-[#121210] border border-[#262420] rounded-xl focus:outline-none focus:border-[#c5a880] text-[#ece8df] text-sm transition-colors;
 }
 
 /* Scrollbar styling */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-neutral-950;
+  background: #121210;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-neutral-800 rounded-full hover:bg-neutral-700;
+  background: #262420;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #36332e;
 }
 
 /* Markdown Content Styling */
 .printable-report h1 {
   font-family: "Cinzel", Georgia, serif;
-  @apply text-3xl font-black mb-6 uppercase tracking-wider text-white;
+  @apply text-2xl font-semibold mb-6 uppercase tracking-widest text-[#ece8df];
 }
-.printable-report h2 { @apply text-xl font-bold mt-8 mb-4 uppercase tracking-widest text-amber-400 border-b border-neutral-800 pb-2; }
-.printable-report h3 { @apply text-lg font-bold mt-6 mb-2 text-neutral-200; }
-.printable-report p { @apply text-sm leading-relaxed text-neutral-300 mb-4; }
-.printable-report ul { @apply list-disc list-inside space-y-2 mb-6 text-sm text-neutral-300; }
-.printable-report li { @apply marker:text-amber-500; }
-.printable-report hr { @apply border-neutral-800 my-8; }
-.printable-report strong { @apply text-white; }
+.printable-report h2 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  @apply text-xl font-semibold mt-8 mb-4 tracking-wide text-[#d4bc98] border-b border-[#262420] pb-2;
+}
+.printable-report h3 { @apply text-base font-semibold mt-6 mb-2 text-[#e4dfd5]; }
+.printable-report p { @apply text-sm leading-relaxed text-[#cfc9be] mb-4; }
+.printable-report ul { @apply list-disc list-inside space-y-2 mb-6 text-sm text-[#cfc9be]; }
+.printable-report li { @apply marker:text-[#c5a880]; }
+.printable-report hr { @apply border-[#262420] my-8; }
+.printable-report strong { @apply text-[#f2efe9] font-semibold; }

@@ -779,7 +779,7 @@ Liquidación arancelaria efectuada bajo control manual del escribano.
           </div>
           <pre>${reportText}</pre>
           <div class="footer">
-            <p>Liquidación emitida en TABELION (Motor ELO // Striker IA) • Uruguay 2026</p>
+            <p>Liquidación emitida en TABELION • Uruguay 2026</p>
           </div>
           <script>
             window.onload = function() {
@@ -924,12 +924,9 @@ Liquidación arancelaria efectuada bajo control manual del escribano.
       
       {/* Cabezal de la Suite (Siempre Visible) */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between px-2 gap-4">
-        <div className="space-y-0.5">
-          <span className="text-[9px] font-tabelion font-bold uppercase tracking-[0.2em] text-amber-400">
-            TABELION // MOTOR TRIBUTARIO & ARANCELARIO
-          </span>
-          <h1 className="text-2xl font-tabelion font-black text-white uppercase tracking-[0.12em]">Suite de Liquidación Notarial</h1>
-          <p className="text-neutral-500 text-[10px] font-bold uppercase tracking-widest">Liquidación exacta de ITP, IRPF/IRNR (Ley 18.083) y Arancel AEU sin dolores de cabeza</p>
+        <div className="space-y-1">
+          <h1 className="text-2xl font-tabelion font-semibold text-[#f2efe9] uppercase tracking-[0.14em]">Liquidación Notarial</h1>
+          <p className="text-[#857f74] text-sm font-academic italic">Tributos, honorarios arancelarios y estimación de IRPF</p>
         </div>
         
         {/* Ticker de Cotizaciones de Referencia */}

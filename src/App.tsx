@@ -86,7 +86,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [reportContext, setReportContext] = useState<string | null>(null);
   const [chatMessages, setChatMessages] = useState<Message[]>([
-    { role: 'model', parts: [{ text: '**TABELION // MOTOR ELO ACTIVO.**\nManual de Calificación DGR e índices BCU/INE sincronizados. Listo para auditar documentos en segundos, liquidar impuestos sin errores o ejecutar órdenes en Agenda.' }] }
+    { role: 'model', parts: [{ text: '**TABELION ACTIVO.**\nManual de Calificación DGR e índices BCU/INE sincronizados. Listo para auditar documentos, liquidar impuestos o gestionar la Agenda.' }] }
   ]);
   const [isChatOpen, setIsChatOpen] = useState(false);
 
@@ -566,8 +566,8 @@ export default function App() {
           </div>
 
           <div className="space-y-2">
-            <p className="text-neutral-400 text-xs font-semibold leading-relaxed max-w-[300px] mx-auto">
-              Contrasta documentos con el Manual de Calificación DGR, liquida impuestos sin errores y audita títulos en segundos con certeza absoluta.
+            <p className="text-neutral-400 text-xs leading-relaxed max-w-[300px] mx-auto">
+              Configura tus credenciales o ingresa directamente al espacio de trabajo notarial.
             </p>
           </div>
 

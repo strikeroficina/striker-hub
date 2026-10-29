@@ -144,7 +144,7 @@ export const AuditModule: React.FC<AuditModuleProps> = ({ onAuditComplete }) => 
     } catch (err: any) {
       console.error(err);
       if (err.name === 'GeminiUnavailableError' || err.message === 'UNAVAILABLE' || err.status === 503) {
-        setError('⏳ ELO está procesando un alto volumen de documentos en este momento. Por favor, aguarde 30 segundos y vuelva a presionar el botón.');
+        setError('⏳ Tabelion está procesando un alto volumen de documentos en este momento. Por favor, aguarde 30 segundos y vuelva a presionar el botón.');
       } else {
         setError(err.message || "Error al procesar la auditoría de los documentos. Intente nuevamente.");
       }
@@ -194,7 +194,7 @@ export const AuditModule: React.FC<AuditModuleProps> = ({ onAuditComplete }) => 
             ${reportHtml}
             <div class="footer">
               <p>${getNotaryProfile().reportFooter || 'Dictamen de asistencia digital emitido en TABELION bajo supervisión del profesional actuante.'}</p>
-              <p>TABELION — El espacio inteligente del escribano Uruguayo • Motor ELO // Striker IA • ${new Date().toLocaleString('es-UY')}</p>
+              <p>TABELION — El espacio inteligente del escribano Uruguayo • ${new Date().toLocaleString('es-UY')}</p>
             </div>
           </div>
           <script>
@@ -271,7 +271,7 @@ export const AuditModule: React.FC<AuditModuleProps> = ({ onAuditComplete }) => 
           <div class="print-container">
             ${reportHtml}
             <div class="footer">
-              <p>Este dictamen técnico fue generado en TABELION (Copiloto ELO // Striker IA) el ${new Date().toLocaleString('es-UY')}.</p>
+              <p>Este dictamen técnico fue generado en TABELION el ${new Date().toLocaleString('es-UY')}.</p>
               <p>TABELION — EL ESPACIO INTELIGENTE DEL ESCRIBANO URUGUAYO</p>
             </div>
           </div>
@@ -337,16 +337,11 @@ export const AuditModule: React.FC<AuditModuleProps> = ({ onAuditComplete }) => 
 
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 no-print">
         <div className="space-y-1">
-          <div className="flex items-center gap-2">
-            <span className="text-[9px] font-tabelion font-bold uppercase tracking-[0.2em] text-amber-400">
-              TABELION // CALIFICACIÓN REGISTRAL
-            </span>
-          </div>
-          <h1 className="text-2xl sm:text-3xl font-tabelion font-black text-white uppercase tracking-[0.12em]">
-            Auditoría de Títulos & Contraste DGR
+          <h1 className="text-2xl font-tabelion font-semibold text-[#f2efe9] uppercase tracking-[0.14em]">
+            Auditoría Documental
           </h1>
-          <p className="text-neutral-500 text-xs font-bold uppercase tracking-widest">
-            Contraste inmediato contra el Manual de Calificación DGR y Ley 16.871 • Cero Observaciones
+          <p className="text-[#857f74] text-sm font-academic italic">
+            Contraste normativo con el Manual de Calificación de la DGR y Ley 16.871
           </p>
         </div>
         {report && (
@@ -421,8 +416,8 @@ export const AuditModule: React.FC<AuditModuleProps> = ({ onAuditComplete }) => 
                   <div className="w-full space-y-6">
                     <div className="flex items-center justify-between border-b border-neutral-800/80 pb-4">
                       <div>
-                        <h3 className="text-lg font-black text-white text-left uppercase tracking-tight">Expediente de Documentos ({files.length})</h3>
-                        <p className="text-xs text-neutral-500 font-bold text-left uppercase tracking-wider">Listo para auditoría integral y cruzada por ELO</p>
+                        <h3 className="text-base font-medium text-[#f2efe9] text-left">Expediente de Documentos ({files.length})</h3>
+                        <p className="text-xs text-[#857f74] text-left">Listo para análisis integral y cruzado en Tabelion</p>
                       </div>
                       <button 
                         onClick={clearAllFiles}
@@ -495,21 +490,21 @@ export const AuditModule: React.FC<AuditModuleProps> = ({ onAuditComplete }) => 
                 onClick={startAudit}
                 disabled={files.length === 0 || loading}
                 className={cn(
-                  "w-full py-6 rounded-2xl text-lg font-black uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-4 shadow-2xl",
+                  "w-full py-4 rounded-xl text-xs font-semibold uppercase tracking-[0.18em] transition-all flex items-center justify-center gap-3",
                   files.length > 0 && !loading 
-                    ? "bg-white text-black hover:bg-neutral-200 active:scale-95 cursor-pointer" 
-                    : "bg-neutral-800 text-neutral-600 cursor-not-allowed border border-neutral-700"
+                    ? "bg-[#c5a880] text-[#121210] hover:bg-[#d4bc98] cursor-pointer" 
+                    : "bg-[#1d1c19] text-[#5c574f] cursor-not-allowed border border-[#262420]"
                 )}
               >
                 {loading ? (
                   <>
-                    <Loader2 className="animate-spin" size={24} />
-                    PROCESANDO EN ELO... ({files.length} {files.length === 1 ? 'doc' : 'docs'})
+                    <Loader2 className="animate-spin" size={18} />
+                    ANALIZANDO EN TABELION... ({files.length} {files.length === 1 ? 'documento' : 'documentos'})
                   </>
                 ) : (
                   <>
-                    <Bot size={24} />
-                    INICIAR AUDITORÍA TÉCNICA {files.length > 0 ? `(${files.length} DOCUMENTOS)` : ''}
+                    <FileSearch size={18} />
+                    INICIAR AUDITORÍA REGISTRAL {files.length > 0 ? `(${files.length})` : ''}
                   </>
                 )}
               </button>
@@ -540,19 +535,16 @@ export const AuditModule: React.FC<AuditModuleProps> = ({ onAuditComplete }) => 
         </AnimatePresence>
       </div>
 
-      {/* Global Bot Status Footer (No print) */}
-      <div className="flex items-center justify-between no-print border-t border-neutral-800/50 pt-6">
-        <div className="flex items-center gap-6">
-          <div className="flex items-center gap-2">
-             <div className={cn("w-2 h-2 rounded-full", loading ? "bg-blue-500 animate-pulse" : "bg-emerald-500")}></div>
-             <span className="text-[10px] font-black text-neutral-600 uppercase tracking-widest">IA ENGINE: {loading ? 'AUDITING...' : 'READY'}</span>
-          </div>
-          <div className="text-[10px] font-black text-neutral-700 uppercase tracking-widest">
-            GROUNDING: DGR-UY ACTIVE
-          </div>
+      {/* Global Status Footer (No print) */}
+      <div className="flex items-center justify-between no-print border-t border-[#22201c] pt-5 text-[10px] text-[#6e695f] uppercase tracking-widest">
+        <div className="flex items-center gap-4">
+          <span className="flex items-center gap-2">
+            <span className={cn("w-1.5 h-1.5 rounded-full", loading ? "bg-[#c5a880] animate-pulse" : "bg-[#7a917c]")}></span>
+            {loading ? 'Analizando expediente...' : 'Calificación DGR lista'}
+          </span>
         </div>
-        <div className="text-[10px] font-tabelion font-black text-amber-400/70 uppercase tracking-[0.2em]">
-          TABELION • URUGUAY LEGAL TECH
+        <div className="font-tabelion tracking-[0.2em] text-[#857f74]">
+          TABELION
         </div>
       </div>
     </div>

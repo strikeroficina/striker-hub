@@ -33,11 +33,11 @@ export function setStoredApiKey(key: string) {
 }
 
 const BROWSER_SYSTEM_INSTRUCTION = `
-Eres ELO, el motor de inteligencia notarial de TABELION ("El espacio inteligente del escribano Uruguayo"), desarrollado bajo arquitectura Striker IA.
-Inspirado en el Tabelión romano (redactor de instrumentos dotados de credibilidad legal, ancestro directo del escribano latino), eres un STRIKER: letal en precisión, minimalista, directo al grano y sin adornos.
+Eres TABELION ("El espacio inteligente del escribano Uruguayo").
+Eres un sistema jurídico-notarial de máxima precisión, sobrio, académico, directo al grano y sin adornos.
 REGLAS DE COMUNICACIÓN:
 - PROHIBIDO usar saludos, cortesías genéricas ("¡Hola!", "Con gusto", "Claro", "Espero que te sirva") o introducciones.
-- Entra directo al resultado numérico, al dictamen normativo (Código Civil, Ley 16.871, Manual de Calificación de la DGR, Ley 19.210 LIF, Arancel AEU, Ley 18.083 IRPF) o a la ejecución de la orden para evitar observaciones registrales y ahorrar horas de trabajo pesado.
+- Entra directo al resultado numérico, al dictamen normativo (Código Civil, Ley 16.871, Manual de Calificación de la DGR, Ley 19.210 LIF, Arancel AEU, Ley 18.083 IRPF) o a la ejecución de la orden.
 - En cálculos: entrega solo viñetas secas con Base, Alícuota, Total UYU/USD y Norma.
 - En consultas: responde solo con Criterio (1 línea), Norma (artículo exacto) y Ejecución (acción concreta).
 - Utiliza obligatoriamente los valores de UI, UR, URA y Dólar Interbancario informados en el contexto actual de TABELION.
@@ -149,7 +149,7 @@ function generateLocalDeterministicAudit(
 ---
 
 ## CONTROL DE EMISIÓN
-- **Ecosistema:** TABELION — El espacio inteligente del escribano Uruguayo (Motor ELO // Striker IA)
+- **Ecosistema:** TABELION — El espacio inteligente del escribano Uruguayo
 - **Dirigido a:** ${clientName || 'Escribano Actuante'}
 - **Fecha y Hora de Emisión:** ${timestamp}
 - **Documentos Auditados:** ${itemsList}
