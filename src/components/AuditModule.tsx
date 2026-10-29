@@ -337,28 +337,28 @@ export const AuditModule: React.FC<AuditModuleProps> = ({ onAuditComplete }) => 
 
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 no-print">
         <div className="space-y-1">
-          <h1 className="text-2xl font-tabelion font-semibold text-[#f2efe9] uppercase tracking-[0.14em]">
+          <h1 className="text-2xl font-tabelion font-bold text-[#0f172a] uppercase tracking-[0.14em]">
             Auditoría Documental
           </h1>
-          <p className="text-[#857f74] text-sm font-academic italic">
-            Contraste normativo con el Manual de Calificación de la DGR y Ley 16.871
+          <p className="text-[#475569] text-sm font-medium">
+            Contraste normativo con el Manual de Calificación de la DGR (Edición 2025) y Ley 16.871
           </p>
         </div>
         {report && (
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-3">
             <button 
               onClick={() => { setReport(null); setFiles([]); }}
-              className="px-6 py-2.5 bg-neutral-900 border border-neutral-800 text-neutral-400 rounded-xl text-xs font-black uppercase tracking-widest hover:text-white transition-all"
+              className="px-5 py-2.5 bg-[#ffffff] border border-[#cbd5e1] text-[#334155] rounded-xl text-xs font-bold uppercase tracking-widest hover:text-[#0f172a] hover:bg-[#eef2f8] transition-all shadow-2xs cursor-pointer"
             >
               Nueva Auditoría
             </button>
             <button 
               onClick={handleCopy}
               className={cn(
-                "px-6 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all flex items-center gap-2 shadow-xl",
+                "px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-widest transition-all flex items-center gap-2 shadow-sm cursor-pointer",
                 copied 
-                  ? "bg-emerald-600 text-white shadow-emerald-600/20" 
-                  : "bg-neutral-800 text-slate-300 hover:bg-neutral-700 shadow-black/20"
+                  ? "bg-emerald-600 text-white" 
+                  : "bg-[#ffffff] border border-[#cbd5e1] text-[#0f172a] hover:bg-[#eef2f8]"
               )}
             >
               {copied ? <Check size={16} /> : <Copy size={16} />}
@@ -366,14 +366,14 @@ export const AuditModule: React.FC<AuditModuleProps> = ({ onAuditComplete }) => 
             </button>
             <button 
               onClick={handleDownloadHtml}
-              className="px-6 py-2.5 bg-neutral-800 text-slate-300 hover:bg-neutral-700 rounded-xl text-xs font-black uppercase tracking-widest transition-all flex items-center gap-2 shadow-xl shadow-black/20"
+              className="px-5 py-2.5 bg-[#ffffff] border border-[#cbd5e1] text-[#0f172a] hover:bg-[#eef2f8] rounded-xl text-xs font-bold uppercase tracking-widest transition-all flex items-center gap-2 shadow-sm cursor-pointer"
             >
               <Download size={16} />
               Descargar HTML
             </button>
             <button 
               onClick={handlePrint}
-              className="px-6 py-2.5 bg-blue-600 text-white rounded-xl text-xs font-black uppercase tracking-widest hover:bg-blue-500 transition-all flex items-center gap-2 shadow-xl shadow-blue-600/20"
+              className="px-5 py-2.5 bg-[#0f172a] text-white rounded-xl text-xs font-bold uppercase tracking-widest hover:bg-[#1e3a8a] transition-all flex items-center gap-2 shadow-md cursor-pointer"
             >
               <Printer size={16} />
               Exportar / Imprimir
@@ -416,8 +416,8 @@ export const AuditModule: React.FC<AuditModuleProps> = ({ onAuditComplete }) => 
                   <div className="w-full space-y-6">
                     <div className="flex items-center justify-between border-b border-neutral-800/80 pb-4">
                       <div>
-                        <h3 className="text-base font-medium text-[#f2efe9] text-left">Expediente de Documentos ({files.length})</h3>
-                        <p className="text-xs text-[#857f74] text-left">Listo para análisis integral y cruzado en Tabelion</p>
+                        <h3 className="text-base font-bold text-[#0f172a] text-left">Expediente de Documentos ({files.length})</h3>
+                        <p className="text-xs text-[#475569] text-left">Listo para análisis integral y cruzado en Tabelion</p>
                       </div>
                       <button 
                         onClick={clearAllFiles}
@@ -490,10 +490,10 @@ export const AuditModule: React.FC<AuditModuleProps> = ({ onAuditComplete }) => 
                 onClick={startAudit}
                 disabled={files.length === 0 || loading}
                 className={cn(
-                  "w-full py-4 rounded-xl text-xs font-semibold uppercase tracking-[0.18em] transition-all flex items-center justify-center gap-3",
+                  "w-full py-4 rounded-xl text-xs font-bold uppercase tracking-[0.18em] transition-all flex items-center justify-center gap-3 shadow-md",
                   files.length > 0 && !loading 
-                    ? "bg-[#c5a880] text-[#121210] hover:bg-[#d4bc98] cursor-pointer" 
-                    : "bg-[#1d1c19] text-[#5c574f] cursor-not-allowed border border-[#262420]"
+                    ? "bg-[#0f172a] text-white hover:bg-[#1e3a8a] cursor-pointer" 
+                    : "bg-[#dce3ee] text-[#64748b] cursor-not-allowed border border-[#cbd5e1]"
                 )}
               >
                 {loading ? (
@@ -510,7 +510,7 @@ export const AuditModule: React.FC<AuditModuleProps> = ({ onAuditComplete }) => 
               </button>
 
               {error && (
-                <div className="p-4 bg-rose-500/10 border border-rose-500/20 rounded-xl flex items-center gap-3 text-rose-500 text-left">
+                <div className="p-4 bg-rose-500/10 border border-rose-500/20 rounded-xl flex items-center gap-3 text-rose-600 text-left">
                   <AlertCircle size={20} className="shrink-0" />
                   <p className="text-sm font-bold">{error}</p>
                 </div>
@@ -520,13 +520,13 @@ export const AuditModule: React.FC<AuditModuleProps> = ({ onAuditComplete }) => 
             <motion.div 
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="bento-card !p-0 overflow-hidden bg-neutral-900 border-neutral-800"
+              className="bento-card !p-0 overflow-hidden bg-[#ffffff] border-[#cbd5e1]"
             >
               <div 
                 ref={reportRef}
-                className="p-10 printable-report overflow-y-auto max-h-[70vh] custom-scrollbar selection:bg-blue-600/30"
+                className="p-10 printable-report overflow-y-auto max-h-[70vh] custom-scrollbar selection:bg-blue-600/20"
               >
-                <div className="prose prose-invert prose-blue max-w-none prose-headings:uppercase prose-headings:tracking-tighter prose-headings:font-black prose-p:text-neutral-300 prose-p:font-sans prose-p:leading-loose whitespace-pre-wrap font-sans text-base">
+                <div className="prose max-w-none prose-headings:uppercase prose-headings:tracking-tight prose-headings:font-bold prose-p:text-[#1e293b] prose-p:font-sans prose-p:leading-loose whitespace-pre-wrap font-sans text-base text-[#1e293b]">
                   <ReactMarkdown>{report}</ReactMarkdown>
                 </div>
               </div>
@@ -536,14 +536,14 @@ export const AuditModule: React.FC<AuditModuleProps> = ({ onAuditComplete }) => 
       </div>
 
       {/* Global Status Footer (No print) */}
-      <div className="flex items-center justify-between no-print border-t border-[#22201c] pt-5 text-[10px] text-[#6e695f] uppercase tracking-widest">
+      <div className="flex items-center justify-between no-print border-t border-[#cbd5e1] pt-5 text-[10px] font-semibold text-[#475569] uppercase tracking-widest">
         <div className="flex items-center gap-4">
           <span className="flex items-center gap-2">
-            <span className={cn("w-1.5 h-1.5 rounded-full", loading ? "bg-[#c5a880] animate-pulse" : "bg-[#7a917c]")}></span>
-            {loading ? 'Analizando expediente...' : 'Calificación DGR lista'}
+            <span className={cn("w-2 h-2 rounded-full", loading ? "bg-[#1d4ed8] animate-pulse" : "bg-[#059669]")}></span>
+            {loading ? 'Analizando expediente...' : 'Manual de Calificación DGR 2025 activo'}
           </span>
         </div>
-        <div className="font-tabelion tracking-[0.2em] text-[#857f74]">
+        <div className="font-tabelion font-bold tracking-[0.2em] text-[#0f172a]">
           TABELION
         </div>
       </div>

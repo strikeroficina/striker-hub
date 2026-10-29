@@ -128,48 +128,70 @@ Cuando el escribano ordene ejecutar una acción, incluye al final del mensaje (e
 - Cambiar módulo: \`[[ACTION:NAVIGATE|tab=dashboard|clients|audit|calculator|chat]]\`
 `;
 
-// Helper to call generateContent with automatic model fallback & retry on transient 503/429 errors
+// Helper to extract text cleanly from @google/genai response across Gemini 3.x / 2.x models
+function extractResponseText(response: any): string {
+  try {
+    if (typeof response?.text === "string" && response.text.trim()) {
+      return response.text.trim();
+    }
+  } catch {
+    // fallback to candidates inspection
+  }
+  const parts = response?.candidates?.[0]?.content?.parts;
+  if (Array.isArray(parts)) {
+    const joined = parts
+      .filter((p: any) => !p.thought && typeof p.text === "string")
+      .map((p: any) => p.text)
+      .join("\n")
+      .trim();
+    if (joined) return joined;
+  }
+  return "";
+}
+
+// Helper to call generateContent with automatic model fallback & timeout protection
 async function generateContentWithFallback(params: {
   contents: any;
   config?: any;
   apiKey?: string;
+  timeoutMs?: number;
 }) {
   const ai = getAiClient(params.apiKey);
-  const models = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-flash-latest"];
+  const models = [
+    "gemini-3.6-flash",
+    "gemini-3.5-flash",
+    "gemini-3.5-flash-lite",
+    "gemini-3.1-flash-lite",
+    "gemini-flash-lite-latest",
+    "gemini-flash-latest"
+  ];
+  const timeoutMs = params.timeoutMs || 22000;
   let lastError: any = null;
 
   for (const model of models) {
-    let retries = 2;
-    for (let attempt = 1; attempt <= retries; attempt++) {
-      try {
-        console.log(`Attempting generateContent with model: ${model} (Attempt ${attempt}/${retries})`);
-        const response = await ai.models.generateContent({
+    try {
+      console.log(`[TABELION AI] Generating content with model: ${model}`);
+      const response: any = await Promise.race([
+        ai.models.generateContent({
           model: model,
           contents: params.contents,
           config: params.config,
-        });
-        console.log(`Successfully completed generateContent with model: ${model}`);
-        return response;
-      } catch (error: any) {
-        lastError = error;
-        const errStr = String(error.message || error);
-        console.warn(`Error with model ${model} (attempt ${attempt}):`, errStr);
-
-        const isTransient = 
-          errStr.includes("503") || 
-          errStr.includes("429") || 
-          errStr.includes("UNAVAILABLE") || 
-          errStr.includes("high demand") ||
-          errStr.includes("Resource has been exhausted");
-
-        if (isTransient && attempt < retries) {
-          const delay = attempt * 1000;
-          console.log(`Transient error. Retrying ${model} in ${delay}ms...`);
-          await new Promise(resolve => setTimeout(resolve, delay));
-        } else {
-          break; // Try next model in sequence
-        }
+        }),
+        new Promise((_, reject) =>
+          setTimeout(() => reject(new Error(`Timeout (${timeoutMs}ms) with model ${model}`)), timeoutMs)
+        )
+      ]);
+      const text = extractResponseText(response);
+      if (text) {
+        console.log(`[TABELION AI] Completed successfully with model: ${model}`);
+        return { text, raw: response };
       }
+      throw new Error(`Empty response from model ${model}`);
+    } catch (error: any) {
+      lastError = error;
+      const errStr = String(error?.message || error);
+      console.warn(`[TABELION AI] Model ${model} failed:`, errStr.slice(0, 220));
+      // Continue immediately to the next active model in the fallback chain
     }
   }
 

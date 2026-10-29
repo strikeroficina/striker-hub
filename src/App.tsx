@@ -698,16 +698,16 @@ export default function App() {
     <div className="h-screen w-full bg-brand-bg text-slate-100 overflow-hidden relative">
       <div className="flex flex-col md:flex-row h-full w-full">
         {/* Mobile Header Bar */}
-        <header className="md:hidden flex items-center justify-between px-4 py-3 bg-[#0a0a0d] border-b border-neutral-800 shrink-0 no-print">
+        <header className="md:hidden flex items-center justify-between px-4 py-3 bg-[#dde4ee] border-b border-[#c5d0de] shrink-0 no-print">
           <div className="flex items-center gap-2.5 overflow-hidden">
-            <div className="w-8 h-8 bg-neutral-950 border border-amber-500/40 rounded-lg flex items-center justify-center font-tabelion font-black tabelion-gold-text text-xs shrink-0">
+            <div className="w-8 h-8 bg-[#0f172a] rounded-lg flex items-center justify-center font-tabelion font-bold text-white text-xs shrink-0">
               T
             </div>
             <div className="overflow-hidden">
-              <p className="text-xs font-tabelion font-black text-white uppercase tracking-[0.15em] truncate">
+              <p className="text-xs font-tabelion font-bold text-[#0f172a] uppercase tracking-[0.15em] truncate">
                 TABELION
               </p>
-              <p className="text-[9px] text-amber-400/90 font-bold uppercase tracking-wider truncate">
+              <p className="text-[9px] text-[#475569] font-bold uppercase tracking-wider truncate">
                 {formatNotaryDisplayTitle(notaryProfile)}
               </p>
             </div>

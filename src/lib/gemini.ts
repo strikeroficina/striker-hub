@@ -59,20 +59,41 @@ async function callGeminiDirectBrowser(contents: any, systemInstruction: string,
     throw new Error("No se encontró una clave GEMINI_API_KEY configurada. Puedes ingresarla en el botón de configuración de IA.");
   }
   const ai = new GoogleGenAI({ apiKey });
-  const models = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-flash-latest"];
+  const models = [
+    "gemini-3.6-flash",
+    "gemini-3.5-flash",
+    "gemini-3.5-flash-lite",
+    "gemini-3.1-flash-lite",
+    "gemini-flash-lite-latest",
+    "gemini-flash-latest"
+  ];
   let lastErr: any = null;
 
   for (const model of models) {
     try {
-      const response = await ai.models.generateContent({
-        model,
-        contents,
-        config: {
-          systemInstruction,
-          temperature,
-        },
-      });
-      if (response.text) return response.text;
+      const response: any = await Promise.race([
+        ai.models.generateContent({
+          model,
+          contents,
+          config: {
+            systemInstruction,
+            temperature,
+          },
+        }),
+        new Promise((_, reject) => setTimeout(() => reject(new Error(`Timeout on ${model}`)), 20000))
+      ]);
+      if (typeof response?.text === "string" && response.text.trim()) {
+        return response.text.trim();
+      }
+      const parts = response?.candidates?.[0]?.content?.parts;
+      if (Array.isArray(parts)) {
+        const joined = parts
+          .filter((p: any) => !p.thought && typeof p.text === "string")
+          .map((p: any) => p.text)
+          .join("\n")
+          .trim();
+        if (joined) return joined;
+      }
     } catch (err: any) {
       lastErr = err;
       console.warn(`Browser direct Gemini attempt failed with ${model}:`, err);
@@ -216,13 +237,8 @@ export async function chatWithELO(message: string, history: any[] = [], context?
       }
       const errData = await res.json().catch(() => ({}));
       const errText = errData.error || `HTTP ${res.status}`;
-      if (errText.includes("503") || errText.includes("UNAVAILABLE")) {
-        throw new GeminiUnavailableError();
-      }
-      // Try browser direct fallback if server returned 404/500/502
       console.warn("Backend /api/chat returned non-OK, attempting direct Gemini fallback:", errText);
     } catch (error: any) {
-      if (error instanceof GeminiUnavailableError) throw error;
       console.warn("Fetch to /api/chat failed, switching to browser direct fallback:", error);
     }
 
@@ -296,12 +312,8 @@ export async function runAudit(
       }
       const errData = await res.json().catch(() => ({}));
       const errText = errData.error || `HTTP ${res.status}`;
-      if (errText.includes("503") || errText.includes("UNAVAILABLE")) {
-        throw new GeminiUnavailableError();
-      }
       console.warn("Backend /api/audit returned error, attempting browser fallback:", errText);
     } catch (error: any) {
-      if (error instanceof GeminiUnavailableError) throw error;
       console.warn("Fetch to /api/audit failed (e.g., Failed to fetch), switching to browser fallback:", error);
     }
 

@@ -496,8 +496,8 @@ export const ClientManagement: React.FC<ClientManagementProps> = ({ user }) => {
       {/* Title & Header Section */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between px-2 gap-4">
         <div className="space-y-1">
-          <h1 className="text-2xl font-tabelion font-semibold text-[#f2efe9] uppercase tracking-[0.14em]">Agenda del Estudio</h1>
-          <p className="text-[#857f74] text-sm font-academic italic">Tarjetero notarial, control de hitos y respaldo documental</p>
+          <h1 className="text-2xl font-tabelion font-bold text-[#0f172a] uppercase tracking-[0.14em]">Agenda del Estudio</h1>
+          <p className="text-[#475569] text-sm font-medium">Tarjetero notarial, control de hitos y respaldo documental</p>
         </div>
         <div>
           <button 

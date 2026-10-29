@@ -56,29 +56,32 @@ const MessageBubble: React.FC<{ m: Message; idx: number }> = ({ m, idx }) => {
       )}
     >
       <div className={cn(
-        "w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center mt-0.5 shadow-sm",
-        m.role === 'user' ? "bg-slate-800 border border-slate-700" : "bg-blue-600/10 border border-blue-500/20"
+        "w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center mt-0.5 shadow-xs",
+        m.role === 'user' ? "bg-[#e2e8f0] border border-[#cbd5e1]" : "bg-[#0f172a] border border-[#1e3a8a]"
       )}>
-        {m.role === 'user' ? <User size={16} className="text-slate-400" /> : <Bot size={16} className="text-blue-400" />}
+        {m.role === 'user' ? <User size={15} className="text-[#334155]" /> : <span className="font-tabelion font-bold text-xs text-white">T</span>}
       </div>
       <div className="relative">
         <div className={cn(
-          "p-3.5 rounded-2xl text-[13px] leading-relaxed shadow-sm whitespace-pre-wrap",
+          "p-4 rounded-2xl text-[13px] leading-relaxed shadow-xs whitespace-pre-wrap",
           m.role === 'user' 
-            ? "bg-blue-600 text-white rounded-tr-none" 
-            : "bg-slate-800/80 text-slate-200 rounded-tl-none border border-slate-700/50"
+            ? "bg-[#0f172a] text-white rounded-tr-none font-medium" 
+            : "bg-[#ffffff] text-[#0f172a] rounded-tl-none border border-[#cbd5e1]"
         )}>
-          <div className="prose prose-invert prose-sm max-w-none prose-p:leading-loose">
+          <div className={cn(
+            "prose prose-sm max-w-none prose-p:leading-relaxed",
+            m.role === 'user' ? "prose-invert text-white" : "text-[#0f172a] prose-headings:text-[#0f172a] prose-strong:text-[#0f172a]"
+          )}>
             <ReactMarkdown>{m.parts[0].text}</ReactMarkdown>
           </div>
         </div>
         {m.role === 'model' && (
           <button 
             onClick={handleCopy}
-            className="absolute -right-10 top-0 p-2 text-slate-500 hover:text-white bg-slate-800/50 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
+            className="absolute -right-10 top-0 p-2 text-[#64748b] hover:text-[#0f172a] bg-[#ffffff] border border-[#cbd5e1] rounded-lg opacity-0 group-hover:opacity-100 transition-opacity shadow-2xs"
             title="Copiar contenido limpio"
           >
-            {copied ? <Check size={14} className="text-emerald-500" /> : <Copy size={14} />}
+            {copied ? <Check size={14} className="text-emerald-600" /> : <Copy size={14} />}
           </button>
         )}
       </div>
@@ -315,12 +318,12 @@ ${agendaSummary}`;
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-20 md:bottom-6 right-4 md:right-6 w-14 h-14 bg-[#1c1b18] border border-[#36332e] rounded-full flex items-center justify-center shadow-2xl z-[9999] group hover:border-[#c5a880] transition-all no-print cursor-pointer"
+            className="fixed bottom-20 md:bottom-6 right-4 md:right-6 w-14 h-14 bg-gradient-to-br from-[#0f172a] to-[#1e3a8a] border border-[#93c5fd]/40 rounded-full flex items-center justify-center shadow-2xl z-[9999] group hover:scale-105 transition-all no-print cursor-pointer"
           >
-            <span className="font-tabelion font-semibold text-lg text-[#d4bc98]">T</span>
-            <div className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-[#7a917c] border-2 border-[#121210] rounded-full"></div>
-            <div className="absolute right-16 bg-[#171614] border border-[#2c2a25] px-3 py-1.5 rounded-lg text-[10px] font-medium text-[#ece8df] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all pointer-events-none tracking-wider shadow-xl">
-              Tabelion
+            <span className="font-tabelion font-bold text-lg text-[#ffffff]">T</span>
+            <div className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 bg-[#059669] border-2 border-[#e6ebf2] rounded-full"></div>
+            <div className="absolute right-16 bg-[#0f172a] border border-[#334155] px-3.5 py-1.5 rounded-lg text-[10px] font-semibold text-[#ffffff] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all pointer-events-none tracking-wider shadow-xl">
+              Tabelion • Consultor
             </div>
           </motion.button>
         )}
@@ -335,23 +338,23 @@ ${agendaSummary}`;
             exit={isFloating ? { opacity: 0, y: 20, scale: 0.95 } : { opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
             className={cn(
-              "flex flex-col bg-slate-900/95 backdrop-blur-md border border-slate-800 overflow-hidden no-print",
+              "flex flex-col bg-[#f5f7fb]/98 backdrop-blur-xl border border-[#cbd5e1] overflow-hidden no-print",
               !isFloating 
-                ? "h-full w-full rounded-2xl" 
+                ? "h-full w-full rounded-2xl shadow-sm" 
                 : (isExpanded 
                     ? "fixed inset-2 sm:inset-10 z-[9999] shadow-2xl rounded-3xl" 
                     : "fixed bottom-20 md:bottom-24 right-3 sm:right-6 w-[calc(100vw-24px)] sm:w-[500px] h-[540px] max-h-[calc(100vh-140px)] z-[9999] shadow-2xl rounded-2xl")
             )}
           >
             {/* Header */}
-            <div className="p-4 border-b border-slate-800/50 flex items-center justify-between bg-slate-900/50 flex-shrink-0">
+            <div className="p-4 border-b border-[#cbd5e1] flex items-center justify-between bg-[#e8eef6] flex-shrink-0">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 bg-[#1c1b18] border border-[#36332e] rounded-lg flex items-center justify-center font-tabelion font-semibold text-[#d4bc98] text-sm">
+                <div className="w-9 h-9 bg-gradient-to-br from-[#0f172a] to-[#1e3a8a] rounded-lg flex items-center justify-center font-tabelion font-bold text-[#ffffff] text-sm shadow-xs">
                   T
                 </div>
                 <div>
-                  <h2 className="font-tabelion font-semibold text-xs text-[#f2efe9] uppercase tracking-[0.18em]">TABELION</h2>
-                  <p className="text-[11px] font-academic italic text-[#9e988e]">
+                  <h2 className="font-tabelion font-bold text-xs text-[#0f172a] uppercase tracking-[0.18em]">TABELION</h2>
+                  <p className="text-[11px] font-medium text-[#475569]">
                     El espacio inteligente del escribano Uruguayo
                   </p>
                 </div>
@@ -462,29 +465,29 @@ ${agendaSummary}`;
             </div>
 
             {/* Input Area */}
-            <div className="p-4 border-t border-slate-800/50 bg-slate-900/80 backdrop-blur-sm flex-shrink-0">
+            <div className="p-4 border-t border-[#cbd5e1] bg-[#e8eef6] flex-shrink-0">
               <div className="relative flex items-center gap-2">
                 <input
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-                  placeholder="Consultar norma, liquidar impuesto, auditar o agendar..."
-                  className="flex-1 bg-slate-800/50 border border-slate-700/50 rounded-xl px-4 py-3 text-xs focus:outline-none focus:border-blue-500/50 transition-all placeholder:text-slate-500 text-white shadow-inner"
+                  placeholder="Consultar norma DGR 2025, liquidar impuesto, auditar o agendar..."
+                  className="flex-1 bg-[#ffffff] border border-[#cbd5e1] rounded-xl px-4 py-3 text-xs focus:outline-none focus:border-[#1d4ed8] transition-all placeholder:text-[#64748b] text-[#0f172a] font-medium shadow-2xs"
                 />
                 <button
                   onClick={handleSend}
                   disabled={!input.trim() || isLoading}
-                  className="p-3 bg-blue-600 hover:bg-blue-500 text-white rounded-xl transition-all active:scale-95 disabled:opacity-50 disabled:bg-slate-800 shadow-lg shadow-blue-600/20"
+                  className="p-3 bg-[#0f172a] hover:bg-[#1e3a8a] text-white rounded-xl transition-all active:scale-95 disabled:opacity-40 cursor-pointer shadow-sm"
                 >
-                  <Send size={18} />
+                  <Send size={18} className="text-white" />
                 </button>
               </div>
-              <div className="flex justify-between items-center px-1 mt-3">
-                <span className="text-[9px] text-slate-500 font-bold uppercase tracking-widest">
+              <div className="flex justify-between items-center px-1 mt-2.5">
+                <span className="text-[9px] text-[#475569] font-bold uppercase tracking-widest">
                   UI: {ui || '$6,6803'} • UR: {ur || '$1.946,95'} • USD: {dolarInter || '$40,14'}
                 </span>
-                <span className="text-[9px] text-slate-500 italic">Grounding DGR-UY</span>
+                <span className="text-[9px] text-[#1e3a8a] font-semibold">Manual DGR 2025 Activo</span>
               </div>
             </div>
           </motion.div>

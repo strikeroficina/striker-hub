@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -7,84 +7,118 @@
   --font-serif: "Cormorant Garamond", Georgia, serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
-  /* Paleta Zen Académica: Piedra Cálida, Papiro, Grafito de Estudio y Bronce Mate */
-  --color-brand-primary: #b89b72;
-  --color-brand-secondary: #9e825b;
-  --color-brand-gold: #c5a880;
-  --color-brand-bg: #121210;
-  --color-brand-card: #171614;
-  --color-brand-inner: #121210;
-  --color-brand-border: #262420;
+  /* Paleta Gris Plata Tecnológica (Silver-Platinum & Aerospace Cobalt) */
+  --color-brand-primary: #1d4ed8;
+  --color-brand-secondary: #0284c7;
+  --color-brand-gold: #1e3a8a;
+  --color-brand-bg: #e6ebf2;
+  --color-brand-card: #f5f7fb;
+  --color-brand-inner: #eaeff7;
+  --color-brand-border: #cbd5e1;
 
-  /* Unificación cromática de grises hacia piedra cálida de biblioteca */
-  --color-neutral-950: #11110f;
-  --color-neutral-900: #171614;
-  --color-neutral-850: #1d1c19;
-  --color-neutral-800: #262420;
-  --color-neutral-700: #36332e;
-  --color-neutral-600: #5c574f;
-  --color-neutral-500: #857f74;
-  --color-neutral-400: #aba498;
-  --color-neutral-300: #cfc9be;
-  --color-neutral-200: #e4dfd5;
-  --color-neutral-100: #f2efe9;
+  /* Inversión Luminosa Gris Plata: fondos claros metálicos y textos en obsidiana de alto contraste */
+  --color-neutral-950: #e8eef6;
+  --color-neutral-900: #f4f7fb;
+  --color-neutral-850: #e2e8f2;
+  --color-neutral-800: #cbd5e1;
+  --color-neutral-700: #94a3b8;
+  --color-neutral-600: #526277;
+  --color-neutral-500: #475569;
+  --color-neutral-400: #334155;
+  --color-neutral-300: #1e293b;
+  --color-neutral-200: #0f172a;
+  --color-neutral-100: #090d16;
 
-  --color-slate-950: #11110f;
-  --color-slate-900: #171614;
-  --color-slate-850: #1d1c19;
-  --color-slate-800: #262420;
-  --color-slate-700: #36332e;
-  --color-slate-600: #5c574f;
-  --color-slate-500: #857f74;
-  --color-slate-400: #aba498;
-  --color-slate-300: #cfc9be;
-  --color-slate-200: #e4dfd5;
-  --color-slate-100: #f2efe9;
+  --color-slate-950: #e8eef6;
+  --color-slate-900: #f4f7fb;
+  --color-slate-850: #e2e8f2;
+  --color-slate-800: #cbd5e1;
+  --color-slate-700: #94a3b8;
+  --color-slate-600: #526277;
+  --color-slate-500: #475569;
+  --color-slate-400: #334155;
+  --color-slate-300: #1e293b;
+  --color-slate-200: #0f172a;
+  --color-slate-100: #090d16;
 
-  /* Unificación de acentos hacia un único tono noble: Bronce / Pergamino Cálido */
-  --color-blue-950: #211d17;
-  --color-blue-900: #2e281f;
-  --color-blue-800: #453b2d;
-  --color-blue-700: #8c7350;
-  --color-blue-600: #a68a64;
-  --color-blue-500: #c5a880;
-  --color-blue-400: #d4bc98;
-  --color-blue-300: #e3d2b6;
+  /* Acentos Tecnológicos: Cobalto Aeroespacial y Acero Zafiro */
+  --color-blue-950: #dbeafe;
+  --color-blue-900: #bfdbfe;
+  --color-blue-800: #93c5fd;
+  --color-blue-700: #1d4ed8;
+  --color-blue-600: #1e40af;
+  --color-blue-500: #1d4ed8;
+  --color-blue-400: #1e3a8a;
+  --color-blue-300: #172554;
 
-  --color-amber-950: #211d17;
-  --color-amber-900: #2e281f;
-  --color-amber-800: #453b2d;
-  --color-amber-600: #a68a64;
-  --color-amber-500: #c5a880;
-  --color-amber-400: #d4bc98;
+  /* Dorado / Platino Clásico de precisión para detalles del Tabelión */
+  --color-amber-950: #e0e7ff;
+  --color-amber-900: #c7d2fe;
+  --color-amber-800: #94a3b8;
+  --color-amber-600: #1e3a8a;
+  --color-amber-500: #1d4ed8;
+  --color-amber-400: #1e3a8a;
 
-  /* Salvia apagada y serena para estados activos */
-  --color-emerald-950: #171d18;
-  --color-emerald-900: #212a22;
-  --color-emerald-800: #2f3c31;
-  --color-emerald-600: #637865;
-  --color-emerald-500: #7a917c;
-  --color-emerald-400: #9ab09c;
+  /* Esmeralda Técnica para indicadores en línea y validaciones */
+  --color-emerald-950: #d1fae5;
+  --color-emerald-900: #a7f3d0;
+  --color-emerald-800: #6ee7b7;
+  --color-emerald-600: #059669;
+  --color-emerald-500: #047857;
+  --color-emerald-400: #065f46;
 
-  /* Eliminación de violetas e índigos estridentes -> Piedra / Pergamino */
-  --color-purple-500: #c5a880;
-  --color-purple-400: #d4bc98;
-  --color-indigo-500: #c5a880;
-  --color-indigo-400: #d4bc98;
+  /* Unificación de violetas/índigos hacia Acero Cobalto */
+  --color-purple-500: #1d4ed8;
+  --color-purple-400: #1e3a8a;
+  --color-indigo-500: #1d4ed8;
+  --color-indigo-400: #1e3a8a;
 }
 
 @layer base {
   body {
-    @apply bg-[#121210] text-[#aba498] font-sans antialiased;
-    background-image: radial-gradient(circle at 50% 0%, rgba(197, 168, 128, 0.04) 0%, transparent 65%);
+    @apply bg-[#e6ebf2] text-[#1e293b] font-sans antialiased;
+    background-image:
+      radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.85) 0%, transparent 60%),
+      linear-gradient(135deg, #eef2f7 0%, #e4eaf2 50%, #dbe2ec 100%);
+    background-attachment: fixed;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold tracking-normal text-[#ece8df];
+    @apply font-semibold tracking-normal text-[#0f172a];
   }
 }
 
-/* Tipografía clásica inspirada en el Tabelión y la academia humanista */
+/* Adaptación automática de contrastes para clara lectura sobre Gris Plata */
+.text-white {
+  color: #0f172a;
+}
+
+.bg-blue-600.text-white, .bg-blue-600 .text-white,
+.bg-blue-500.text-white, .bg-blue-500 .text-white,
+.bg-emerald-600.text-white, .bg-emerald-600 .text-white,
+.bg-emerald-500.text-white, .bg-emerald-500 .text-white,
+.bg-rose-600.text-white, .bg-rose-600 .text-white,
+.bg-rose-500.text-white, .bg-rose-500 .text-white,
+.bg-indigo-600.text-white, .bg-indigo-600 .text-white,
+.bg-purple-600.text-white, .bg-purple-600 .text-white,
+.bg-\[\#0f172a\].text-white, .bg-\[\#0f172a\] .text-white,
+.bg-\[\#1e293b\].text-white, .bg-\[\#1e293b\] .text-white {
+  color: #ffffff !important;
+}
+
+/* Superficies oscuras heredadas convertidas a paneles Gris Plata / Platino Esmerilado */
+.bg-\[\#0c0c0e\], .bg-\[\#0c0c0f\], .bg-\[\#171614\], .bg-\[\#151412\] {
+  background-color: #f5f7fb !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.bg-\[\#121210\], .bg-\[\#121214\], .bg-\[\#09090b\], .bg-\[\#08080a\], .bg-\[\#0a0a0d\] {
+  background-color: #eaeff7 !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Tipografía clásica inspirada en el Tabelión romano en contraste tecnológico */
 .font-tabelion {
   font-family: "Cinzel", "Cormorant Garamond", Georgia, serif;
   letter-spacing: 0.16em;
@@ -95,59 +129,63 @@
 }
 
 .tabelion-gold-text {
-  color: #d4bc98;
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 55%, #0284c7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .bento-card {
-  @apply bg-[#171614] border border-[#262420] rounded-2xl p-8 transition-all;
+  @apply bg-[#f6f8fc]/95 backdrop-blur-md border border-[#cbd5e1] rounded-2xl p-8 transition-all;
+  box-shadow: 0 12px 32px -12px rgba(15, 23, 42, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.95);
 }
 
 .inner-card {
-  @apply bg-[#121210] border border-[#262420] rounded-xl p-5;
+  @apply bg-[#eaeff7] border border-[#cbd5e1] rounded-xl p-5;
 }
 
 .btn-primary {
-  @apply px-4 py-2.5 bg-[#a68a64] hover:bg-[#b89b72] text-[#121210] font-semibold text-xs rounded-xl transition-all active:scale-98 disabled:opacity-50 disabled:pointer-events-none tracking-wider;
+  @apply px-4 py-2.5 bg-[#0f172a] hover:bg-[#1e293b] text-white font-semibold text-xs rounded-xl transition-all active:scale-98 disabled:opacity-50 disabled:pointer-events-none tracking-wider shadow-md;
+  color: #ffffff !important;
 }
 
 .btn-secondary {
-  @apply px-4 py-2.5 bg-[#201f1c] hover:bg-[#2a2824] text-[#e4dfd5] font-medium text-xs rounded-xl border border-[#2e2c27] transition-all active:scale-98 tracking-wider;
+  @apply px-4 py-2.5 bg-[#e2e8f0] hover:bg-[#cbd5e1] text-[#0f172a] font-medium text-xs rounded-xl border border-[#cbd5e1] transition-all active:scale-98 tracking-wider;
 }
 
 .input-field {
-  @apply w-full px-4 py-2.5 bg-[#121210] border border-[#262420] rounded-xl focus:outline-none focus:border-[#c5a880] text-[#ece8df] text-sm transition-colors;
+  @apply w-full px-4 py-2.5 bg-[#ffffff] border border-[#cbd5e1] rounded-xl focus:outline-none focus:border-[#1d4ed8] text-[#0f172a] text-sm transition-colors shadow-2xs;
 }
 
-/* Scrollbar styling */
+/* Scrollbar styling en Gris Plata */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #121210;
+  background: #e2e8f0;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #262420;
+  background: #94a3b8;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #36332e;
+  background: #64748b;
 }
 
-/* Markdown Content Styling */
+/* Markdown Content Styling (Informes de Auditoría claros y de alta legibilidad) */
 .printable-report h1 {
   font-family: "Cinzel", Georgia, serif;
-  @apply text-2xl font-semibold mb-6 uppercase tracking-widest text-[#ece8df];
+  @apply text-2xl font-bold mb-6 uppercase tracking-widest text-[#0f172a] border-b-2 border-[#cbd5e1] pb-3;
 }
 .printable-report h2 {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  @apply text-xl font-semibold mt-8 mb-4 tracking-wide text-[#d4bc98] border-b border-[#262420] pb-2;
+  font-family: "Cinzel", Georgia, serif;
+  @apply text-lg font-bold mt-8 mb-4 tracking-wider text-[#1e3a8a] border-b border-[#cbd5e1] pb-2;
 }
-.printable-report h3 { @apply text-base font-semibold mt-6 mb-2 text-[#e4dfd5]; }
-.printable-report p { @apply text-sm leading-relaxed text-[#cfc9be] mb-4; }
-.printable-report ul { @apply list-disc list-inside space-y-2 mb-6 text-sm text-[#cfc9be]; }
-.printable-report li { @apply marker:text-[#c5a880]; }
-.printable-report hr { @apply border-[#262420] my-8; }
-.printable-report strong { @apply text-[#f2efe9] font-semibold; }
+.printable-report h3 { @apply text-base font-bold mt-6 mb-2 text-[#0f172a]; }
+.printable-report p { @apply text-sm leading-relaxed text-[#1e293b] mb-4; }
+.printable-report ul { @apply list-disc list-inside space-y-2 mb-6 text-sm text-[#1e293b]; }
+.printable-report li { @apply marker:text-[#1d4ed8]; }
+.printable-report hr { @apply border-[#cbd5e1] my-8; }
+.printable-report strong { @apply text-[#0f172a] font-bold; }

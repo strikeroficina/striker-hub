@@ -105,10 +105,10 @@ export const NotarySettings: React.FC<NotarySettingsProps> = ({
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-800 pb-5">
         <div className="space-y-1">
-          <h1 className="text-2xl font-tabelion font-semibold text-[#f2efe9] uppercase tracking-[0.14em]">
+          <h1 className="text-2xl font-tabelion font-bold text-[#0f172a] uppercase tracking-[0.14em]">
             Datos del Escribano
           </h1>
-          <p className="text-[#857f74] text-sm font-academic italic">
+          <p className="text-[#475569] text-sm font-medium">
             Identidad profesional, membrete de informes, seguridad e instalación
           </p>
         </div>
