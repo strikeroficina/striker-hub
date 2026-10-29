@@ -516,17 +516,17 @@ export const ClientManagement: React.FC<ClientManagementProps> = ({ user }) => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 flex-1 overflow-hidden min-h-[500px]">
         
         {/* LEFT COLUMN: A-Z Linear Client Cards Container (Spans 5 of 12) */}
-        <div className="lg:col-span-5 flex flex-col bg-[#0c0c0e] border border-neutral-800/80 rounded-2xl overflow-hidden shadow-2xl h-full max-h-[800px]">
+        <div className="lg:col-span-5 flex flex-col bg-[#f6f8fc] border border-[#cbd5e1] rounded-2xl overflow-hidden shadow-md h-full max-h-[800px]">
           
-          {/* BARRA DE BÚSQUEDA Y FILTRADO (Ubicada en la parte superior central de la sección izquierda) */}
-          <div className="p-4 border-b border-neutral-800 bg-neutral-950/20">
-            <div className="relative flex items-center bg-neutral-900 border border-neutral-800 rounded-xl px-3 py-2.5 focus-within:border-blue-500 transition-all">
-              <Search size={14} className="text-neutral-500 mr-2 shrink-0" />
+          {/* BARRA DE BÚSQUEDA Y FILTRADO */}
+          <div className="p-4 border-b border-[#cbd5e1] bg-[#eaeff7]/70">
+            <div className="relative flex items-center bg-[#ffffff] border border-[#cbd5e1] rounded-xl px-3.5 py-2.5 focus-within:border-[#1d4ed8] transition-all shadow-2xs">
+              <Search size={16} className="text-[#475569] mr-2.5 shrink-0" />
               <input 
                 type="text" 
                 id="agenda-search-input"
-                placeholder="FILTRAR CONTACTOS POR NOMBRE..." 
-                className="w-full bg-transparent border-none focus:outline-none text-[10px] font-bold tracking-widest uppercase text-white placeholder:text-neutral-700"
+                placeholder="Filtrar contactos por nombre..." 
+                className="w-full bg-transparent border-none focus:outline-none text-xs font-semibold text-[#0f172a] placeholder:text-[#64748b]"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -534,21 +534,21 @@ export const ClientManagement: React.FC<ClientManagementProps> = ({ user }) => {
                 <button 
                   type="button" 
                   onClick={() => setSearchTerm('')}
-                  className="text-neutral-600 hover:text-white transition-colors"
+                  className="text-[#64748b] hover:text-[#0f172a] transition-colors"
                 >
-                  <X size={14} />
+                  <X size={15} />
                 </button>
               )}
             </div>
           </div>
 
           {/* List Wrapper - Scrollable */}
-          <div className="flex-1 overflow-y-auto custom-scrollbar p-3 space-y-2">
+          <div className="flex-1 overflow-y-auto custom-scrollbar p-3.5 space-y-2.5">
             {filteredContacts.length === 0 ? (
               <div className="py-20 text-center flex flex-col items-center justify-center gap-3">
-                <AlertCircle className="text-neutral-700" size={32} />
-                <p className="text-neutral-600 font-bold text-[10px] uppercase tracking-widest">Sin contactos cargados</p>
-                <p className="text-neutral-700 text-xs text-center max-w-[200px]">Pruebe con otro término o ingrese un contacto manual.</p>
+                <AlertCircle className="text-[#64748b]" size={32} />
+                <p className="text-[#334155] font-bold text-xs uppercase tracking-widest">Sin contactos cargados</p>
+                <p className="text-[#475569] text-sm text-center max-w-[220px]">Pruebe con otro término o ingrese un contacto manual.</p>
               </div>
             ) : (
               filteredContacts.map((contact) => {
@@ -562,55 +562,55 @@ export const ClientManagement: React.FC<ClientManagementProps> = ({ user }) => {
                     onClick={() => setSelectedContactId(contact.id)}
                     className={`p-4 rounded-xl cursor-pointer border transition-all duration-200 flex items-center justify-between group ${
                       isActive 
-                        ? 'bg-neutral-900 border-neutral-700 text-white shadow-lg shadow-black/40' 
-                        : 'bg-transparent border-transparent hover:bg-neutral-900/40 hover:border-neutral-800 text-neutral-400 hover:text-neutral-200'
+                        ? 'bg-[#ffffff] border-[#1d4ed8] text-[#0f172a] shadow-md' 
+                        : 'bg-[#eaeff7]/50 border-transparent hover:bg-[#ffffff] hover:border-[#cbd5e1] text-[#334155]'
                     }`}
                   >
-                    <div className="flex items-center gap-4 overflow-hidden">
+                    <div className="flex items-center gap-3.5 overflow-hidden">
                       {/* Monogram avatar */}
-                      <div className={`w-8 h-8 rounded-lg flex items-center justify-center font-black text-[9px] tracking-widest ${
+                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-xs tracking-wider shrink-0 ${
                         isActive 
-                          ? 'bg-blue-600/90 text-white shadow-md' 
-                          : 'bg-neutral-900 border border-neutral-800 text-neutral-400 group-hover:text-blue-400'
+                          ? 'bg-[#0f172a] text-white shadow-xs' 
+                          : 'bg-[#dde4ee] border border-[#cbd5e1] text-[#1e293b] group-hover:text-[#1d4ed8]'
                       }`}>
                         {initials}
                       </div>
 
-                      {/* Info lines strictly displaying only: Nombre y Apellido | Correo | Teléfono */}
-                      <div className="overflow-hidden space-y-0.5">
-                        <h4 className="text-xs font-bold tracking-tight text-white truncate max-w-[220px]">{contact.name}</h4>
-                        <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[9px] text-neutral-500 font-medium tracking-tight">
+                      {/* Info lines: Nombre y Apellido | Correo | Teléfono con fuente más legible */}
+                      <div className="overflow-hidden space-y-1">
+                        <h4 className="text-sm font-bold tracking-tight text-[#0f172a] truncate max-w-[230px]">{contact.name}</h4>
+                        <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-xs text-[#475569] font-medium">
                           {contact.email ? (
-                            <span className="truncate max-w-[140px] flex items-center gap-1">
-                              <Mail size={8} className="text-neutral-600" />
+                            <span className="truncate max-w-[160px] flex items-center gap-1">
+                              <Mail size={11} className="text-[#64748b] shrink-0" />
                               {contact.email}
                             </span>
                           ) : (
-                            <span className="text-neutral-700">[Sin correo]</span>
+                            <span className="text-[#64748b]">[Sin correo]</span>
                           )}
-                          <span className="text-neutral-800">•</span>
+                          <span className="text-[#94a3b8]">•</span>
                           {contact.phone ? (
-                            <span className="flex items-center gap-1">
-                              <Phone size={8} className="text-neutral-600" />
+                            <span className="flex items-center gap-1 font-mono">
+                              <Phone size={11} className="text-[#64748b] shrink-0" />
                               {contact.phone}
                             </span>
                           ) : (
-                            <span className="text-neutral-700">[Sin teléfono]</span>
+                            <span className="text-[#64748b]">[Sin teléfono]</span>
                           )}
                         </div>
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2 shrink-0">
                       <button 
                         type="button" 
                         onClick={(e) => handleDeleteContactRequest(contact.id, e)}
-                        className="opacity-0 group-hover:opacity-100 p-1.5 hover:bg-neutral-800 rounded-md text-neutral-600 hover:text-red-400 transition-all duration-150"
+                        className="opacity-0 group-hover:opacity-100 p-2 hover:bg-rose-500/10 rounded-lg text-[#64748b] hover:text-rose-600 transition-all duration-150"
                         title="Eliminar de agenda"
                       >
-                        <Trash2 size={12} />
+                        <Trash2 size={14} />
                       </button>
-                      <ChevronRight size={14} className={`text-neutral-700 ${isActive ? 'text-blue-500 transform translate-x-1' : ''} transition-all`} />
+                      <ChevronRight size={16} className={`text-[#64748b] ${isActive ? 'text-[#1d4ed8] transform translate-x-0.5' : ''} transition-all`} />
                     </div>
                   </div>
                 );
@@ -619,29 +619,29 @@ export const ClientManagement: React.FC<ClientManagementProps> = ({ user }) => {
           </div>
           
           {/* Alphabetical list footer count */}
-          <div className="p-3 border-t border-neutral-800 bg-neutral-950/40 text-center">
-            <span className="text-[9px] font-black text-neutral-600 uppercase tracking-widest">
-              CONTACTOS DEL ESTUDIO INDEPENDIENTES: {contacts.length}
+          <div className="p-3.5 border-t border-[#cbd5e1] bg-[#eaeff7]/70 text-center">
+            <span className="text-xs font-bold text-[#334155] uppercase tracking-wider">
+              Contactos Activos del Estudio: {sortedContacts.length}
             </span>
           </div>
         </div>
 
         {/* RIGHT COLUMN: Ficha Detallada (Spans 7 of 12) */}
-        <div className="lg:col-span-7 flex flex-col bg-[#0c0c0e]/80 border border-neutral-800/80 rounded-2xl overflow-hidden h-full max-h-[800px] overflow-y-auto custom-scrollbar">
+        <div className="lg:col-span-7 flex flex-col bg-[#f6f8fc] border border-[#cbd5e1] rounded-2xl overflow-hidden shadow-md h-full max-h-[800px] overflow-y-auto custom-scrollbar">
           
           {activeContact ? (
-            <div className="p-6 space-y-6">
+            <div className="p-6 sm:p-7 space-y-6">
               
               {/* Header Box: Avatar, Name and Basic Info */}
-              <div className="p-5 bg-neutral-950/30 border border-neutral-800/50 rounded-xl space-y-4">
-                <div className="flex items-start justify-between">
+              <div className="p-6 bg-[#ffffff] border border-[#cbd5e1] rounded-2xl space-y-5 shadow-2xs">
+                <div className="flex items-start justify-between gap-4">
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-center font-black text-xl text-blue-500">
+                    <div className="w-14 h-14 rounded-2xl bg-[#0f172a] text-white flex items-center justify-center font-tabelion font-bold text-xl shrink-0 shadow-xs">
                       {activeContact.name.trim().split(/\s+/).map(n => n[0]).join('').slice(0, 2).toUpperCase()}
                     </div>
                     <div>
-                      <h2 className="text-lg font-black text-white hover:text-blue-400 transition-colors uppercase tracking-tight">{activeContact.name}</h2>
-                      <p className="text-[9px] text-neutral-500 font-bold uppercase tracking-widest mt-0.5">FICHA DIGITAL DE CONTROL INTERNO</p>
+                      <h2 className="text-xl font-bold text-[#0f172a] tracking-tight">{activeContact.name}</h2>
+                      <p className="text-xs text-[#475569] font-semibold uppercase tracking-wider mt-1">Ficha Digital de Control Interno</p>
                     </div>
                   </div>
 
@@ -651,47 +651,47 @@ export const ClientManagement: React.FC<ClientManagementProps> = ({ user }) => {
                       type="button"
                       id="btn-edit-active-client"
                       onClick={() => handleStartEdit(activeContact)}
-                      className="p-2 sm:px-3 sm:py-2 bg-neutral-900 hover:bg-neutral-800 text-neutral-400 hover:text-white border border-neutral-800 rounded-xl text-[9px] font-black uppercase tracking-widest transition-all flex items-center gap-1.5 active:scale-95"
+                      className="px-3.5 py-2 bg-[#eef2f8] hover:bg-[#e2e8f0] text-[#0f172a] border border-[#cbd5e1] rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5 active:scale-95 cursor-pointer"
                       title="Editar datos del cliente"
                     >
-                      <Pencil size={11} className="text-blue-400" />
+                      <Pencil size={13} className="text-[#1d4ed8]" />
                       <span className="hidden sm:inline">Editar</span>
                     </button>
                     <button
                       type="button"
                       id="btn-delete-active-client"
                       onClick={(e) => handleDeleteContactRequest(activeContact.id, e)}
-                      className="p-2 sm:px-3 sm:py-2 bg-neutral-900 hover:bg-red-950/25 text-neutral-400 hover:text-red-400 border border-neutral-800 hover:border-red-900/30 rounded-xl text-[9px] font-black uppercase tracking-widest transition-all flex items-center gap-1.5 active:scale-95"
+                      className="px-3.5 py-2 bg-[#eef2f8] hover:bg-rose-500/10 text-[#334155] hover:text-rose-600 border border-[#cbd5e1] hover:border-rose-300 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5 active:scale-95 cursor-pointer"
                       title="Eliminar cliente del sistema"
                     >
-                      <Trash2 size={11} className="text-red-400" />
+                      <Trash2 size={13} className="text-rose-600" />
                       <span className="hidden sm:inline">Eliminar</span>
                     </button>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs border-t border-neutral-900">
-                  <div className="flex items-center gap-2 p-2 bg-neutral-900/40 rounded-lg">
-                    <Mail size={12} className="text-neutral-600" />
-                    <div>
-                      <p className="text-[8px] text-neutral-600 font-bold uppercase leading-none tracking-widest">Correo Electrónico</p>
-                      <p className="font-medium text-neutral-300 mt-1 truncate">{activeContact.email || 'No especificado'}</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-3 border-t border-[#e2e8f0]">
+                  <div className="flex items-center gap-3 p-3.5 bg-[#f4f7fb] border border-[#dce4f0] rounded-xl">
+                    <Mail size={16} className="text-[#1d4ed8] shrink-0" />
+                    <div className="overflow-hidden">
+                      <p className="text-[11px] text-[#475569] font-bold uppercase leading-none tracking-wider">Correo Electrónico</p>
+                      <p className="text-sm font-semibold text-[#0f172a] mt-1.5 truncate">{activeContact.email || 'No especificado'}</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 p-2 bg-neutral-900/40 rounded-lg">
-                    <Phone size={12} className="text-neutral-600" />
+                  <div className="flex items-center gap-3 p-3.5 bg-[#f4f7fb] border border-[#dce4f0] rounded-xl">
+                    <Phone size={16} className="text-[#1d4ed8] shrink-0" />
                     <div>
-                      <p className="text-[8px] text-neutral-600 font-bold uppercase leading-none tracking-widest">Teléfono / Móvil</p>
-                      <p className="font-mono font-medium text-neutral-300 mt-1">{activeContact.phone || 'No especificado'}</p>
+                      <p className="text-[11px] text-[#475569] font-bold uppercase leading-none tracking-wider">Teléfono / Móvil</p>
+                      <p className="text-sm font-mono font-semibold text-[#0f172a] mt-1.5">{activeContact.phone || 'No especificado'}</p>
                     </div>
                   </div>
                 </div>
 
                 {activeContact.observations && (
-                  <div className="pt-2">
-                    <p className="text-[8px] text-neutral-600 font-bold uppercase tracking-widest mb-1.5">Observaciones Iniciales</p>
-                    <div className="p-3 bg-neutral-900/20 border-l-2 border-neutral-800 rounded-r-lg">
-                      <p className="text-xs text-neutral-400 leading-relaxed italic">"{activeContact.observations}"</p>
+                  <div className="pt-1">
+                    <p className="text-xs text-[#475569] font-bold uppercase tracking-wider mb-1.5">Observaciones Iniciales</p>
+                    <div className="p-3.5 bg-[#f4f7fb] border-l-4 border-[#1d4ed8] rounded-r-xl">
+                      <p className="text-sm text-[#1e293b] leading-relaxed">{activeContact.observations}</p>
                     </div>
                   </div>
                 )}
@@ -699,20 +699,20 @@ export const ClientManagement: React.FC<ClientManagementProps> = ({ user }) => {
 
               {/* ZONA A: INGRESO DE ACTIVIDAD Y OBSERVACIONES */}
               <div className="space-y-4">
-                <div className="flex items-center justify-between border-b border-neutral-900 pb-2">
-                  <h3 className="text-[10px] font-black text-white uppercase tracking-[0.2em] flex items-center gap-2">
-                    <BookOpen size={12} className="text-blue-500" />
+                <div className="flex items-center justify-between border-b border-[#cbd5e1] pb-2.5">
+                  <h3 className="text-xs font-bold text-[#0f172a] uppercase tracking-[0.15em] flex items-center gap-2">
+                    <BookOpen size={15} className="text-[#1d4ed8]" />
                     Zona A: Historial de Comentarios e Hitos
                   </h3>
-                  <span className="text-[8px] text-neutral-500 uppercase tracking-widest font-black">Control Cronológico</span>
+                  <span className="text-[11px] text-[#475569] uppercase tracking-wider font-semibold">Control Cronológico</span>
                 </div>
 
                 {/* Input Area */}
-                <div className="bg-neutral-950/20 border border-neutral-800 rounded-xl p-3 space-y-3">
+                <div className="bg-[#ffffff] border border-[#cbd5e1] rounded-xl p-4 space-y-3 shadow-2xs">
                   <textarea
                     rows={2}
-                    placeholder="INGRESAR UN NUEVO COMENTARIO U OBSERVACIÓN EN ESTA FICHA..."
-                    className="w-full bg-transparent border-none text-xs focus:outline-none text-neutral-300 placeholder:text-neutral-700 leading-relaxed resize-none"
+                    placeholder="Ingresar un nuevo comentario, antecedente u observación en esta ficha..."
+                    className="w-full bg-transparent border-none text-sm focus:outline-none text-[#0f172a] placeholder:text-[#64748b] leading-relaxed resize-none"
                     value={newNoteText}
                     onChange={(e) => setNewNoteText(e.target.value)}
                   />
@@ -721,26 +721,26 @@ export const ClientManagement: React.FC<ClientManagementProps> = ({ user }) => {
                       type="button"
                       onClick={handleAddNote}
                       disabled={!newNoteText.trim()}
-                      className="bg-neutral-200 text-black disabled:bg-neutral-900 disabled:text-neutral-700 px-4 py-2 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all flex items-center gap-2 active:scale-95"
+                      className="bg-[#0f172a] hover:bg-[#1e3a8a] text-white disabled:bg-[#e2e8f0] disabled:text-[#94a3b8] px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-2 active:scale-95 cursor-pointer"
                     >
-                      <PlusCircle size={12} />
+                      <PlusCircle size={14} />
                       Agregar Nota
                     </button>
                   </div>
                 </div>
 
                 {/* notes listing */}
-                <div className="space-y-3 max-h-[220px] overflow-y-auto custom-scrollbar pr-1">
+                <div className="space-y-3 max-h-[240px] overflow-y-auto custom-scrollbar pr-1">
                   {activeContact.notes.length === 0 ? (
-                    <p className="text-center py-6 text-xs text-neutral-700 italic">No se han registrado observaciones posteriores.</p>
+                    <p className="text-center py-6 text-sm text-[#64748b] italic">No se han registrado observaciones posteriores.</p>
                   ) : (
                     activeContact.notes.map((note) => (
-                      <div key={note.id} className="p-3 bg-neutral-950/40 border border-neutral-900 rounded-xl relative group">
-                        <div className="flex items-center justify-between text-[8px] uppercase font-bold tracking-widest text-neutral-600 mb-1 font-mono">
-                          <span>REGISTRO GENERAL</span>
+                      <div key={note.id} className="p-4 bg-[#ffffff] border border-[#cbd5e1] rounded-xl relative group shadow-2xs">
+                        <div className="flex items-center justify-between text-[11px] uppercase font-bold tracking-wider text-[#475569] mb-1.5 font-mono">
+                          <span>REGISTRO DEL ESTUDIO</span>
                           <span>{note.date}</span>
                         </div>
-                        <p className="text-xs text-neutral-300 font-medium leading-relaxed whitespace-pre-line">{note.text}</p>
+                        <p className="text-sm text-[#0f172a] font-medium leading-relaxed whitespace-pre-line">{note.text}</p>
                       </div>
                     ))
                   )}
@@ -749,12 +749,12 @@ export const ClientManagement: React.FC<ClientManagementProps> = ({ user }) => {
 
               {/* ZONA B: ARCHIVOS ADJUNTOS EN LA FICHA */}
               <div className="space-y-4 pt-1">
-                <div className="flex items-center justify-between border-b border-neutral-900 pb-2">
-                  <h3 className="text-[10px] font-black text-white uppercase tracking-[0.2em] flex items-center gap-2">
-                    <FileText size={12} className="text-blue-500" />
+                <div className="flex items-center justify-between border-b border-[#cbd5e1] pb-2.5">
+                  <h3 className="text-xs font-bold text-[#0f172a] uppercase tracking-[0.15em] flex items-center gap-2">
+                    <FileText size={15} className="text-[#1d4ed8]" />
                     Zona B: Documentos de Respaldo (.PDF / .DOCX)
                   </h3>
-                  <span className="text-[8px] text-neutral-500 uppercase tracking-widest font-black">Restricción de Formato</span>
+                  <span className="text-[11px] text-[#475569] uppercase tracking-wider font-semibold">Expediente Digital</span>
                 </div>
 
                 {/* Custom drag & drop area */}
@@ -762,12 +762,12 @@ export const ClientManagement: React.FC<ClientManagementProps> = ({ user }) => {
                   onDragOver={handleDragOver}
                   onDragLeave={handleDragLeave}
                   onDrop={handleDrop}
-                  className={`border-2 border-dashed rounded-xl p-5 text-center flex flex-col items-center justify-center cursor-pointer transition-all ${
+                  className={`border-2 border-dashed rounded-xl p-6 text-center flex flex-col items-center justify-center cursor-pointer transition-all ${
                     isDragging 
-                      ? 'border-blue-500 bg-blue-950/10' 
+                      ? 'border-[#1d4ed8] bg-blue-500/5' 
                       : fileError 
-                        ? 'border-red-900 bg-red-950/5' 
-                        : 'border-neutral-900 bg-neutral-950/10 hover:border-neutral-800'
+                        ? 'border-rose-400 bg-rose-500/5' 
+                        : 'border-[#cbd5e1] bg-[#ffffff]/70 hover:bg-[#ffffff] hover:border-[#94a3b8]'
                   }`}
                   onClick={() => fileInputRef.current?.click()}
                 >
@@ -783,66 +783,66 @@ export const ClientManagement: React.FC<ClientManagementProps> = ({ user }) => {
                     accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                     multiple
                   />
-                  <UploadCloud size={24} className={isDragging ? 'text-blue-500 animate-bounce' : fileError ? 'text-red-700' : 'text-neutral-700'} />
+                  <UploadCloud size={26} className={isDragging ? 'text-[#1d4ed8] animate-bounce' : fileError ? 'text-rose-600' : 'text-[#475569]'} />
                   
-                  <p className="text-[10px] font-black uppercase text-neutral-400 tracking-wider mt-2.5">
+                  <p className="text-xs font-bold uppercase text-[#1e293b] tracking-wider mt-2.5">
                     Arrastra tu archivo aquí o haz clic para subir
                   </p>
-                  <p className="text-[8px] font-bold uppercase tracking-widest text-neutral-600 mt-1">
-                    Solo PDF y Microsoft Word (.docx) permitidos
+                  <p className="text-[11px] font-medium text-[#64748b] mt-1">
+                    Formatos admitidos: PDF y Microsoft Word (.docx)
                   </p>
                 </div>
 
                 {fileError && (
-                  <div className="p-3 bg-red-950/10 border border-red-900/40 rounded-xl flex items-start gap-2.5 text-red-400 text-xs leading-relaxed">
-                    <AlertCircle size={14} className="shrink-0 mt-0.5" />
+                  <div className="p-3.5 bg-rose-500/10 border border-rose-300 rounded-xl flex items-start gap-2.5 text-rose-700 text-xs font-medium leading-relaxed">
+                    <AlertCircle size={15} className="shrink-0 mt-0.5" />
                     <span>{fileError}</span>
                   </div>
                 )}
 
                 {/* List of uploaded files under the selected client */}
-                <div className="space-y-2">
+                <div className="space-y-2.5">
                   {activeContact.attachments.length === 0 ? (
-                    <p className="text-center py-4 text-xs text-neutral-700 italic">No hay archivos adjuntos en esta ficha.</p>
+                    <p className="text-center py-4 text-sm text-[#64748b] italic">No hay archivos adjuntos en esta ficha.</p>
                   ) : (
                     activeContact.attachments.map((file) => {
                       const isWord = file.name.toLowerCase().endsWith('.docx');
                       
                       return (
-                        <div key={file.id} className="p-3 bg-neutral-950/30 border border-neutral-900/80 rounded-xl flex items-center justify-between group-file">
-                          <div className="flex items-center gap-3 overflow-hidden">
-                            <div className="p-2 bg-neutral-900 rounded-lg text-neutral-500">
-                              <File size={16} className={isWord ? 'text-blue-400' : 'text-red-400'} />
+                        <div key={file.id} className="p-3.5 bg-[#ffffff] border border-[#cbd5e1] rounded-xl flex items-center justify-between group-file shadow-2xs">
+                          <div className="flex items-center gap-3.5 overflow-hidden">
+                            <div className="p-2.5 bg-[#eaeff7] rounded-xl text-[#1e293b]">
+                              <File size={18} className={isWord ? 'text-[#1d4ed8]' : 'text-rose-600'} />
                             </div>
                             <div className="overflow-hidden">
-                              <p className="text-xs font-bold text-neutral-200 truncate pr-4" title={file.name}>
+                              <p className="text-sm font-bold text-[#0f172a] truncate pr-4" title={file.name}>
                                 {file.name}
                               </p>
-                              <p className="text-[8px] font-mono font-bold text-neutral-600 uppercase tracking-tight mt-0.5">
+                              <p className="text-xs font-mono font-medium text-[#475569] uppercase tracking-tight mt-0.5">
                                 {file.size} • {isWord ? 'WORD (DOCX)' : 'DOCUMENTO PDF'} • {file.uploadedAt}
                               </p>
                             </div>
                           </div>
 
-                          <div className="flex items-center gap-1.5 shrink-0">
+                          <div className="flex items-center gap-2 shrink-0">
                             {/* Download Action */}
                             <a 
                               href={file.dataUrl} 
                               download={file.name}
-                              className="p-1.5 bg-[#121214] hover:bg-neutral-800 text-neutral-400 hover:text-white rounded-lg transition-colors flex items-center justify-center"
+                              className="p-2 bg-[#eef2f8] hover:bg-[#e2e8f0] border border-[#cbd5e1] text-[#0f172a] rounded-lg transition-colors flex items-center justify-center"
                               title="Descargar documento"
                             >
-                              <Download size={12} />
+                              <Download size={14} />
                             </a>
 
                             {/* Delete Action */}
                             <button
                               type="button"
                               onClick={() => handleDeleteAttachmentRequest(file.id)}
-                              className="p-1.5 bg-[#121214] hover:bg-red-950/30 text-neutral-400 hover:text-red-400 rounded-lg transition-colors"
+                              className="p-2 bg-[#eef2f8] hover:bg-rose-500/10 border border-[#cbd5e1] text-[#475569] hover:text-rose-600 rounded-lg transition-colors cursor-pointer"
                               title="Eliminar de la ficha"
                             >
-                              <Trash2 size={12} />
+                              <Trash2 size={14} />
                             </button>
                           </div>
                         </div>
@@ -854,11 +854,11 @@ export const ClientManagement: React.FC<ClientManagementProps> = ({ user }) => {
 
             </div>
           ) : (
-            <div className="flex-1 flex flex-col items-center justify-center p-12 text-center text-neutral-600 h-full">
-              <BookOpen size={48} className="text-neutral-800 mb-4 animate-pulse" />
-              <h3 className="text-sm font-black uppercase tracking-widest text-[#666]">FICHA MANUAL NO SELECCIONADA</h3>
-              <p className="text-xs text-neutral-700 max-w-[280px] mt-2 leading-relaxed">
-                Seleccione un contacto del listado lineal de la izquierda para acceder a su ficha detallada, comentarios e ingresos del estudio de respaldo.
+            <div className="flex-1 flex flex-col items-center justify-center p-12 text-center text-[#475569] h-full">
+              <BookOpen size={48} className="text-[#94a3b8] mb-4" />
+              <h3 className="text-sm font-bold uppercase tracking-widest text-[#0f172a]">Ficha no seleccionada</h3>
+              <p className="text-sm text-[#475569] max-w-[300px] mt-2 leading-relaxed">
+                Seleccione un contacto del listado de la izquierda para visualizar su ficha detallada, comentarios y documentos de respaldo.
               </p>
             </div>
           )}
@@ -869,29 +869,29 @@ export const ClientManagement: React.FC<ClientManagementProps> = ({ user }) => {
       {/* FORMULARIO DE INGRESO MANUAL DE DATOS (Modal limpio y emergente) */}
       <AnimatePresence>
         {isModalOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm">
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.2 }}
-              className="relative w-full max-w-lg bg-[#0c0c0e] border border-neutral-800 rounded-[1.5rem] shadow-2xl p-6 sm:p-8 space-y-6 overflow-hidden"
+              className="relative w-full max-w-lg bg-[#f6f8fc] border border-[#cbd5e1] rounded-[1.5rem] shadow-2xl p-6 sm:p-8 space-y-6 overflow-hidden"
             >
               {/* Subtle top indicator bar */}
-              <div className="absolute top-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-transparent via-blue-600 to-transparent opacity-60"></div>
+              <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-blue-600 to-transparent opacity-60"></div>
 
               {/* Modal Header */}
-              <div className="flex items-center justify-between border-b border-neutral-800 pb-4">
+              <div className="flex items-center justify-between border-b border-[#cbd5e1] pb-4">
                 <div>
-                  <h3 className="text-sm font-black text-white uppercase tracking-wider">Nuevo Registro de Contacto</h3>
-                  <p className="text-[9px] text-neutral-500 font-bold uppercase tracking-widest mt-0.5">Ingreso de datos 100% manual e independiente</p>
+                  <h3 className="text-base font-bold text-[#0f172a] uppercase tracking-wider">Nuevo Registro de Contacto</h3>
+                  <p className="text-xs text-[#475569] font-medium mt-0.5">Ingreso de datos del cliente en la agenda del estudio</p>
                 </div>
                 <button 
                   type="button" 
                   onClick={() => setIsModalOpen(false)}
-                  className="p-1.5 hover:bg-neutral-900 rounded-lg text-neutral-500 hover:text-white transition-colors"
+                  className="p-1.5 hover:bg-[#e2e8f0] rounded-lg text-[#475569] hover:text-[#0f172a] transition-colors"
                 >
-                  <X size={16} />
+                  <X size={18} />
                 </button>
               </div>
 
@@ -900,13 +900,13 @@ export const ClientManagement: React.FC<ClientManagementProps> = ({ user }) => {
                 
                 {/* Nombre y Apellido */}
                 <div className="space-y-1.5">
-                  <label htmlFor="input-fullname" className="text-[9px] text-neutral-500 font-bold uppercase tracking-widest">Nombre y Apellido *</label>
+                  <label htmlFor="input-fullname" className="text-xs text-[#334155] font-bold uppercase tracking-wider">Nombre y Apellido *</label>
                   <input
                     type="text"
                     id="input-fullname"
                     required
-                    placeholder="INGRESAR NOMBRE Y APELLIDO..."
-                    className="w-full bg-neutral-900/50 border border-neutral-800 rounded-xl px-3.5 py-3 text-xs focus:outline-none focus:border-blue-500 text-white placeholder:text-neutral-700 font-medium"
+                    placeholder="Ingresar nombre y apellido..."
+                    className="w-full bg-[#ffffff] border border-[#cbd5e1] rounded-xl px-3.5 py-3 text-sm focus:outline-none focus:border-blue-500 text-[#0f172a] placeholder:text-[#94a3b8] font-medium"
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
                   />
@@ -914,12 +914,12 @@ export const ClientManagement: React.FC<ClientManagementProps> = ({ user }) => {
 
                 {/* Correo electrónico */}
                 <div className="space-y-1.5">
-                  <label htmlFor="input-email" className="text-[9px] text-neutral-500 font-bold uppercase tracking-widest">Correo Electrónico</label>
+                  <label htmlFor="input-email" className="text-xs text-[#334155] font-bold uppercase tracking-wider">Correo Electrónico</label>
                   <input
                     type="email"
                     id="input-email"
-                    placeholder="EJ: CLIENTE@APELLIDO.COM..."
-                    className="w-full bg-neutral-900/50 border border-neutral-800 rounded-xl px-3.5 py-3 text-xs focus:outline-none focus:border-blue-500 text-white placeholder:text-neutral-700 font-medium"
+                    placeholder="Ej: cliente@apellido.com"
+                    className="w-full bg-[#ffffff] border border-[#cbd5e1] rounded-xl px-3.5 py-3 text-sm focus:outline-none focus:border-blue-500 text-[#0f172a] placeholder:text-[#94a3b8] font-medium"
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
                   />
@@ -927,12 +927,12 @@ export const ClientManagement: React.FC<ClientManagementProps> = ({ user }) => {
 
                 {/* Teléfono / Móvil */}
                 <div className="space-y-1.5">
-                  <label htmlFor="input-phone" className="text-[9px] text-neutral-500 font-bold uppercase tracking-widest">Teléfono / Móvil</label>
+                  <label htmlFor="input-phone" className="text-xs text-[#334155] font-bold uppercase tracking-wider">Teléfono / Móvil</label>
                   <input
                     type="text"
                     id="input-phone"
-                    placeholder="EJ: 099 111 222..."
-                    className="w-full bg-neutral-900/50 border border-neutral-800 rounded-xl px-3.5 py-3 text-xs focus:outline-none focus:border-blue-500 text-white placeholder:text-neutral-700 font-mono font-medium"
+                    placeholder="Ej: 099 111 222"
+                    className="w-full bg-[#ffffff] border border-[#cbd5e1] rounded-xl px-3.5 py-3 text-sm focus:outline-none focus:border-blue-500 text-[#0f172a] placeholder:text-[#94a3b8] font-mono font-medium"
                     value={formData.phone}
                     onChange={(e) => setFormData({...formData, phone: e.target.value})}
                   />
@@ -940,31 +940,31 @@ export const ClientManagement: React.FC<ClientManagementProps> = ({ user }) => {
 
                 {/* Observaciones iniciales */}
                 <div className="space-y-1.5">
-                  <label htmlFor="input-observations" className="text-[9px] text-neutral-500 font-bold uppercase tracking-widest">Observaciones Iniciales</label>
+                  <label htmlFor="input-observations" className="text-xs text-[#334155] font-bold uppercase tracking-wider">Observaciones Iniciales</label>
                   <textarea
                     id="input-observations"
                     rows={3}
                     placeholder="Escriba antecedentes, observaciones iniciales o notas previas respecto al contacto..."
-                    className="w-full bg-neutral-900/50 border border-neutral-800 rounded-xl px-3.5 py-3 text-xs focus:outline-none focus:border-blue-500 text-white placeholder:text-neutral-700 font-medium leading-relaxed resize-none"
+                    className="w-full bg-[#ffffff] border border-[#cbd5e1] rounded-xl px-3.5 py-3 text-sm focus:outline-none focus:border-blue-500 text-[#0f172a] placeholder:text-[#94a3b8] font-medium leading-relaxed resize-none"
                     value={formData.observations}
                     onChange={(e) => setFormData({...formData, observations: e.target.value})}
                   />
                 </div>
 
                 {/* Modal actions panel */}
-                <div className="flex items-center justify-end gap-3 pt-4 border-t border-neutral-800">
+                <div className="flex items-center justify-end gap-3 pt-4 border-t border-[#cbd5e1]">
                   <button
                     type="button"
                     onClick={() => setIsModalOpen(false)}
-                    className="px-4 py-2.5 rounded-xl border border-neutral-800 text-neutral-400 hover:text-white hover:bg-neutral-900 text-[10px] font-black uppercase tracking-widest transition-all"
+                    className="px-4 py-2.5 rounded-xl border border-[#cbd5e1] bg-[#ffffff] text-[#334155] hover:text-[#0f172a] hover:bg-[#e2e8f0] text-xs font-bold uppercase tracking-wider transition-all"
                   >
                     Cancelar
                   </button>
                   <button
                     type="submit"
-                    className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-[10px] font-black uppercase tracking-widest transition-all shadow-lg hover:shadow-blue-900/10 active:scale-95 flex items-center gap-2"
+                    className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold uppercase tracking-wider transition-all shadow-md active:scale-95 flex items-center gap-2"
                   >
-                    <Plus size={12} />
+                    <Plus size={14} />
                     Guardar Cliente
                   </button>
                 </div>
@@ -978,29 +978,29 @@ export const ClientManagement: React.FC<ClientManagementProps> = ({ user }) => {
       {/* FORMULARIO DE EDICIÓN DE DATOS (Modal limpio y emergente para Editar) */}
       <AnimatePresence>
         {isEditModalOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm">
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.2 }}
-              className="relative w-full max-w-lg bg-[#0c0c0e] border border-neutral-800 rounded-[1.5rem] shadow-2xl p-6 sm:p-8 space-y-6 overflow-hidden"
+              className="relative w-full max-w-lg bg-[#f6f8fc] border border-[#cbd5e1] rounded-[1.5rem] shadow-2xl p-6 sm:p-8 space-y-6 overflow-hidden"
             >
               {/* Subtle top indicator bar */}
-              <div className="absolute top-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-60"></div>
+              <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-60"></div>
 
               {/* Modal Header */}
-              <div className="flex items-center justify-between border-b border-neutral-800 pb-4">
+              <div className="flex items-center justify-between border-b border-[#cbd5e1] pb-4">
                 <div>
-                  <h3 className="text-sm font-black text-white uppercase tracking-wider">Modificar Ficha de Contacto</h3>
-                  <p className="text-[9px] text-neutral-500 font-bold uppercase tracking-widest mt-0.5">Edición sobre base de datos manual e independiente</p>
+                  <h3 className="text-base font-bold text-[#0f172a] uppercase tracking-wider">Modificar Ficha de Contacto</h3>
+                  <p className="text-xs text-[#475569] font-medium mt-0.5">Actualización de datos del cliente</p>
                 </div>
                 <button 
                   type="button" 
                   onClick={() => setIsEditModalOpen(false)}
-                  className="p-1.5 hover:bg-neutral-900 rounded-lg text-neutral-500 hover:text-white transition-colors"
+                  className="p-1.5 hover:bg-[#e2e8f0] rounded-lg text-[#475569] hover:text-[#0f172a] transition-colors"
                 >
-                  <X size={16} />
+                  <X size={18} />
                 </button>
               </div>
 
@@ -1009,13 +1009,13 @@ export const ClientManagement: React.FC<ClientManagementProps> = ({ user }) => {
                 
                 {/* Nombre y Apellido */}
                 <div className="space-y-1.5">
-                  <label htmlFor="edit-input-fullname" className="text-[9px] text-neutral-500 font-bold uppercase tracking-widest">Nombre y Apellido *</label>
+                  <label htmlFor="edit-input-fullname" className="text-xs text-[#334155] font-bold uppercase tracking-wider">Nombre y Apellido *</label>
                   <input
                     type="text"
                     id="edit-input-fullname"
                     required
-                    placeholder="INGRESAR NOMBRE Y APELLIDO..."
-                    className="w-full bg-neutral-900/50 border border-neutral-800 rounded-xl px-3.5 py-3 text-xs focus:outline-none focus:border-blue-500 text-white placeholder:text-neutral-700 font-medium"
+                    placeholder="Ingresar nombre y apellido..."
+                    className="w-full bg-[#ffffff] border border-[#cbd5e1] rounded-xl px-3.5 py-3 text-sm focus:outline-none focus:border-blue-500 text-[#0f172a] placeholder:text-[#94a3b8] font-medium"
                     value={editFormData.name}
                     onChange={(e) => setEditFormData({...editFormData, name: e.target.value})}
                   />
@@ -1023,12 +1023,12 @@ export const ClientManagement: React.FC<ClientManagementProps> = ({ user }) => {
 
                 {/* Correo electrónico */}
                 <div className="space-y-1.5">
-                  <label htmlFor="edit-input-email" className="text-[9px] text-neutral-500 font-bold uppercase tracking-widest">Correo Electrónico</label>
+                  <label htmlFor="edit-input-email" className="text-xs text-[#334155] font-bold uppercase tracking-wider">Correo Electrónico</label>
                   <input
                     type="email"
                     id="edit-input-email"
-                    placeholder="EJ: CLIENTE@APELLIDO.COM..."
-                    className="w-full bg-neutral-900/50 border border-neutral-800 rounded-xl px-3.5 py-3 text-xs focus:outline-none focus:border-blue-500 text-white placeholder:text-neutral-700 font-medium"
+                    placeholder="Ej: cliente@apellido.com"
+                    className="w-full bg-[#ffffff] border border-[#cbd5e1] rounded-xl px-3.5 py-3 text-sm focus:outline-none focus:border-blue-500 text-[#0f172a] placeholder:text-[#94a3b8] font-medium"
                     value={editFormData.email}
                     onChange={(e) => setEditFormData({...editFormData, email: e.target.value})}
                   />
@@ -1036,12 +1036,12 @@ export const ClientManagement: React.FC<ClientManagementProps> = ({ user }) => {
 
                 {/* Teléfono / Móvil */}
                 <div className="space-y-1.5">
-                  <label htmlFor="edit-input-phone" className="text-[9px] text-neutral-500 font-bold uppercase tracking-widest">Teléfono / Móvil</label>
+                  <label htmlFor="edit-input-phone" className="text-xs text-[#334155] font-bold uppercase tracking-wider">Teléfono / Móvil</label>
                   <input
                     type="text"
                     id="edit-input-phone"
-                    placeholder="EJ: 099 111 222..."
-                    className="w-full bg-neutral-900/50 border border-neutral-800 rounded-xl px-3.5 py-3 text-xs focus:outline-none focus:border-blue-500 text-white placeholder:text-neutral-700 font-mono font-medium"
+                    placeholder="Ej: 099 111 222"
+                    className="w-full bg-[#ffffff] border border-[#cbd5e1] rounded-xl px-3.5 py-3 text-sm focus:outline-none focus:border-blue-500 text-[#0f172a] placeholder:text-[#94a3b8] font-mono font-medium"
                     value={editFormData.phone}
                     onChange={(e) => setEditFormData({...editFormData, phone: e.target.value})}
                   />
@@ -1049,31 +1049,31 @@ export const ClientManagement: React.FC<ClientManagementProps> = ({ user }) => {
 
                 {/* Observaciones iniciales */}
                 <div className="space-y-1.5">
-                  <label htmlFor="edit-input-observations" className="text-[9px] text-neutral-500 font-bold uppercase tracking-widest">Observaciones Iniciales</label>
+                  <label htmlFor="edit-input-observations" className="text-xs text-[#334155] font-bold uppercase tracking-wider">Observaciones Iniciales</label>
                   <textarea
                     id="edit-input-observations"
                     rows={3}
                     placeholder="Escriba antecedentes, observaciones iniciales o notas previas respecto al contacto..."
-                    className="w-full bg-neutral-900/50 border border-neutral-800 rounded-xl px-3.5 py-3 text-xs focus:outline-none focus:border-blue-500 text-white placeholder:text-neutral-700 font-medium leading-relaxed resize-none"
+                    className="w-full bg-[#ffffff] border border-[#cbd5e1] rounded-xl px-3.5 py-3 text-sm focus:outline-none focus:border-blue-500 text-[#0f172a] placeholder:text-[#94a3b8] font-medium leading-relaxed resize-none"
                     value={editFormData.observations}
                     onChange={(e) => setEditFormData({...editFormData, observations: e.target.value})}
                   />
                 </div>
 
                 {/* Modal actions panel */}
-                <div className="flex items-center justify-end gap-3 pt-4 border-t border-neutral-800">
+                <div className="flex items-center justify-end gap-3 pt-4 border-t border-[#cbd5e1]">
                   <button
                     type="button"
                     onClick={() => setIsEditModalOpen(false)}
-                    className="px-4 py-2.5 rounded-xl border border-neutral-800 text-neutral-400 hover:text-white hover:bg-neutral-900 text-[10px] font-black uppercase tracking-widest transition-all"
+                    className="px-4 py-2.5 rounded-xl border border-[#cbd5e1] bg-[#ffffff] text-[#334155] hover:text-[#0f172a] hover:bg-[#e2e8f0] text-xs font-bold uppercase tracking-wider transition-all"
                   >
                     Cancelar
                   </button>
                   <button
                     type="submit"
-                    className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-[10px] font-black uppercase tracking-widest transition-all shadow-lg hover:shadow-blue-900/10 active:scale-95 flex items-center gap-2"
+                    className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold uppercase tracking-wider transition-all shadow-md active:scale-95 flex items-center gap-2"
                   >
-                    <Plus size={12} />
+                    <Plus size={14} />
                     Guardar Cambios
                   </button>
                 </div>
@@ -1093,7 +1093,7 @@ export const ClientManagement: React.FC<ClientManagementProps> = ({ user }) => {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.15 }}
-              className="relative w-full max-w-md bg-[#0c0c0e] border border-red-950/40 rounded-[1.5rem] shadow-2xl p-6 sm:p-8 space-y-6 overflow-hidden"
+              className="relative w-full max-w-md bg-[#f6f8fc] border border-red-950/40 rounded-[1.5rem] shadow-2xl p-6 sm:p-8 space-y-6 overflow-hidden"
             >
               {/* Subtle top indicator bar */}
               <div className="absolute top-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-60"></div>
@@ -1157,7 +1157,7 @@ export const ClientManagement: React.FC<ClientManagementProps> = ({ user }) => {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.15 }}
-              className="relative w-full max-w-md bg-[#0c0c0e] border border-red-950/40 rounded-[1.5rem] shadow-2xl p-6 sm:p-8 space-y-6 overflow-hidden"
+              className="relative w-full max-w-md bg-[#f6f8fc] border border-red-950/40 rounded-[1.5rem] shadow-2xl p-6 sm:p-8 space-y-6 overflow-hidden"
             >
               {/* Subtle top indicator bar */}
               <div className="absolute top-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-60"></div>

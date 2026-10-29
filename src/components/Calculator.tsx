@@ -953,15 +953,15 @@ Liquidación arancelaria efectuada bajo control manual del escribano.
                 setSelectedMode('tributario');
                 setTaxResult(null);
               }}
-              className="bg-[#0c0c0e]/60 border border-neutral-800 hover:border-blue-500/50 p-8 rounded-3xl text-left transition-all duration-300 hover:shadow-[0_0_30px_-5px_rgba(59,130,246,0.15)] group relative overflow-hidden flex flex-col justify-between min-h-[240px]"
+              className="bg-[#f6f8fc] border border-[#cbd5e1] hover:border-[#3b82f6] p-8 rounded-3xl text-left transition-all duration-300 hover:shadow-[0_12px_32px_-8px_rgba(29,78,216,0.12)] group relative overflow-hidden flex flex-col justify-between min-h-[240px] cursor-pointer shadow-sm"
             >
               <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              <div className="w-12 h-12 rounded-2xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center text-blue-500 group-hover:scale-110 transition-transform duration-300">
+              <div className="w-12 h-12 rounded-2xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center text-blue-600 group-hover:scale-110 transition-transform duration-300">
                 <Receipt size={24} />
               </div>
               <div className="space-y-2 mt-8">
-                <h3 className="text-sm font-black text-white uppercase tracking-wider">Tributario</h3>
-                <p className="text-neutral-500 text-[11px] leading-relaxed font-semibold">
+                <h3 className="text-base font-bold text-[#0f172a] uppercase tracking-wider">Tributario</h3>
+                <p className="text-[#475569] text-xs leading-relaxed font-medium">
                   Liquidación de ITP, IRPF/IRNR por incremento patrimonial, arrendamientos y trasmisiones patrimoniales de automotores.
                 </p>
               </div>
@@ -973,15 +973,15 @@ Liquidación arancelaria efectuada bajo control manual del escribano.
                 setSelectedMode('honorarios');
                 setFeesResult(null);
               }}
-              className="bg-[#0c0c0e]/60 border border-neutral-800 hover:border-emerald-500/50 p-8 rounded-3xl text-left transition-all duration-300 hover:shadow-[0_0_30px_-5px_rgba(16,185,129,0.15)] group relative overflow-hidden flex flex-col justify-between min-h-[240px]"
+              className="bg-[#f6f8fc] border border-[#cbd5e1] hover:border-[#059669] p-8 rounded-3xl text-left transition-all duration-300 hover:shadow-[0_12px_32px_-8px_rgba(5,150,105,0.12)] group relative overflow-hidden flex flex-col justify-between min-h-[240px] cursor-pointer shadow-sm"
             >
               <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-emerald-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              <div className="w-12 h-12 rounded-2xl bg-emerald-600/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500 group-hover:scale-110 transition-transform duration-300">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-600/10 border border-emerald-500/20 flex items-center justify-center text-emerald-600 group-hover:scale-110 transition-transform duration-300">
                 <Scale size={24} />
               </div>
               <div className="space-y-2 mt-8">
-                <h3 className="text-sm font-black text-white uppercase tracking-wider">Honorarios y Reajustes</h3>
-                <p className="text-neutral-500 text-[11px] leading-relaxed font-semibold">
+                <h3 className="text-base font-bold text-[#0f172a] uppercase tracking-wider">Honorarios y Reajustes</h3>
+                <p className="text-[#475569] text-xs leading-relaxed font-medium">
                   Cálculo de honorarios notariales regulados por el arancel de la AEU, aportes de montepío e IVA aplicable.
                 </p>
               </div>
@@ -993,15 +993,15 @@ Liquidación arancelaria efectuada bajo control manual del escribano.
                 setSelectedMode('irpf_personal');
                 setPersonalResult(null);
               }}
-              className="bg-[#0c0c0e]/60 border border-neutral-800 hover:border-amber-500/50 p-8 rounded-3xl text-left transition-all duration-300 hover:shadow-[0_0_30px_-5px_rgba(245,158,11,0.15)] group relative overflow-hidden flex flex-col justify-between min-h-[240px]"
+              className="bg-[#f6f8fc] border border-[#cbd5e1] hover:border-[#1e3a8a] p-8 rounded-3xl text-left transition-all duration-300 hover:shadow-[0_12px_32px_-8px_rgba(30,58,138,0.12)] group relative overflow-hidden flex flex-col justify-between min-h-[240px] cursor-pointer shadow-sm"
             >
               <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-amber-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              <div className="w-12 h-12 rounded-2xl bg-amber-600/10 border border-amber-500/20 flex items-center justify-center text-amber-500 group-hover:scale-110 transition-transform duration-300">
+              <div className="w-12 h-12 rounded-2xl bg-amber-600/10 border border-amber-500/20 flex items-center justify-center text-amber-600 group-hover:scale-110 transition-transform duration-300">
                 <Coins size={24} />
               </div>
               <div className="space-y-2 mt-8">
-                <h3 className="text-sm font-black text-white uppercase tracking-wider">IRPF Personal</h3>
-                <p className="text-neutral-500 text-[11px] leading-relaxed font-semibold">
+                <h3 className="text-base font-bold text-[#0f172a] uppercase tracking-wider">IRPF Personal</h3>
+                <p className="text-[#475569] text-xs leading-relaxed font-medium">
                   Estimador progresivo mensual de retenciones sobre rendimientos del trabajo dependiente en Uruguay.
                 </p>
               </div>
@@ -1024,39 +1024,39 @@ Liquidación arancelaria efectuada bajo control manual del escribano.
           </div>
 
           {/* BLOQUE FIJO SUPERIOR: Identificación del Acto */}
-          <div className="bg-[#0c0c0e]/80 border border-neutral-800 rounded-[1.5rem] p-5 space-y-4">
-            <h3 className="text-[10px] font-black text-neutral-400 uppercase tracking-[0.2em] border-b border-neutral-900 pb-2">
+          <div className="bg-[#f6f8fc] border border-[#cbd5e1] rounded-[1.5rem] p-5 space-y-4 shadow-xs">
+            <h3 className="text-xs font-bold text-[#0f172a] uppercase tracking-[0.16em] border-b border-[#cbd5e1] pb-2">
               Identificación del Acto / Expediente
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="space-y-1.5">
-                <label className="text-[9px] text-neutral-500 font-bold uppercase tracking-widest">Padrón catastral</label>
+                <label className="text-[11px] text-[#334155] font-bold uppercase tracking-wider">Padrón catastral</label>
                 <input
                   type="text"
                   value={padron}
                   onChange={(e) => setPadron(e.target.value)}
                   placeholder="Ej: 4015"
-                  className="w-full h-10 bg-neutral-950 border border-neutral-850 rounded-xl px-3 text-xs font-semibold text-white focus:outline-none focus:border-blue-500 placeholder:text-neutral-800"
+                  className="w-full h-10 bg-[#ffffff] border border-[#cbd5e1] rounded-xl px-3 text-xs font-semibold text-[#0f172a] focus:outline-none focus:border-blue-500 placeholder:text-[#94a3b8]"
                 />
               </div>
               <div className="space-y-1.5">
-                <label className="text-[9px] text-neutral-500 font-bold uppercase tracking-widest">Localidad / Departamento</label>
+                <label className="text-[11px] text-[#334155] font-bold uppercase tracking-wider">Localidad / Departamento</label>
                 <input
                   type="text"
                   value={localidad}
                   onChange={(e) => setLocalidad(e.target.value)}
                   placeholder="Ej: Maldonado"
-                  className="w-full h-10 bg-neutral-950 border border-neutral-850 rounded-xl px-3 text-xs font-semibold text-white focus:outline-none focus:border-blue-500 placeholder:text-neutral-800"
+                  className="w-full h-10 bg-[#ffffff] border border-[#cbd5e1] rounded-xl px-3 text-xs font-semibold text-[#0f172a] focus:outline-none focus:border-blue-500 placeholder:text-[#94a3b8]"
                 />
               </div>
               <div className="space-y-1.5">
-                <label className="text-[9px] text-neutral-500 font-bold uppercase tracking-widest">Referencia / Padrones Anexos</label>
+                <label className="text-[11px] text-[#334155] font-bold uppercase tracking-wider">Referencia / Padrones Anexos</label>
                 <input
                   type="text"
                   value={padronesAnexos}
                   onChange={(e) => setPadronesAnexos(e.target.value)}
                   placeholder="Ej: Garage G4, Box B12"
-                  className="w-full h-10 bg-neutral-950 border border-neutral-850 rounded-xl px-3 text-xs font-semibold text-white focus:outline-none focus:border-blue-500 placeholder:text-neutral-800"
+                  className="w-full h-10 bg-[#ffffff] border border-[#cbd5e1] rounded-xl px-3 text-xs font-semibold text-[#0f172a] focus:outline-none focus:border-blue-500 placeholder:text-[#94a3b8]"
                 />
               </div>
             </div>
@@ -1069,7 +1069,7 @@ Liquidación arancelaria efectuada bajo control manual del escribano.
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 flex-1">
               
               {/* Formulario Izquierda */}
-              <div className="lg:col-span-6 bg-[#0c0c0e] border border-neutral-800/80 rounded-[1.5rem] p-6 shadow-2xl flex flex-col space-y-5 relative overflow-hidden">
+              <div className="lg:col-span-6 bg-[#f6f8fc] border border-neutral-800/80 rounded-[1.5rem] p-6 shadow-2xl flex flex-col space-y-5 relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-40"></div>
                 
                 <div className="flex items-center justify-between border-b border-neutral-800 pb-2">
@@ -1263,7 +1263,7 @@ Liquidación arancelaria efectuada bajo control manual del escribano.
                           </div>
                         </div>
                       </div>
-                      <div className="bg-neutral-955 p-3.5 border border-neutral-850 rounded-xl space-y-2.5">
+                      <div className="bg-[#eaeff7] p-3.5 border border-neutral-850 rounded-xl space-y-2.5">
                         <div className="flex items-center justify-between text-[9px] font-black text-neutral-500 uppercase tracking-widest">
                           <span>Opción de Régimen (IRPF)</span>
                           {isPostReforma(fechaAdq) ? (
@@ -1568,7 +1568,7 @@ Liquidación arancelaria efectuada bajo control manual del escribano.
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 flex-1">
               
               {/* Formulario Izquierda */}
-              <div className="lg:col-span-6 bg-[#0c0c0e] border border-neutral-800/80 rounded-[1.5rem] p-6 shadow-2xl flex flex-col space-y-5 relative overflow-hidden">
+              <div className="lg:col-span-6 bg-[#f6f8fc] border border-neutral-800/80 rounded-[1.5rem] p-6 shadow-2xl flex flex-col space-y-5 relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-transparent via-emerald-500 to-transparent opacity-40"></div>
                 
                 <div className="flex items-center justify-between border-b border-neutral-800 pb-2">
@@ -1779,7 +1779,7 @@ Liquidación arancelaria efectuada bajo control manual del escribano.
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 flex-1">
               
               {/* Formulario Izquierda */}
-              <div className="lg:col-span-6 bg-[#0c0c0e] border border-neutral-800/80 rounded-[1.5rem] p-6 shadow-2xl flex flex-col space-y-5 relative overflow-hidden">
+              <div className="lg:col-span-6 bg-[#f6f8fc] border border-neutral-800/80 rounded-[1.5rem] p-6 shadow-2xl flex flex-col space-y-5 relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-transparent via-amber-500 to-transparent opacity-40"></div>
                 
                 <div className="flex items-center justify-between border-b border-neutral-800 pb-2">

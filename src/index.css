@@ -97,6 +97,9 @@
 .bg-blue-500.text-white, .bg-blue-500 .text-white,
 .bg-emerald-600.text-white, .bg-emerald-600 .text-white,
 .bg-emerald-500.text-white, .bg-emerald-500 .text-white,
+.bg-amber-600.text-white, .bg-amber-600 .text-white,
+.bg-amber-500.text-white, .bg-amber-500 .text-white,
+.bg-red-600.text-white, .bg-red-600 .text-white,
 .bg-rose-600.text-white, .bg-rose-600 .text-white,
 .bg-rose-500.text-white, .bg-rose-500 .text-white,
 .bg-indigo-600.text-white, .bg-indigo-600 .text-white,
@@ -106,14 +109,15 @@
   color: #ffffff !important;
 }
 
-/* Superficies oscuras heredadas convertidas a paneles Gris Plata / Platino Esmerilado */
-.bg-\[\#0c0c0e\], .bg-\[\#0c0c0f\], .bg-\[\#171614\], .bg-\[\#151412\] {
-  background-color: #f5f7fb !important;
+/* Superficies oscuras heredadas (incluyendo variantes con opacidad) convertidas a paneles Gris Plata / Platino Esmerilado */
+.bg-\[\#0c0c0e\], .bg-\[\#0c0c0e\]\/60, .bg-\[\#0c0c0e\]\/80,
+.bg-\[\#0c0c0f\], .bg-\[\#171614\], .bg-\[\#151412\] {
+  background-color: #f6f8fc !important;
   border-color: #cbd5e1 !important;
   box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
-.bg-\[\#121210\], .bg-\[\#121214\], .bg-\[\#09090b\], .bg-\[\#08080a\], .bg-\[\#0a0a0d\] {
+.bg-\[\#121210\], .bg-\[\#121214\], .bg-\[\#09090b\], .bg-\[\#08080a\], .bg-\[\#0a0a0d\], .bg-neutral-955 {
   background-color: #eaeff7 !important;
   border-color: #cbd5e1 !important;
 }

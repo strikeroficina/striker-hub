@@ -136,7 +136,7 @@ export const NotarySettings: React.FC<NotarySettingsProps> = ({
       </div>
 
       {/* Sub-navigation Tabs */}
-      <div className="grid grid-cols-3 gap-2 bg-[#0c0c0e] p-1.5 rounded-2xl border border-neutral-800">
+      <div className="grid grid-cols-3 gap-2 bg-[#f6f8fc] p-1.5 rounded-2xl border border-neutral-800">
         <button
           type="button"
           onClick={() => setActiveSection('perfil')}
@@ -184,7 +184,7 @@ export const NotarySettings: React.FC<NotarySettingsProps> = ({
           className="grid grid-cols-1 lg:grid-cols-12 gap-6"
         >
           {/* Left Card: Identidad Profesional */}
-          <div className="lg:col-span-7 bg-[#0c0c0e] border border-neutral-800 rounded-2xl p-6 space-y-5 relative overflow-hidden">
+          <div className="lg:col-span-7 bg-[#f6f8fc] border border-neutral-800 rounded-2xl p-6 space-y-5 relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-50"></div>
 
             <div className="flex items-center justify-between border-b border-neutral-800 pb-3">
@@ -301,7 +301,7 @@ export const NotarySettings: React.FC<NotarySettingsProps> = ({
           </div>
 
           {/* Right Card: Datos del Estudio y Jurisdicción */}
-          <div className="lg:col-span-5 bg-[#0c0c0e] border border-neutral-800 rounded-2xl p-6 space-y-5 relative overflow-hidden">
+          <div className="lg:col-span-5 bg-[#f6f8fc] border border-neutral-800 rounded-2xl p-6 space-y-5 relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-transparent via-emerald-500 to-transparent opacity-50"></div>
 
             <div className="flex items-center justify-between border-b border-neutral-800 pb-3">
@@ -403,7 +403,7 @@ export const NotarySettings: React.FC<NotarySettingsProps> = ({
           className="grid grid-cols-1 lg:grid-cols-12 gap-6"
         >
           {/* Left: PIN de Bloqueo y Protocolo Ciberseguridad */}
-          <div className="lg:col-span-6 bg-[#0c0c0e] border border-neutral-800 rounded-2xl p-6 space-y-5 relative overflow-hidden">
+          <div className="lg:col-span-6 bg-[#f6f8fc] border border-neutral-800 rounded-2xl p-6 space-y-5 relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-transparent via-amber-500 to-transparent opacity-50"></div>
 
             <div className="flex items-center justify-between border-b border-neutral-800 pb-3">
@@ -523,7 +523,7 @@ export const NotarySettings: React.FC<NotarySettingsProps> = ({
 
           {/* Right: Motor IA Propio (Medidor del Escribano) + Respaldo Soberano */}
           <div className="lg:col-span-6 space-y-6">
-            <div className="bg-[#0c0c0e] border border-neutral-800 rounded-2xl p-6 space-y-4 relative overflow-hidden">
+            <div className="bg-[#f6f8fc] border border-neutral-800 rounded-2xl p-6 space-y-4 relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-50"></div>
 
               <div className="flex items-center justify-between border-b border-neutral-800 pb-3">
@@ -598,7 +598,7 @@ export const NotarySettings: React.FC<NotarySettingsProps> = ({
             </div>
 
             {/* Respaldo Local Soberano */}
-            <div className="bg-[#0c0c0e] border border-neutral-800 rounded-2xl p-6 space-y-4">
+            <div className="bg-[#f6f8fc] border border-neutral-800 rounded-2xl p-6 space-y-4">
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-xs font-black text-white uppercase tracking-widest">
@@ -685,7 +685,7 @@ export const NotarySettings: React.FC<NotarySettingsProps> = ({
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Tarjeta PC */}
-            <div className="bg-[#0c0c0e] border border-neutral-800 rounded-2xl p-6 space-y-4">
+            <div className="bg-[#f6f8fc] border border-neutral-800 rounded-2xl p-6 space-y-4">
               <div className="flex items-center gap-3 border-b border-neutral-800 pb-3">
                 <div className="w-10 h-10 rounded-xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
                   <Monitor size={20} />
@@ -710,7 +710,7 @@ export const NotarySettings: React.FC<NotarySettingsProps> = ({
             </div>
 
             {/* Tarjeta Celular */}
-            <div className="bg-[#0c0c0e] border border-neutral-800 rounded-2xl p-6 space-y-4">
+            <div className="bg-[#f6f8fc] border border-neutral-800 rounded-2xl p-6 space-y-4">
               <div className="flex items-center gap-3 border-b border-neutral-800 pb-3">
                 <div className="w-10 h-10 rounded-xl bg-emerald-600/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
                   <Smartphone size={20} />
