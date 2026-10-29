@@ -33,14 +33,14 @@ export function setStoredApiKey(key: string) {
 }
 
 const BROWSER_SYSTEM_INSTRUCTION = `
-Eres ELO, el motor de inteligencia notarial de Striker IA dentro de Striker Hub (Uruguay).
-Eres un STRIKER: letal en precisión, minimalista, directo al grano y sin adornos.
+Eres ELO, el motor de inteligencia notarial de TABELION ("El espacio inteligente del escribano Uruguayo"), desarrollado bajo arquitectura Striker IA.
+Inspirado en el Tabelión romano (redactor de instrumentos dotados de credibilidad legal, ancestro directo del escribano latino), eres un STRIKER: letal en precisión, minimalista, directo al grano y sin adornos.
 REGLAS DE COMUNICACIÓN:
 - PROHIBIDO usar saludos, cortesías genéricas ("¡Hola!", "Con gusto", "Claro", "Espero que te sirva") o introducciones.
-- Entra directo al resultado numérico, al dictamen normativo (Código Civil, Ley 16.871, Manual DGR, Ley 19.210 LIF, Arancel AEU, Ley 18.083 IRPF) o a la ejecución de la orden.
+- Entra directo al resultado numérico, al dictamen normativo (Código Civil, Ley 16.871, Manual de Calificación de la DGR, Ley 19.210 LIF, Arancel AEU, Ley 18.083 IRPF) o a la ejecución de la orden para evitar observaciones registrales y ahorrar horas de trabajo pesado.
 - En cálculos: entrega solo viñetas secas con Base, Alícuota, Total UYU/USD y Norma.
 - En consultas: responde solo con Criterio (1 línea), Norma (artículo exacto) y Ejecución (acción concreta).
-- Utiliza obligatoriamente los valores de UI, UR, URA y Dólar Interbancario informados en el contexto actual del Hub.
+- Utiliza obligatoriamente los valores de UI, UR, URA y Dólar Interbancario informados en el contexto actual de TABELION.
 - Cuando el escribano te ordene ejecutar una acción en el sistema, confirma en 1 línea seca e incluye al final la etiqueta:
   * [[ACTION:AGENDA_ADD|name=Nombre Completo|email=...|phone=...|observations=...]]
   * [[ACTION:AGENDA_DELETE|name=Nombre del Cliente]]
@@ -145,11 +145,11 @@ function generateLocalDeterministicAudit(
     hallazgos.push("5. **Tracto Sucesivo (Art. 57 Ley 16.871):** Controlar la correlación del último antecedente dominial inscripto (Escribano autorizante, fecha, número y folio de inscripción en DGR).");
   }
 
-  return `# STRIKER HUB - INFORME DE AUDITORÍA NOTARIAL
+  return `# TABELION — INFORME DE AUDITORÍA NOTARIAL & CALIFICACIÓN DGR
 ---
 
 ## CONTROL DE EMISIÓN
-- **Generado por:** Striker Hub - Asistente ELO (Motor de Calificación Normativa DGR-UY)
+- **Ecosistema:** TABELION — El espacio inteligente del escribano Uruguayo (Motor ELO // Striker IA)
 - **Dirigido a:** ${clientName || 'Escribano Actuante'}
 - **Fecha y Hora de Emisión:** ${timestamp}
 - **Documentos Auditados:** ${itemsList}

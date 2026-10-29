@@ -346,14 +346,14 @@ ${agendaSummary}`;
             {/* Header */}
             <div className="p-4 border-b border-slate-800/50 flex items-center justify-between bg-slate-900/50 flex-shrink-0">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-blue-600/20 border border-blue-500/30 rounded-xl flex items-center justify-center">
-                  <Bot className="text-blue-400" size={22} />
+                <div className="w-10 h-10 bg-neutral-950 border border-amber-500/35 rounded-xl flex items-center justify-center font-tabelion font-black tabelion-gold-text text-base">
+                  T
                 </div>
                 <div>
-                  <h2 className="font-black text-xs text-white uppercase tracking-tighter">ELO // STRIKER</h2>
+                  <h2 className="font-tabelion font-black text-xs text-white uppercase tracking-[0.16em]">TABELION // ELO</h2>
                   <p className="text-[9px] text-emerald-500 font-black uppercase tracking-widest flex items-center gap-1.5 mt-0.5">
                     <span className="w-1 h-1 bg-emerald-500 rounded-full animate-pulse"></span>
-                    OPERATIVO • CERO RELLENO
+                    PRECISIÓN STRIKER • DGR-UY ACTIVO
                   </p>
                 </div>
               </div>

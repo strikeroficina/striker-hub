@@ -74,7 +74,7 @@ export const NotarySettings: React.FC<NotarySettingsProps> = ({
     const a = document.createElement('a');
     const cleanOffice = (profile.officeName || 'Estudio').replace(/[^a-zA-Z0-9_-]/g, '_');
     a.href = url;
-    a.download = `Respaldo_StrikerHub_${cleanOffice}_${new Date().toISOString().slice(0, 10)}.json`;
+    a.download = `Respaldo_TABELION_${cleanOffice}_${new Date().toISOString().slice(0, 10)}.json`;
     a.click();
     URL.revokeObjectURL(url);
     setBackupNotice('✓ Respaldo completo descargado correctamente.');
@@ -106,18 +106,18 @@ export const NotarySettings: React.FC<NotarySettingsProps> = ({
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-800 pb-5">
         <div>
           <div className="flex items-center gap-2.5">
-            <span className="px-2 py-0.5 bg-blue-600/20 border border-blue-500/30 text-blue-400 text-[9px] font-black uppercase tracking-widest rounded">
-              CONFIGURACIÓN DEL ESTUDIO
+            <span className="px-2 py-0.5 bg-amber-500/15 border border-amber-500/30 text-amber-400 text-[9px] font-tabelion font-black uppercase tracking-[0.18em] rounded">
+              TABELION • CONFIGURACIÓN DEL ESTUDIO
             </span>
             <span className="text-[9px] font-mono text-emerald-400 uppercase tracking-widest">
               • LEY 18.331 ACTIVA
             </span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-black text-white uppercase tracking-tight mt-1">
+          <h1 className="text-2xl sm:text-3xl font-tabelion font-black text-white uppercase tracking-[0.12em] mt-1">
             Datos del Escribano & Seguridad
           </h1>
           <p className="text-neutral-500 text-xs font-bold uppercase tracking-widest mt-0.5">
-            Personalización de ELO, Membrete Oficial, Ciberseguridad e Instalación Web/Móvil
+            El espacio inteligente del escribano Uruguayo • Membrete Oficial, Ciberseguridad e Instalación PC/Celular
           </p>
         </div>
 
@@ -664,14 +664,14 @@ export const NotarySettings: React.FC<NotarySettingsProps> = ({
           {/* Banner de Instalación Directa */}
           <div className="bg-gradient-to-r from-blue-950/40 via-[#0c0c0e] to-emerald-950/30 border border-blue-500/30 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-6">
             <div className="space-y-1.5 text-center sm:text-left">
-              <span className="text-[9px] font-black uppercase tracking-widest text-blue-400">
+              <span className="text-[9px] font-tabelion font-black uppercase tracking-[0.2em] text-amber-400">
                 APLICACIÓN WEB PROGRESIVA (PWA) • LISTA PARA INSTALAR
               </span>
-              <h2 className="text-xl font-black text-white uppercase tracking-tight">
-                Instalar Striker Hub — ELO Notarial en este Dispositivo
+              <h2 className="text-xl font-tabelion font-black text-white uppercase tracking-[0.1em]">
+                Instalar TABELION en este Dispositivo
               </h2>
               <p className="text-xs text-neutral-400 max-w-xl">
-                Funciona como aplicación nativa independiente en escritorio (Windows / Mac) y en celulares (iPhone / Android), con acceso directo desde tu pantalla de inicio o barra de tareas.
+                El espacio inteligente del escribano Uruguayo funciona como aplicación nativa independiente en escritorio (Windows / Mac) y en celulares (iPhone / Android), con acceso directo desde tu pantalla de inicio o barra de tareas.
               </p>
             </div>
 

@@ -494,7 +494,7 @@ RESULTADO DE OPTIMIZACIÓN:
       }
 
       let headerStr = `==================================================
-        STRIKER HUB - INFORME DE LIQUIDACIÓN FISCAL
+        TABELION - INFORME DE LIQUIDACIÓN FISCAL
 ==================================================\n`;
 
       if (taxReference.trim()) {
@@ -508,7 +508,7 @@ Fecha: ${currentTimestamp}
 ---\n\n`;
       }
 
-      const reportText = headerStr + `Ecosistema: Striker Hub - Copiloto ELO Notarial
+      const reportText = headerStr + `Ecosistema: TABELION — El espacio inteligente del escribano Uruguayo
 Servicio: Liquidación de Impuesto Manual
 
 --------------------------------------------------
@@ -614,7 +614,7 @@ RESULTADO DE LIQUIDACIÓN DE IRPF PERSONAL:
 * TOTAL MENSUAL A LIQUIDAR (IRPF Neto): $${totalUYU.toLocaleString('es-UY')} UYU`;
 
       let headerStr = `==================================================
-      STRIKER HUB - INFORME DE LIQUIDACIÓN DE IRPF PERSONAL
+      TABELION - INFORME DE LIQUIDACIÓN DE IRPF PERSONAL
 ==================================================\n`;
 
       if (personalReference.trim()) {
@@ -628,7 +628,7 @@ Fecha: ${currentTimestamp}
 ---\n\n`;
       }
 
-      const reportText = headerStr + `Ecosistema: Striker Hub - Copiloto ELO Notarial
+      const reportText = headerStr + `Ecosistema: TABELION — El espacio inteligente del escribano Uruguayo
 Servicio: Estimador de IRPF Trabajo Dependiente (Categoría II)
 
 --------------------------------------------------
@@ -698,7 +698,7 @@ Cálculo simulado bajo los tramos progresivos mensuales de IRPF vigentes en Urug
 - TOTAL NETO PROFESIONAL: $${totalNetoUYU.toLocaleString('es-UY')} UYU`;
 
       let headerStr = `==================================================
-      STRIKER HUB - LIQUIDACIÓN DE HONORARIOS PROFESIONALES
+      TABELION - LIQUIDACIÓN DE HONORARIOS PROFESIONALES
 ==================================================\n`;
 
       if (feesReference.trim()) {
@@ -712,7 +712,7 @@ Fecha: ${currentTimestamp}
 ---\n\n`;
       }
 
-      const reportText = headerStr + `Ecosistema: Striker Hub - Copiloto ELO Notarial
+      const reportText = headerStr + `Ecosistema: TABELION — El espacio inteligente del escribano Uruguayo
 Servicio: Arancel de la Asociación de Escribanos del Uruguay
 
 --------------------------------------------------
@@ -751,9 +751,9 @@ Liquidación arancelaria efectuada bajo control manual del escribano.
       <html lang="es">
         <head>
           <meta charset="UTF-8">
-          <title>${title} - Striker Hub</title>
+          <title>${title} - TABELION</title>
           <style>
-            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;950&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;500;700;950&display=swap');
             body { 
               font-family: 'Inter', sans-serif; 
               padding: 40px; 
@@ -763,7 +763,7 @@ Liquidación arancelaria efectuada bajo control manual del escribano.
               font-size: 10pt;
             }
             .header { border-bottom: 3px solid #111; padding-bottom: 12px; margin-bottom: 25px; }
-            .header h1 { font-size: 18pt; font-weight: 950; margin: 0; text-transform: uppercase; letter-spacing: -0.02em; }
+            .header h1 { font-family: 'Cinzel', Georgia, serif; font-size: 18pt; font-weight: 900; margin: 0; text-transform: uppercase; letter-spacing: 0.1em; }
             .header p { margin: 6px 0 0 0; font-size: 9pt; color: #555; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
             pre { font-family: monospace; white-space: pre-wrap; font-size: 9.5pt; background: #f8f9fa; padding: 20px; border: 1px solid #e9ecef; border-radius: 8px; color: #212529; }
             .footer { margin-top: 40px; font-size: 8pt; color: #888; text-align: center; border-top: 1px solid #e9ecef; padding-top: 12px; }
@@ -774,12 +774,12 @@ Liquidación arancelaria efectuada bajo control manual del escribano.
         </head>
         <body>
           <div class="header">
-            <h1>Striker Hub - Copiloto ELO Notarial</h1>
+            <h1>TABELION — El espacio inteligente del escribano Uruguayo</h1>
             <p>${title}</p>
           </div>
           <pre>${reportText}</pre>
           <div class="footer">
-            <p>Documento de asistencia digital desarrollado por Striker IA • Uruguay 2026</p>
+            <p>Liquidación emitida en TABELION (Motor ELO // Striker IA) • Uruguay 2026</p>
           </div>
           <script>
             window.onload = function() {
@@ -925,8 +925,11 @@ Liquidación arancelaria efectuada bajo control manual del escribano.
       {/* Cabezal de la Suite (Siempre Visible) */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between px-2 gap-4">
         <div className="space-y-0.5">
-          <h1 className="text-2xl font-black text-white uppercase tracking-tight">Suite de Liquidación Notarial</h1>
-          <p className="text-neutral-500 text-[10px] font-bold uppercase tracking-widest">Liquidación manual de tributos, honorarios sugeridos y estimación de IRPF (Uruguay 2026)</p>
+          <span className="text-[9px] font-tabelion font-bold uppercase tracking-[0.2em] text-amber-400">
+            TABELION // MOTOR TRIBUTARIO & ARANCELARIO
+          </span>
+          <h1 className="text-2xl font-tabelion font-black text-white uppercase tracking-[0.12em]">Suite de Liquidación Notarial</h1>
+          <p className="text-neutral-500 text-[10px] font-bold uppercase tracking-widest">Liquidación exacta de ITP, IRPF/IRNR (Ley 18.083) y Arancel AEU sin dolores de cabeza</p>
         </div>
         
         {/* Ticker de Cotizaciones de Referencia */}

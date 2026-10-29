@@ -161,9 +161,9 @@ export const AuditModule: React.FC<AuditModuleProps> = ({ onAuditComplete }) => 
       <!DOCTYPE html>
       <html>
         <head>
-          <title>Informe de Auditoría - Striker Hub</title>
+          <title>Dictamen de Auditoría - TABELION</title>
           <style>
-            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;700;900&display=swap');
             * { box-sizing: border-box; }
             body { 
               font-family: 'Inter', -apple-system, sans-serif; 
@@ -174,8 +174,8 @@ export const AuditModule: React.FC<AuditModuleProps> = ({ onAuditComplete }) => 
               font-size: 11pt;
             }
             .print-container { max-width: 800px; margin: 0 auto; }
-            h1 { font-size: 24pt; font-weight: 900; text-transform: uppercase; margin-bottom: 5px; border-bottom: 4px solid #000; padding-bottom: 10px; }
-            h2 { font-size: 16pt; font-weight: 900; text-transform: uppercase; margin-top: 30pt; margin-bottom: 12pt; border-left: 6px solid #000; padding-left: 15px; background: #f0f0f0; padding-top: 8px; padding-bottom: 8px; }
+            h1 { font-family: 'Cinzel', Georgia, serif; font-size: 22pt; font-weight: 900; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px; border-bottom: 4px solid #000; padding-bottom: 10px; }
+            h2 { font-size: 15pt; font-weight: 900; text-transform: uppercase; margin-top: 30pt; margin-bottom: 12pt; border-left: 6px solid #000; padding-left: 15px; background: #f0f0f0; padding-top: 8px; padding-bottom: 8px; }
             h3 { font-size: 13pt; font-weight: 900; text-transform: uppercase; margin-top: 20pt; }
             p { margin-bottom: 12pt; text-align: justify; }
             ul, ol { margin-bottom: 15pt; padding-left: 30px; }
@@ -193,8 +193,8 @@ export const AuditModule: React.FC<AuditModuleProps> = ({ onAuditComplete }) => 
           <div class="print-container">
             ${reportHtml}
             <div class="footer">
-              <p>Este informe es una herramienta de asistencia digital desarrollada por Striker IA y no sustituye la validación final del profesional actuante.</p>
-              <p>Generado por Striker Hub - Asistente ELO • ${new Date().toLocaleString('es-UY')}</p>
+              <p>${getNotaryProfile().reportFooter || 'Dictamen de asistencia digital emitido en TABELION bajo supervisión del profesional actuante.'}</p>
+              <p>TABELION — El espacio inteligente del escribano Uruguayo • Motor ELO // Striker IA • ${new Date().toLocaleString('es-UY')}</p>
             </div>
           </div>
           <script>
@@ -232,16 +232,16 @@ export const AuditModule: React.FC<AuditModuleProps> = ({ onAuditComplete }) => 
     if (!report || !reportRef.current) return;
     
     const reportHtml = reportRef.current.innerHTML;
-    const filename = `Auditoria_ELO_${new Date().toISOString().split('T')[0]}.html`;
+    const filename = `Auditoria_TABELION_${new Date().toISOString().split('T')[0]}.html`;
     
     const fullHtml = `
       <!DOCTYPE html>
       <html lang="es">
         <head>
           <meta charset="UTF-8">
-          <title>Informe Notarial - Striker Hub</title>
+          <title>Dictamen Notarial - TABELION</title>
           <style>
-            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;700;900&display=swap');
             * { box-sizing: border-box; }
             body { 
               font-family: 'Inter', -apple-system, Helvetica, Arial, sans-serif; 
@@ -252,7 +252,7 @@ export const AuditModule: React.FC<AuditModuleProps> = ({ onAuditComplete }) => 
               font-size: 11.5pt;
             }
             .print-container { max-width: 850px; margin: 0 auto; }
-            h1 { font-size: 26pt; font-weight: 900; text-transform: uppercase; margin-bottom: 8px; border-bottom: 5px solid #000; padding-bottom: 12px; letter-spacing: -0.05em; }
+            h1 { font-family: 'Cinzel', Georgia, serif; font-size: 24pt; font-weight: 900; text-transform: uppercase; margin-bottom: 8px; border-bottom: 5px solid #000; padding-bottom: 12px; letter-spacing: 0.06em; }
             h2 { font-size: 17pt; font-weight: 900; text-transform: uppercase; margin-top: 35pt; margin-bottom: 15pt; border-left: 8px solid #000; padding-left: 20px; background: #f4f4f4; padding-top: 10px; padding-bottom: 10px; }
             h3 { font-size: 14pt; font-weight: 900; text-transform: uppercase; margin-top: 25pt; }
             p { margin-bottom: 14pt; text-align: justify; }
@@ -271,8 +271,8 @@ export const AuditModule: React.FC<AuditModuleProps> = ({ onAuditComplete }) => 
           <div class="print-container">
             ${reportHtml}
             <div class="footer">
-              <p>Este informe técnico fue generado por el Asistente ELO (Striker IA) el ${new Date().toLocaleString('es-UY')}.</p>
-              <p>PROYECTO STRIKER HUB • URUGUAY 2026</p>
+              <p>Este dictamen técnico fue generado en TABELION (Copiloto ELO // Striker IA) el ${new Date().toLocaleString('es-UY')}.</p>
+              <p>TABELION — EL ESPACIO INTELIGENTE DEL ESCRIBANO URUGUAYO</p>
             </div>
           </div>
         </body>
@@ -335,10 +335,19 @@ export const AuditModule: React.FC<AuditModuleProps> = ({ onAuditComplete }) => 
         }
       `}</style>
 
-      <div className="flex items-center justify-between no-print">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 no-print">
         <div className="space-y-1">
-          <h1 className="text-3xl font-black text-white uppercase tracking-tighter">Auditoría de Títulos</h1>
-          <p className="text-neutral-500 text-sm font-medium uppercase tracking-widest">ELO Engine V1.1 • Escribanía Digital Multidocumento</p>
+          <div className="flex items-center gap-2">
+            <span className="text-[9px] font-tabelion font-bold uppercase tracking-[0.2em] text-amber-400">
+              TABELION // CALIFICACIÓN REGISTRAL
+            </span>
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-tabelion font-black text-white uppercase tracking-[0.12em]">
+            Auditoría de Títulos & Contraste DGR
+          </h1>
+          <p className="text-neutral-500 text-xs font-bold uppercase tracking-widest">
+            Contraste inmediato contra el Manual de Calificación DGR y Ley 16.871 • Cero Observaciones
+          </p>
         </div>
         {report && (
           <div className="flex gap-4">
@@ -542,8 +551,8 @@ export const AuditModule: React.FC<AuditModuleProps> = ({ onAuditComplete }) => 
             GROUNDING: DGR-UY ACTIVE
           </div>
         </div>
-        <div className="text-[10px] font-black text-blue-500/50 uppercase tracking-widest italic">
-          STRIKER HUB • URUGUAY LEGAL TECH
+        <div className="text-[10px] font-tabelion font-black text-amber-400/70 uppercase tracking-[0.2em]">
+          TABELION • URUGUAY LEGAL TECH
         </div>
       </div>
     </div>

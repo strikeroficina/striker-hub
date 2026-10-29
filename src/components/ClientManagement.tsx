@@ -496,8 +496,11 @@ export const ClientManagement: React.FC<ClientManagementProps> = ({ user }) => {
       {/* Title & Header Section */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between px-2 gap-4">
         <div className="space-y-0.5">
-          <h1 className="text-2xl font-black text-white uppercase tracking-tight">Agenda del Estudio</h1>
-          <p className="text-neutral-500 text-[10px] font-bold uppercase tracking-widest">Tarjetero notarial 100% manual e independiente</p>
+          <span className="text-[9px] font-tabelion font-bold uppercase tracking-[0.2em] text-amber-400">
+            TABELION // PROTOCOLO & LEGAJOS
+          </span>
+          <h1 className="text-2xl font-tabelion font-black text-white uppercase tracking-[0.12em]">Agenda del Estudio</h1>
+          <p className="text-neutral-500 text-[10px] font-bold uppercase tracking-widest">Tarjetero notarial soberano • Control de hitos y respaldo documental</p>
         </div>
         <div>
           <button 

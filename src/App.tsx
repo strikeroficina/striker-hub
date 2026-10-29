@@ -86,7 +86,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [reportContext, setReportContext] = useState<string | null>(null);
   const [chatMessages, setChatMessages] = useState<Message[]>([
-    { role: 'model', parts: [{ text: '**ELO // STRIKER ENGINE ACTIVO.**\nÍndices BCU/INE sincronizados. Listo para auditar títulos, liquidar impuestos/honorarios o ejecutar órdenes en Agenda.' }] }
+    { role: 'model', parts: [{ text: '**TABELION // MOTOR ELO ACTIVO.**\nManual de Calificación DGR e índices BCU/INE sincronizados. Listo para auditar documentos en segundos, liquidar impuestos sin errores o ejecutar órdenes en Agenda.' }] }
   ]);
   const [isChatOpen, setIsChatOpen] = useState(false);
 
@@ -484,10 +484,10 @@ export default function App() {
     return (
       <div className="h-screen w-full flex flex-col items-center justify-center bg-brand-bg gap-4">
         <div className="relative">
-          <div className="w-16 h-16 border-4 border-brand-primary/20 border-t-brand-primary rounded-full animate-spin"></div>
-          <Bot className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-brand-primary" size={24} />
+          <div className="w-16 h-16 border-4 border-amber-500/20 border-t-amber-400 rounded-full animate-spin"></div>
+          <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-tabelion font-black text-lg tabelion-gold-text">T</span>
         </div>
-        <p className="text-slate-400 font-mono text-xs tracking-widest animate-pulse">CARGANDO ECOSISTEMA STRIKER...</p>
+        <p className="text-slate-400 font-mono text-xs tracking-widest animate-pulse">INICIANDO TABELION • URUGUAY...</p>
       </div>
     );
   }
@@ -542,7 +542,7 @@ export default function App() {
           </form>
 
           <p className="text-[9px] text-neutral-600 font-bold uppercase tracking-widest">
-            Protocolo de Seguridad Striker IA • Ley 18.331
+            TABELION • Protocolo de Seguridad Striker IA (Ley 18.331)
           </p>
         </motion.div>
       </div>
@@ -551,23 +551,23 @@ export default function App() {
 
   if (!user) {
     return (
-      <div className="h-screen w-full flex items-center justify-center bg-[#09090b] p-6 font-sans overflow-y-auto">
-        <div className="max-w-md w-full bg-[#0c0c0e] border border-neutral-800 p-8 rounded-[2rem] space-y-6 text-center relative overflow-hidden shadow-2xl my-8">
-          <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-30"></div>
+      <div className="h-screen w-full flex items-center justify-center bg-[#08080a] p-6 font-sans overflow-y-auto">
+        <div className="max-w-md w-full bg-[#0c0c0f] border border-neutral-800 p-8 rounded-[2rem] space-y-6 text-center relative overflow-hidden shadow-2xl my-8">
+          <div className="absolute top-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-transparent via-amber-500/60 to-transparent opacity-60"></div>
           
           <div className="flex flex-col items-center gap-4">
-            <div className="w-16 h-16 bg-blue-600 rounded-[1.2rem] flex items-center justify-center shadow-2xl shadow-blue-600/30 rotate-6 transform transition-transform hover:rotate-0 duration-500">
-              <ShieldCheck className="text-white" size={36} />
+            <div className="w-16 h-16 bg-neutral-950 border border-amber-500/40 rounded-[1.2rem] flex items-center justify-center shadow-2xl shadow-amber-500/15">
+              <span className="font-tabelion font-black text-3xl tabelion-gold-text">T</span>
             </div>
             <div>
-              <h1 className="text-3xl font-black tracking-tighter text-white">STRIKER HUB</h1>
-              <p className="text-blue-500 font-bold tracking-[0.4em] text-[9px] uppercase mt-1">Ecosistema Notarial IA</p>
+              <h1 className="text-3xl font-tabelion font-black tracking-[0.2em] text-white uppercase">TABELION</h1>
+              <p className="text-amber-400 font-bold tracking-[0.22em] text-[9px] uppercase mt-1.5">El espacio inteligente del escribano Uruguayo</p>
             </div>
           </div>
 
           <div className="space-y-2">
-            <p className="text-neutral-400 text-xs font-semibold leading-relaxed max-w-[280px] mx-auto">
-              Configura tus credenciales de Google OAuth 2.0 y vincula tus servicios de GCP para el procesamiento del Asistente ELO.
+            <p className="text-neutral-400 text-xs font-semibold leading-relaxed max-w-[300px] mx-auto">
+              Contrasta documentos con el Manual de Calificación DGR, liquida impuestos sin errores y audita títulos en segundos con certeza absoluta.
             </p>
           </div>
 
@@ -641,14 +641,14 @@ export default function App() {
             ) : (
               <>
                 <LogIn size={14} />
-                Iniciar Sesión en Striker Hub
+                Ingresar a TABELION
               </>
             )}
           </button>
 
           <div className="pt-2 flex flex-col gap-1 text-[9px] text-neutral-600 font-bold uppercase tracking-wider">
             <span>Acceso directo habilitado para el estudio notarial.</span>
-            <span className="text-[8px] text-neutral-800 mt-1 font-black">Striker IA • Uruguay</span>
+            <span className="text-[8px] text-neutral-700 mt-1 font-tabelion font-black tracking-widest">TABELION • BY STRIKER IA</span>
           </div>
         </div>
       </div>
@@ -657,7 +657,7 @@ export default function App() {
 
   const renderContent = () => {
     switch (activeTab) {
-      case 'dashboard': return <DashboardOverview indices={systemIndices} loading={indicesLoading} onRefresh={fetchAllIndices} />;
+      case 'dashboard': return <DashboardOverview indices={systemIndices} loading={indicesLoading} onRefresh={fetchAllIndices} onNavigate={setActiveTab} />;
       case 'clients': return <ClientManagement user={user} />;
       case 'audit': return <AuditModule onAuditComplete={updateReportContext} />;
       case 'calculator': return <Calculator onCalculationComplete={updateReportContext} onRefreshIndices={fetchAllIndices} systemIndices={systemIndices} />;
@@ -690,7 +690,7 @@ export default function App() {
           onNavigateTab={setActiveTab}
         />
       );
-      default: return <DashboardOverview indices={systemIndices} loading={indicesLoading} onRefresh={fetchAllIndices} />;
+      default: return <DashboardOverview indices={systemIndices} loading={indicesLoading} onRefresh={fetchAllIndices} onNavigate={setActiveTab} />;
     }
   };
 
@@ -698,16 +698,16 @@ export default function App() {
     <div className="h-screen w-full bg-brand-bg text-slate-100 overflow-hidden relative">
       <div className="flex flex-col md:flex-row h-full w-full">
         {/* Mobile Header Bar */}
-        <header className="md:hidden flex items-center justify-between px-4 py-3 bg-[#0c0c0e] border-b border-neutral-800 shrink-0 no-print">
+        <header className="md:hidden flex items-center justify-between px-4 py-3 bg-[#0a0a0d] border-b border-neutral-800 shrink-0 no-print">
           <div className="flex items-center gap-2.5 overflow-hidden">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-black text-white text-xs shrink-0">
-              S
+            <div className="w-8 h-8 bg-neutral-950 border border-amber-500/40 rounded-lg flex items-center justify-center font-tabelion font-black tabelion-gold-text text-xs shrink-0">
+              T
             </div>
             <div className="overflow-hidden">
-              <p className="text-xs font-black text-white uppercase tracking-tight truncate">
-                {notaryProfile.officeName || 'Striker Hub'}
+              <p className="text-xs font-tabelion font-black text-white uppercase tracking-[0.15em] truncate">
+                TABELION
               </p>
-              <p className="text-[9px] text-blue-400 font-bold uppercase tracking-wider truncate">
+              <p className="text-[9px] text-amber-400/90 font-bold uppercase tracking-wider truncate">
                 {formatNotaryDisplayTitle(notaryProfile)}
               </p>
             </div>

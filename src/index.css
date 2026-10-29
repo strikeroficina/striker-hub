@@ -1,21 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Cinzel", Georgia, serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
   
-  --color-brand-primary: #2563eb; /* Blue 600 */
-  --color-brand-secondary: #1d4ed8; /* Blue 700 */
-  --color-brand-bg: #09090b; /* Neutral 950/Zinc */
-  --color-brand-card: #0c0c0e; /* Neutral 900 custom */
-  --color-brand-inner: #09090b; /* Neutral 950 */
-  --color-brand-border: #27272a; /* Neutral 800 */
+  --color-brand-primary: #2563eb;
+  --color-brand-secondary: #1d4ed8;
+  --color-brand-gold: #d4af37;
+  --color-brand-bg: #08080a;
+  --color-brand-card: #0c0c0f;
+  --color-brand-inner: #08080a;
+  --color-brand-border: #232329;
 }
 
 @layer base {
   body {
     @apply bg-brand-bg text-neutral-400 font-sans antialiased;
+    background-image: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.045) 0%, rgba(37, 99, 235, 0.03) 35%, transparent 70%);
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -23,12 +26,24 @@
   }
 }
 
+/* Fuente de impacto inspirada en inscripciones romanas clásicas (El Tabelión) */
+.font-tabelion {
+  font-family: "Cinzel", Georgia, serif;
+  letter-spacing: 0.14em;
+}
+
+.tabelion-gold-text {
+  background: linear-gradient(135deg, #fff6d6 0%, #e5c158 48%, #b38728 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .bento-card {
-  @apply bg-neutral-900 border border-neutral-800 rounded-3xl p-8 transition-all;
+  @apply bg-[#0c0c0f] border border-neutral-800/90 rounded-3xl p-8 transition-all;
 }
 
 .inner-card {
-  @apply bg-neutral-950 border border-neutral-800 rounded-2xl p-5;
+  @apply bg-[#08080a] border border-neutral-800/80 rounded-2xl p-5;
 }
 
 .btn-primary {
@@ -40,7 +55,7 @@
 }
 
 .input-field {
-  @apply w-full px-4 py-2 bg-neutral-950 border border-neutral-800 rounded-xl focus:outline-none focus:border-blue-500 text-white text-sm transition-colors;
+  @apply w-full px-4 py-2 bg-neutral-950 border border-neutral-800 rounded-xl focus:outline-none focus:border-amber-500/70 text-white text-sm transition-colors;
 }
 
 /* Scrollbar styling */
@@ -57,11 +72,14 @@
 }
 
 /* Markdown Content Styling */
-.printable-report h1 { @apply text-3xl font-black mb-6 uppercase tracking-tighter text-white; }
-.printable-report h2 { @apply text-xl font-bold mt-8 mb-4 uppercase tracking-widest text-blue-500 border-b border-neutral-800 pb-2; }
+.printable-report h1 {
+  font-family: "Cinzel", Georgia, serif;
+  @apply text-3xl font-black mb-6 uppercase tracking-wider text-white;
+}
+.printable-report h2 { @apply text-xl font-bold mt-8 mb-4 uppercase tracking-widest text-amber-400 border-b border-neutral-800 pb-2; }
 .printable-report h3 { @apply text-lg font-bold mt-6 mb-2 text-neutral-200; }
-.printable-report p { @apply text-sm leading-relaxed text-neutral-400 mb-4; }
-.printable-report ul { @apply list-disc list-inside space-y-2 mb-6 text-sm text-neutral-400; }
-.printable-report li { @apply marker:text-blue-500; }
+.printable-report p { @apply text-sm leading-relaxed text-neutral-300 mb-4; }
+.printable-report ul { @apply list-disc list-inside space-y-2 mb-6 text-sm text-neutral-300; }
+.printable-report li { @apply marker:text-amber-500; }
 .printable-report hr { @apply border-neutral-800 my-8; }
-.printable-report strong { @apply text-neutral-200; }
+.printable-report strong { @apply text-white; }

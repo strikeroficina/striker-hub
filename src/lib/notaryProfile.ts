@@ -13,7 +13,7 @@ export interface NotaryProfile {
   reportFooter: string;
   sheetId: string;
   driveFolderId: string;
-  // Seguridad y Protección de Datos (Protocolo Striker IA - Ley 18.331)
+  // Seguridad y Protección de Datos (Protocolo Tabelion // Striker IA - Ley 18.331)
   pinEnabled: boolean;
   securityPin: string;
   fencingEnabled: boolean;
@@ -51,14 +51,14 @@ export const DEFAULT_NOTARY_PROFILE: NotaryProfile = {
   title: 'Escribano Público',
   matricula: '',
   rut: '',
-  officeName: 'Escribanía Digital Striker',
+  officeName: 'Estudio Notarial • Tabelion',
   city: 'Montevideo',
   department: 'Montevideo',
   specialty: 'Compraventas, Sucesiones, Propiedad Horizontal y Arrendamientos',
   phone: '',
   email: 'strikeroficina@gmail.com',
   address: '',
-  reportFooter: 'Informe técnico emitido bajo supervisión profesional notarial • Secreto Profesional (Ley 18.331).',
+  reportFooter: 'Dictamen técnico emitido en TABELION (El espacio inteligente del escribano Uruguayo) bajo supervisión profesional • Secreto Profesional (Ley 18.331).',
   sheetId: '',
   driveFolderId: '',
   pinEnabled: false,
@@ -75,6 +75,9 @@ export function getNotaryProfile(): NotaryProfile {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return DEFAULT_NOTARY_PROFILE;
     const parsed = JSON.parse(raw);
+    if (parsed.officeName === 'Escribanía Digital Striker') {
+      parsed.officeName = DEFAULT_NOTARY_PROFILE.officeName;
+    }
     return {
       ...DEFAULT_NOTARY_PROFILE,
       ...parsed
@@ -109,7 +112,7 @@ export function formatNotaryDisplayTitle(profile: NotaryProfile): string {
 
 export function exportStudioBackup(): string {
   const payload = {
-    version: '2026.2-STRIKER',
+    version: '2026.3-TABELION',
     exportedAt: new Date().toISOString(),
     notaryProfile: getNotaryProfile(),
     clients: JSON.parse(localStorage.getItem('rel_tbl_clientes') || '[]'),

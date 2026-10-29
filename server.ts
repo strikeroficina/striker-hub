@@ -76,8 +76,9 @@ async function refreshOfficialIndices() {
 }
 
 export const ELO_SYSTEM_INSTRUCTION = `
-Eres ELO, el motor de inteligencia notarial de Striker IA dentro de Striker Hub (Uruguay).
-No eres un chatbot de atención al cliente. Eres un STRIKER: un operador técnico-jurídico letal en precisión, minimalista, directo al grano y sin adornos.
+Eres ELO, el motor de inteligencia notarial de TABELION ("El espacio inteligente del escribano Uruguayo"), desarrollado bajo la arquitectura Striker IA.
+TABELION está inspirado en el Tabelión romano: el redactor de documentos privados dotados de credibilidad legal, ancestro directo del escribano de tipo latino.
+No eres un chatbot de atención al cliente. Eres un STRIKER: un operador técnico-jurídico letal en precisión, minimalista, directo al grano y sin adornos, diseñado para ahorrar horas de trabajo pesado, eliminar observaciones registrales contrastando cada documento contra el Manual de Calificación de la DGR y resolver liquidaciones impositivas con certeza absoluta.
 
 ### FILOSOFÍA Y ESTILO DE COMUNICACIÓN STRIKER (REGLAS INQUEBRANTABLES)
 1. **CERO RELLENO / CERO CORTESÍA GENÉRICA:**
@@ -284,11 +285,11 @@ app.post("/api/audit", async (req, res) => {
 
       prompt = `Analiza los siguientes ${processedFiles.length} documentos de forma conjunta y correlativa (${itemsList}) bajo la normativa uruguaya. Realiza un análisis integral y cruzado (por ejemplo, verificando la consistencia de padrones, fojas, nombres y fechas entre los distintos documentos provistos). Devuelve el resultado EXCLUSIVAMENTE en este formato Markdown:
 
-# STRIKER HUB - INFORME DE AUDITORÍA NOTARIAL (DOCUMENTOS MÚLTIPLES)
+# TABELION — INFORME DE AUDITORÍA NOTARIAL (DOCUMENTOS MÚLTIPLES)
 ---
 
 ## CONTROL DE EMISIÓN
-- **Generado por:** Striker Hub - Asistente ELO
+- **Ecosistema:** TABELION — El espacio inteligente del escribano Uruguayo (Motor ELO // Striker IA)
 - **Dirigido a:** ${clientName || 'Escribano Actuante'}
 - **Fecha y Hora de Emisión:** ${timestamp || new Date().toLocaleString('es-UY')}
 - **Documentos Auditados:** ${itemsList}
@@ -326,11 +327,11 @@ ${processedFiles.map((f, idx) => `### DOCUMENTO ${idx + 1}: ${f.fileName}
       const singleName = processedFiles[0]?.fileName || fileName || 'documento';
       prompt = `Analiza este documento (${singleName}) bajo la normativa uruguaya y devuelve el resultado EXCLUSIVAMENTE en este formato Markdown:
 
-# STRIKER HUB - INFORME DE AUDITORÍA NOTARIAL
+# TABELION — INFORME DE AUDITORÍA NOTARIAL
 ---
 
 ## CONTROL DE EMISIÓN
-- **Generado por:** Striker Hub - Asistente ELO
+- **Ecosistema:** TABELION — El espacio inteligente del escribano Uruguayo (Motor ELO // Striker IA)
 - **Dirigido a:** ${clientName || 'Escribano Actuante'}
 - **Fecha y Hora de Emisión:** ${timestamp || new Date().toLocaleString('es-UY')}
 
