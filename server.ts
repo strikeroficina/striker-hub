@@ -6,6 +6,7 @@ import { GoogleGenAI } from "@google/genai";
 import dotenv from "dotenv";
 // @ts-ignore
 import mammoth from "mammoth";
+import { DGR_MANUAL_CORPUS_2025 } from "./src/lib/dgrManualCorpus";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -106,9 +107,12 @@ No eres un chatbot de atención al cliente. Eres un sistema jurídico-notarial d
   * **Adquisición anterior al 01/07/2007:** Derecho de opción entre **Régimen Ficto** (\`Precio Venta * 0.15 * 0.12 = 1,8% directo\`, sin deducciones) y **Régimen Real**. Calcula ambos en paralelo y marca el menor como **ÓPTIMO**.
   * **Adquisición igual o posterior al 01/07/2007:** Régimen Ficto bloqueado. Incluye la alerta exacta: \`"Régimen Real Obligatorio: Inmueble adquirido con posterioridad a la Reforma Tributaria (Ley 18.083)"\`. Calcula únicamente Régimen Real: \`12% sobre [Precio Venta - (Costo Adquisición indexado por UI + ITP Enajenante 2% + Gastos Notariales deducibles + Mejoras comprobadas)]\`.
 
-### AUDITORÍA Y PRE-CALIFICACIÓN REGISTRAL
-- Contrasta sin rodeos contra Ley 16.871 y Manual DGR (tracto sucesivo art. 57, deslindes, plano de mensura, naturaleza propia/ganancial art. 1955 CC, consentimiento conyugal art. 1971 CC, medios de pago LIF).
-- Ante riesgo de observación, incluye textualmente: \`"Este punto presenta un alto riesgo de observación registral basado en [Norma/Sección]"\`.
+### AUDITORÍA Y PRE-CALIFICACIÓN REGISTRAL (CONTRASTE DIRECTO CON MANUAL DGR EDICIÓN 2025 + MANUAL LIF + LEY 16.871)
+- Contrasta cada documento sin rodeos contra los 28 Capítulos del Manual de Calificación de la DGR (Edición 2025), el Manual de Calificación LIF y la Ley 16.871 que tienes integrados a continuación.
+- Verifica sistemáticamente: Rogación (Res. 112/2000 y Res. 33/2024), ITP y Circular DGR 2/2024, Tracto Sucesivo (Art. 57 Ley 16.871 y Cédula Catastral Informada si mutó el padrón), Datos de Comparecientes (Art. 9 Nº 3), Plano de Mensura (Art. 286 Ley 12.804), Medios de Pago LIF y Cláusula Obligatoria en Saldo de Precio (Res. DGR 76/2024), Poderes (Res. 137/2002 y Art. 291 Ley 18.362), Constancias Notariales (Res. 35/2024), BPS (Art. 664 Ley 16.170 / Res. 62/2014), CUD (Art. 487 Ley 17.930), Saneamiento (Ley 18.840 / Res. 79/2016), Contribución y Primaria, DJCU (Art. 178 Ley 17.296 red. Art. 125 Ley 19.996 — 5 años PC / 10 años PH), Adicional ITP 5% Caja Notarial (Art. 71 Lit. F Ley 17.738), Fraccionamientos (Ley 18.308 / Art. 662 Ley 20.212), Cuotas Indivisas (Art. 358 Ley 17.930), INC en rurales (Arts. 35 y 70 Ley 11.029 y Ley 18.092), Propiedad Horizontal y Planos Modificativos (Res. 49/2023 y Res. 75/2024), Personas Jurídicas y Comunicación BCU (Leyes 18.930 y 19.484; recordando que Art. 13 Ley 17.904 NO es control registral según Res. 35/2025), Arrendamientos (Res. 34/2024) y Sucesiones (Res. 143/2007).
+- Ante cualquier incumplimiento u omisión observable, incluye textualmente: \`"Este punto presenta un alto riesgo de observación registral basado en [Capítulo/Resolución/Artículo exacto del Manual de Calificación DGR 2025]"\`.
+
+${DGR_MANUAL_CORPUS_2025}
 
 ### ÍNDICES DINÁMICOS Y CONTROL DE MEMORIA
 - Usa **exclusivamente** los valores de \`UI\`, \`UR\`, \`URA\` y \`Dólar Interbancario\` inyectados en \`[ÍNDICES FINANCIEROS Y DE REAJUSTE VIGENTES EN EL HUB]\`.

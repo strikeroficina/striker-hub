@@ -2,6 +2,7 @@ import { invoke } from "@tauri-apps/api/core";
 import { GoogleGenAI } from "@google/genai";
 // @ts-ignore
 import mammoth from "mammoth";
+import { DGR_MANUAL_CORPUS_2025 } from "./dgrManualCorpus";
 
 export class GeminiUnavailableError extends Error {
   status: number;
@@ -37,9 +38,10 @@ Eres TABELION ("El espacio inteligente del escribano Uruguayo").
 Eres un sistema jurídico-notarial de máxima precisión, sobrio, académico, directo al grano y sin adornos.
 REGLAS DE COMUNICACIÓN:
 - PROHIBIDO usar saludos, cortesías genéricas ("¡Hola!", "Con gusto", "Claro", "Espero que te sirva") o introducciones.
-- Entra directo al resultado numérico, al dictamen normativo (Código Civil, Ley 16.871, Manual de Calificación de la DGR, Ley 19.210 LIF, Arancel AEU, Ley 18.083 IRPF) o a la ejecución de la orden.
+- Entra directo al resultado numérico, al dictamen normativo (Código Civil, Ley 16.871, Manual de Calificación de la DGR Edición 2025, Manual LIF Ley 19.210, Arancel AEU, Ley 18.083 IRPF) o a la ejecución de la orden.
 - En cálculos: entrega solo viñetas secas con Base, Alícuota, Total UYU/USD y Norma.
-- En consultas: responde solo con Criterio (1 línea), Norma (artículo exacto) y Ejecución (acción concreta).
+- En consultas: responde solo con Criterio (1 línea), Norma (artículo o Resolución DGR exacta) y Ejecución (acción concreta).
+- En auditorías: contrasta cada cláusula contra los 28 Capítulos del Manual de Calificación DGR 2025 y el Manual LIF integrados abajo. Usa la frase "Este punto presenta un alto riesgo de observación registral basado en [Norma/Resolución DGR]".
 - Utiliza obligatoriamente los valores de UI, UR, URA y Dólar Interbancario informados en el contexto actual de TABELION.
 - Cuando el escribano te ordene ejecutar una acción en el sistema, confirma en 1 línea seca e incluye al final la etiqueta:
   * [[ACTION:AGENDA_ADD|name=Nombre Completo|email=...|phone=...|observations=...]]
@@ -47,6 +49,8 @@ REGLAS DE COMUNICACIÓN:
   * [[ACTION:AGENDA_NOTE|name=Nombre del Cliente|text=Nota]]
   * [[ACTION:INDICES_REFRESH]] o [[ACTION:INDICES_SET|ui=...|ur=...|ura=...|usd=...]]
   * [[ACTION:NAVIGATE|tab=dashboard|clients|audit|calculator|chat]]
+
+${DGR_MANUAL_CORPUS_2025}
 `;
 
 async function callGeminiDirectBrowser(contents: any, systemInstruction: string, temperature = 0.2): Promise<string> {
@@ -123,26 +127,43 @@ function generateLocalDeterministicAudit(
   const hasPadron = /padr[oó]n/i.test(combinedText);
   const hasPlano = /plano|mensura|agrimensor/i.test(combinedText);
   const hasLIF = /transferencia|letra de cambio|banco|ley 19\.?210|inclusi[oó]n financiera/i.test(combinedText);
+  const hasSaldoPrecio = /saldo de precio|plazo|cuotas/i.test(combinedText);
   const hasEstadoCivil = /solter|casad|divorciad|viud|bienes propios|ganancial/i.test(combinedText);
   const hasTracto = /adquiri[oó]|antecedente|inscript|registro de la propiedad/i.test(combinedText);
+  const hasDJCU = /caracterizaci[oó]n urbana|djcu|17\.?296|19\.?996/i.test(combinedText);
+  const hasSaneamiento = /saneamiento|18\.?840|ose/i.test(combinedText);
+  const hasPJ = /sociedad an[oó]nima|s\.?a\.?|s\.?r\.?l\.?|s\.?a\.?s\.?|fideicomiso/i.test(combinedText);
+  const hasBCU = /18\.?930|19\.?484|beneficiario final|bcu/i.test(combinedText);
 
   const hallazgos: string[] = [];
   if (!hasPadron) {
-    hallazgos.push("1. **Identificación Catastral (Art. 9 Ley 16.871):** No se detectó mención expresa de número de Padrón y Localidad Catastral en el texto extraído. Verificar individualización del bien.");
+    hallazgos.push("1. **Identificación Catastral (Cap. 2.4.2 Manual DGR 2025 / Art. 9 Nº 1 Ley 16.871):** No se detectó mención expresa de número de Padrón, Departamento y Localidad Catastral en el texto extraído.");
   } else {
-    hallazgos.push("1. **Identificación Catastral:** Se detectan referencias de padrón; verificar coincidencia exacta con Cédula Catastral vigente e Impuesto de Enseñanza Primaria.");
+    hallazgos.push("1. **Identificación Catastral y Mutación (Cap. 2.2 Manual DGR 2025):** Se detectan referencias de padrón; si difiere del asiento registral antecedente, adjuntar obligatoriamente Cédula Catastral Informada de la que surja el padrón anterior.");
   }
   if (!hasPlano) {
-    hallazgos.push("2. **Control de Plano de Mensura:** No consta referencia completa al plano de mensura (Agrimensor, fecha e inscripción en DNC). Requisito indispensable para matriculación registral.");
+    hallazgos.push("2. **Control de Plano de Mensura (Cap. 2.4.2 Manual DGR 2025 / Art. 286 Ley 12.804):** No consta referencia completa al plano de mensura (Agrimensor, fecha e inscripción en DNC) ni control de Adicional ITP 5% en Timbres Caja Notarial si el plano es posterior al 01/08/2004 (Art. 71 Lit. F Ley 17.738).");
   }
   if (!hasEstadoCivil) {
-    hallazgos.push("3. **Estado Civil y Naturaleza del Bien (Art. 1955 CC):** Verificar consignación expresa del estado civil de los otorgantes, nombre del cónyuge en caso de bienes gananciales y consentimiento conyugal (Art. 1971 CC).");
+    hallazgos.push("3. **Datos de Comparecientes y Naturaleza del Bien (Cap. 2.4.1 Manual DGR 2025 / Art. 9 Nº 3 Ley 16.871 / Arts. 1955 y 1971 CC):** Verificar consignación expresa de estado civil actual, nombres y apellidos del cónyuge o ex-cónyuge, domicilio, nacionalidad y C.I.");
   }
   if (!hasLIF) {
-    hallazgos.push("4. **Ley de Inclusión Financiera (Ley 19.210 y mod.):** No se individualiza el medio de pago empleado ni institución financiera emisora/receptora en operaciones superiores al umbral legal en UI.");
+    hallazgos.push("4. **Manual de Calificación LIF (Ley 19.210, Dtos. 350/351/017 y Ley 19.889):** No se individualiza el medio de pago admitido ni institución financiera emisora/receptora en operaciones iguales o superiores al umbral legal (1:000.000 UI vigencia actual / 40.000 o 160.000 UI según fecha del pago).");
+  }
+  if (hasSaldoPrecio) {
+    hallazgos.push("5. **Cláusula Obligatoria por Saldo de Precio (Resolución DGR Nº 76/2024 - Cap. 2.4.4 Manual DGR 2025):** Al existir saldo de precio, es obligatorio incluir cláusula o declaración de partes estableciendo que los pagos del saldo se efectuarán por los medios autorizados en la Ley 19.210.");
   }
   if (!hasTracto) {
-    hallazgos.push("5. **Tracto Sucesivo (Art. 57 Ley 16.871):** Controlar la correlación del último antecedente dominial inscripto (Escribano autorizante, fecha, número y folio de inscripción en DGR).");
+    hallazgos.push("6. **Tracto Sucesivo (Cap. 2.2 Manual DGR 2025 / Art. 57 Ley 16.871):** Controlar Nº, Fº y Lº o Nº de inscripción del antecedente dominial inscripto en DGR.");
+  }
+  if (!hasDJCU) {
+    hallazgos.push("7. **Declaración Jurada de Caracterización Urbana — DJCU (Cap. 2.5.7 Manual DGR 2025 / Art. 178 Ley 17.296 red. Art. 125 Ley 19.996 y Res. 39/2022):** Controlar DJCU vigente a la fecha de inscripción (antigüedad máxima: 5 años en Propiedad Común y 10 años en Propiedad Horizontal).");
+  }
+  if (!hasSaneamiento) {
+    hallazgos.push("8. **Certificado de Conexión a Saneamiento (Cap. 2.5.4 Manual DGR 2025 / Ley 18.840 y Res. 79/2016):** En transmisión de dominio de inmuebles urbanos/suburbanos con construcciones, controlar certificado vigente y declaración de inexistencia de nuevas obras posteriores.");
+  }
+  if (hasPJ && !hasBCU) {
+    hallazgos.push("9. **Comunicación al BCU de Personas Jurídicas (Cap. 8 Manual DGR 2025 / Leyes 18.930 y 19.484, Res. 80/2020 y Res. 36/2025):** Interviene persona jurídica/fideicomiso sin constancia de control de Declaración Jurada ante BCU y declaración de no modificación posterior (Nota: el Art. 13 Ley 17.904 no es control registral según Res. DGR 35/2025).");
   }
 
   return `# TABELION — INFORME DE AUDITORÍA NOTARIAL & CALIFICACIÓN DGR
@@ -336,7 +357,7 @@ export async function runAudit(
     }
 
     const itemsList = inputFiles.map((f, i) => `[Doc ${i + 1}]: ${f.fileName}`).join(", ");
-    const auditPrompt = `Analiza los siguientes documentos (${itemsList}) bajo la normativa notarial y registral uruguaya (Ley 16.871, Manual DGR, Código Civil, Ley 19.210 LIF). Devuelve un INFORME DE AUDITORÍA NOTARIAL completo en Markdown con: CONTROL DE EMISIÓN (Dirigido a: ${clientName || 'Escribano Actuante'}, Fecha: ${timestamp || new Date().toLocaleString('es-UY')}), FICHA TÉCNICA DE LOS DOCUMENTOS ANALIZADOS, 1. HALLAZGOS Y OMISIONES CRÍTICAS, 2. PRE-CALIFICACIÓN REGISTRAL (usando la frase "Este punto presenta un alto riesgo de observación registral basado en..."), y 3. SUGERENCIAS Y ACCIONES RECOMENDADAS.`;
+    const auditPrompt = `Analiza los siguientes documentos (${itemsList}) contrastándolos punto por punto contra los 28 Capítulos del Manual de Calificación de la DGR (Edición 2025), el Manual de Calificación LIF (Ley 19.210 y Res. DGR 76/2024) y la Ley Orgánica Registral Nº 16.871. Devuelve un INFORME DE AUDITORÍA NOTARIAL completo en Markdown con: CONTROL DE EMISIÓN (Dirigido a: ${clientName || 'Escribano Actuante'}, Fecha: ${timestamp || new Date().toLocaleString('es-UY')}), FICHA TÉCNICA DE LOS DOCUMENTOS ANALIZADOS, 1. HALLAZGOS Y OMISIONES CRÍTICAS, 2. PRE-CALIFICACIÓN REGISTRAL (usando obligatoriamente la frase "Este punto presenta un alto riesgo de observación registral basado en [Capítulo/Resolución/Artículo exacto del Manual DGR 2025]"), y 3. SUGERENCIAS Y ACCIONES RECOMENDADAS.`;
 
     contentParts.push({ text: auditPrompt });
 
