@@ -2,17 +2,22 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
     <title>Striker Hub - Copiloto ELO Notarial</title>
-    <meta name="description" content="Copiloto de alta precisión con inteligencia artificial ELO para escribanos y abogados en Uruguay." />
-    <meta name="theme-color" content="#2563eb" />
+    <meta name="description" content="Copiloto notarial ELO // Striker IA para escribanos en Uruguay. Auditoría DGR, cálculos fiscales e indicadores oficiales." />
+    <meta name="theme-color" content="#09090b" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="ELO Notarial" />
     <link rel="manifest" href="/manifest.json" />
-    <link rel="apple-touch-icon" href="https://ui-avatars.com/api/?name=Striker+Hub&background=2563eb&color=fff&size=192" />
+    <link rel="icon" type="image/svg+xml" href="/icon-striker.svg" />
+    <link rel="apple-touch-icon" href="/icon-striker.svg" />
   </head>
-  <body>
+  <body class="bg-[#09090b] text-slate-100 antialiased selection:bg-blue-600/30">
     <div id="root"></div>
     <script>
-      // Limpieza preventiva de caché corrupta del Service Worker en entorno de desarrollo
+      // Limpieza preventiva de caché v1 antigua
       if ('caches' in window) {
         caches.keys().then((names) => {
           for (const name of names) {
@@ -23,19 +28,11 @@
         });
       }
       if ('serviceWorker' in navigator) {
-        if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
-          navigator.serviceWorker.getRegistrations().then((regs) => {
-            for (const reg of regs) {
-              reg.unregister();
-            }
-          });
-        } else {
-          window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/sw.js')
-              .then((reg) => console.log('Service Worker registrado con éxito:', reg.scope))
-              .catch((err) => console.error('Fallo al registrar el Service Worker:', err));
-          });
-        }
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((reg) => console.log('Service Worker ELO activo:', reg.scope))
+            .catch((err) => console.warn('SW info:', err));
+        });
       }
     </script>
     <script type="module" src="/src/main.tsx"></script>

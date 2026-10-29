@@ -3,6 +3,7 @@ import { Upload, FileText, FileSearch, Download, Trash2, Printer, AlertCircle, C
 import { motion, AnimatePresence } from 'motion/react';
 import ReactMarkdown from 'react-markdown';
 import { runAudit } from '../lib/gemini';
+import { getNotaryProfile, formatNotaryDisplayTitle } from '../lib/notaryProfile';
 import { cn } from '../lib/utils';
 
 interface AuditModuleProps {
@@ -132,7 +133,8 @@ export const AuditModule: React.FC<AuditModuleProps> = ({ onAuditComplete }) => 
       });
 
       const processedFiles = await Promise.all(filesPayloadPromises);
-      const clientName = import.meta.env.VITE_CLIENT_NAME || 'Escribano Actuante';
+      const profile = getNotaryProfile();
+      const clientName = `${formatNotaryDisplayTitle(profile)} • ${profile.officeName} (${profile.city}, ${profile.department})`;
       const timestamp = new Date().toLocaleString('es-UY');
 
       const result = await runAudit(null, null, null, clientName, timestamp, processedFiles);

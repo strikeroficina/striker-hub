@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ShieldCheck, LogIn, Loader2, Bot, KeyRound, Globe, AlertTriangle } from 'lucide-react';
+import { ShieldCheck, LogIn, Loader2, Bot, KeyRound, Globe, AlertTriangle, Lock, Settings, Download } from 'lucide-react';
 import { db, doc, onSnapshot, getDoc, setDoc } from './lib/firebase';
 import { invoke } from '@tauri-apps/api/core';
 
@@ -41,6 +41,8 @@ import { DashboardOverview } from './components/DashboardOverview';
 import { ClientManagement } from './components/ClientManagement';
 import { AuditModule } from './components/AuditModule';
 import { Calculator } from './components/Calculator';
+import { NotarySettings } from './components/NotarySettings';
+import { getNotaryProfile, NotaryProfile, formatNotaryDisplayTitle } from './lib/notaryProfile';
 import { motion, AnimatePresence } from 'motion/react';
 import { Message } from './types';
 
@@ -66,6 +68,15 @@ const formatCurrencyValue = (val: number, decimals: number) => {
 
 export default function App() {
   const [user, setUser] = useState<AppUser | null>(null);
+  const [notaryProfile, setNotaryProfile] = useState<NotaryProfile>(() => getNotaryProfile());
+  const [isLocked, setIsLocked] = useState<boolean>(() => {
+    const p = getNotaryProfile();
+    return Boolean(p.pinEnabled && p.securityPin);
+  });
+  const [pinAttempt, setPinAttempt] = useState('');
+  const [pinError, setPinError] = useState(false);
+  const [installPromptEvent, setInstallPromptEvent] = useState<any>(null);
+
   const [clientId, setClientId] = useState(import.meta.env.VITE_GOOGLE_CLIENT_ID || '');
   const [clientSecret, setClientSecret] = useState(import.meta.env.VITE_GOOGLE_CLIENT_SECRET || '');
   const [gcpProjectId, setGcpProjectId] = useState(import.meta.env.VITE_GCP_PROJECT_ID || '');
@@ -99,6 +110,47 @@ export default function App() {
     ura: string;
   } | null>(null);
   const [indicesLoading, setIndicesLoading] = useState(true);
+
+  // Listen for Notary Profile changes and PWA beforeinstallprompt
+  useEffect(() => {
+    const handleProfileUpdate = () => {
+      setNotaryProfile(getNotaryProfile());
+    };
+    const handleBeforeInstallPrompt = (e: Event) => {
+      e.preventDefault();
+      setInstallPromptEvent(e);
+    };
+    window.addEventListener('elo-profile-updated', handleProfileUpdate);
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    return () => {
+      window.removeEventListener('elo-profile-updated', handleProfileUpdate);
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    };
+  }, []);
+
+  const handleTriggerInstall = async () => {
+    if (installPromptEvent) {
+      installPromptEvent.prompt();
+      const choice = await installPromptEvent.userChoice;
+      if (choice.outcome === 'accepted') {
+        setInstallPromptEvent(null);
+      }
+    } else {
+      setActiveTab('settings');
+    }
+  };
+
+  const handleUnlockPin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (pinAttempt === notaryProfile.securityPin) {
+      setIsLocked(false);
+      setPinAttempt('');
+      setPinError(false);
+    } else {
+      setPinError(true);
+      setPinAttempt('');
+    }
+  };
 
   // Combine live externalUSD with firestoreVals to update systemIndices
   useEffect(() => {
@@ -338,10 +390,11 @@ export default function App() {
       // Default to logged in on local web environment unless explicitly signed out
       if (saved !== 'false') {
         localStorage.setItem('_fs_mock_user_logged_in', 'true');
+        const p = getNotaryProfile();
         setUser({
           uid: "escribano-striker-dev",
-          displayName: "Escribano Striker IA",
-          email: "strikeroficina@gmail.com",
+          displayName: formatNotaryDisplayTitle(p),
+          email: p.email || "strikeroficina@gmail.com",
           photoURL: ""
         });
       }
@@ -375,10 +428,11 @@ export default function App() {
       if (!isTauri) {
         await new Promise(resolve => setTimeout(resolve, 400));
         localStorage.setItem('_fs_mock_user_logged_in', 'true');
+        const p = getNotaryProfile();
         setUser({
           uid: "escribano-striker-dev",
-          displayName: "Escribano Striker IA",
-          email: "strikeroficina@gmail.com",
+          displayName: formatNotaryDisplayTitle(p),
+          email: p.email || "strikeroficina@gmail.com",
           photoURL: ""
         });
         return;
@@ -434,6 +488,63 @@ export default function App() {
           <Bot className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-brand-primary" size={24} />
         </div>
         <p className="text-slate-400 font-mono text-xs tracking-widest animate-pulse">CARGANDO ECOSISTEMA STRIKER...</p>
+      </div>
+    );
+  }
+
+  // PANTALLA DE BLOQUEO DE SEGURIDAD POR PIN NOTARIAL
+  if (user && isLocked && notaryProfile.pinEnabled && notaryProfile.securityPin) {
+    return (
+      <div className="h-screen w-full flex items-center justify-center bg-[#09090b] p-6 font-sans">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="max-w-sm w-full bg-[#0c0c0e] border border-neutral-800 p-8 rounded-[2rem] space-y-6 text-center shadow-2xl relative overflow-hidden"
+        >
+          <div className="absolute top-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-transparent via-amber-500 to-transparent opacity-60"></div>
+          <div className="w-16 h-16 mx-auto bg-amber-500/10 border border-amber-500/30 rounded-2xl flex items-center justify-center text-amber-400">
+            <Lock size={30} />
+          </div>
+          <div>
+            <h2 className="text-xl font-black text-white uppercase tracking-tight">
+              {notaryProfile.officeName || 'Estudio Protegido'}
+            </h2>
+            <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest mt-1">
+              {formatNotaryDisplayTitle(notaryProfile)} • Bloqueo Activo
+            </p>
+          </div>
+
+          <form onSubmit={handleUnlockPin} className="space-y-4">
+            <input
+              type="password"
+              inputMode="numeric"
+              autoFocus
+              maxLength={6}
+              value={pinAttempt}
+              onChange={(e) => {
+                setPinError(false);
+                setPinAttempt(e.target.value.replace(/\D/g, ''));
+              }}
+              placeholder="INGRESAR PIN"
+              className="w-full h-12 bg-neutral-900 border border-neutral-800 rounded-xl text-center text-lg font-mono font-black tracking-[0.4em] text-white focus:outline-none focus:border-amber-500"
+            />
+            {pinError && (
+              <p className="text-[10px] font-bold text-rose-500 uppercase tracking-wider">
+                PIN incorrecto. Intente nuevamente.
+              </p>
+            )}
+            <button
+              type="submit"
+              className="w-full py-3.5 bg-white hover:bg-neutral-200 text-black font-black rounded-xl text-xs uppercase tracking-widest transition-all active:scale-95 cursor-pointer"
+            >
+              Desbloquear Sistema
+            </button>
+          </form>
+
+          <p className="text-[9px] text-neutral-600 font-bold uppercase tracking-widest">
+            Protocolo de Seguridad Striker IA • Ley 18.331
+          </p>
+        </motion.div>
       </div>
     );
   }
@@ -550,6 +661,17 @@ export default function App() {
       case 'clients': return <ClientManagement user={user} />;
       case 'audit': return <AuditModule onAuditComplete={updateReportContext} />;
       case 'calculator': return <Calculator onCalculationComplete={updateReportContext} onRefreshIndices={fetchAllIndices} systemIndices={systemIndices} />;
+      case 'settings': return (
+        <NotarySettings
+          onProfileChange={(updated) => {
+            setNotaryProfile(updated);
+            setUser((prev) => prev ? { ...prev, displayName: formatNotaryDisplayTitle(updated), email: updated.email } : prev);
+          }}
+          onLockNow={() => setIsLocked(true)}
+          installPromptEvent={installPromptEvent}
+          onTriggerInstall={handleTriggerInstall}
+        />
+      );
       case 'chat': return (
         <ChatWidget 
           isFloating={false} 
@@ -574,17 +696,62 @@ export default function App() {
 
   return (
     <div className="h-screen w-full bg-brand-bg text-slate-100 overflow-hidden relative">
-      <div className="flex h-full w-full">
+      <div className="flex flex-col md:flex-row h-full w-full">
+        {/* Mobile Header Bar */}
+        <header className="md:hidden flex items-center justify-between px-4 py-3 bg-[#0c0c0e] border-b border-neutral-800 shrink-0 no-print">
+          <div className="flex items-center gap-2.5 overflow-hidden">
+            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-black text-white text-xs shrink-0">
+              S
+            </div>
+            <div className="overflow-hidden">
+              <p className="text-xs font-black text-white uppercase tracking-tight truncate">
+                {notaryProfile.officeName || 'Striker Hub'}
+              </p>
+              <p className="text-[9px] text-blue-400 font-bold uppercase tracking-wider truncate">
+                {formatNotaryDisplayTitle(notaryProfile)}
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-1.5 shrink-0">
+            <button
+              onClick={handleTriggerInstall}
+              className="p-2 rounded-lg bg-emerald-950/30 border border-emerald-800/40 text-emerald-400"
+              title="Instalar App"
+            >
+              <Download size={15} />
+            </button>
+            {notaryProfile.pinEnabled && notaryProfile.securityPin && (
+              <button
+                onClick={() => setIsLocked(true)}
+                className="p-2 rounded-lg bg-amber-950/30 border border-amber-800/40 text-amber-400"
+                title="Bloquear pantalla"
+              >
+                <Lock size={15} />
+              </button>
+            )}
+            <button
+              onClick={() => setActiveTab('settings')}
+              className="p-2 rounded-lg bg-neutral-900 border border-neutral-800 text-neutral-300"
+              title="Datos del Escribano"
+            >
+              <Settings size={15} />
+            </button>
+          </div>
+        </header>
+
         <Sidebar 
           activeTab={activeTab} 
           setActiveTab={setActiveTab} 
           onSignOut={handleSignOut}
           user={user}
+          notaryProfile={notaryProfile}
+          onLockNow={() => setIsLocked(true)}
+          onInstallClick={handleTriggerInstall}
         />
         
         <main className="flex-1 flex flex-col h-full overflow-hidden">
           {/* Main View Area */}
-          <div className="flex-1 overflow-y-auto p-8 relative">
+          <div className="flex-1 overflow-y-auto p-4 sm:p-8 pb-24 md:pb-8 relative">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeTab}

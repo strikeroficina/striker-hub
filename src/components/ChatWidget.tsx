@@ -3,6 +3,7 @@ import { Send, Bot, User, Loader2, Maximize2, Minimize2, Trash2, X, Copy, Check,
 import ReactMarkdown from 'react-markdown';
 import { chatWithELO, getStoredApiKey, setStoredApiKey } from '../lib/gemini';
 import { dbGetContacts, dbInsertContact, dbDeleteContact, dbInsertNote } from '../lib/relationalDb';
+import { getNotaryProfile, formatNotaryDisplayTitle } from '../lib/notaryProfile';
 import { Message } from '../types';
 import { cn } from '../lib/utils';
 import { motion, AnimatePresence } from 'motion/react';
@@ -252,7 +253,18 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({
         ? activeContacts.map(c => `- ${c.name} (Tel: ${c.phone || 'S/D'}, Email: ${c.email || 'S/D'}, Obs: ${c.observations || 'Ninguna'}, Notas: ${c.notes.length}, Adjuntos: ${c.attachments.length})`).join('\n')
         : 'Sin contactos activos en la agenda.';
 
-      const indicesContext = `[MÓDULO ACTIVO DEL ESCRIBANO]: ${activeTab || 'dashboard'}
+      const notary = getNotaryProfile();
+
+      const indicesContext = `[PERFIL DEL ESCRIBANO Y ESTUDIO TITULAR]:
+- Profesional Titular: ${formatNotaryDisplayTitle(notary)} (${notary.title})
+- Estudio / Escribanía: ${notary.officeName}
+- Jurisdicción: ${notary.city}, Departamento de ${notary.department}, Uruguay
+- Especialidad: ${notary.specialty}
+- RUT/CI: ${notary.rut || 'No especificado'} | Tel: ${notary.phone || 'No especificado'} | Email: ${notary.email || 'No especificado'}
+${notary.sheetId ? `- ID Planilla Principal (Google Sheets): ${notary.sheetId}` : ''}
+${notary.driveFolderId ? `- ID Carpeta Protocolo (Google Drive): ${notary.driveFolderId}` : ''}
+
+[MÓDULO ACTIVO DEL ESCRIBANO]: ${activeTab || 'dashboard'}
 
 [ÍNDICES FINANCIEROS Y DE REAJUSTE VIGENTES EN EL HUB]:
 - Unidad Indexada (UI) vigente (INE/BCU): ${uiVal}
@@ -303,7 +315,7 @@ ${agendaSummary}`;
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-6 right-6 w-16 h-16 bg-slate-800 border border-slate-700/50 rounded-full flex items-center justify-center shadow-2xl z-[9999] group hover:bg-slate-700 transition-colors no-print"
+            className="fixed bottom-20 md:bottom-6 right-4 md:right-6 w-14 h-14 md:w-16 md:h-16 bg-slate-800 border border-slate-700/50 rounded-full flex items-center justify-center shadow-2xl z-[9999] group hover:bg-slate-700 transition-colors no-print"
           >
             <Bot className="text-blue-400 group-hover:text-blue-300 transition-colors" size={28} />
             <div className="absolute -top-1 -right-1 w-4 h-4 bg-emerald-500 border-2 border-slate-900 rounded-full"></div>
@@ -327,8 +339,8 @@ ${agendaSummary}`;
               !isFloating 
                 ? "h-full w-full rounded-2xl" 
                 : (isExpanded 
-                    ? "fixed inset-4 sm:inset-10 z-[9999] shadow-2xl rounded-3xl" 
-                    : "fixed bottom-24 right-4 sm:right-6 w-[360px] sm:w-[500px] max-w-[calc(100vw-32px)] h-[600px] max-h-[calc(100vh-120px)] z-[9999] shadow-2xl rounded-2xl")
+                    ? "fixed inset-2 sm:inset-10 z-[9999] shadow-2xl rounded-3xl" 
+                    : "fixed bottom-20 md:bottom-24 right-3 sm:right-6 w-[calc(100vw-24px)] sm:w-[500px] h-[540px] max-h-[calc(100vh-140px)] z-[9999] shadow-2xl rounded-2xl")
             )}
           >
             {/* Header */}

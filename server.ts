@@ -262,12 +262,12 @@ app.post("/api/audit", async (req, res) => {
       }
     }
 
-    // Add each document part (text part for .docx/.txt, inlineData for PDF/images)
+    // Add each document part with Fencing & Execution Isolation (Protocolo Ciberseguridad Striker IA - Ley 18.331)
     for (let idx = 0; idx < processedFiles.length; idx++) {
       const f = processedFiles[idx];
       if (f.extractedText !== undefined) {
         contentParts.push({
-          text: `=== CONTENIDO DEL DOCUMENTO ${idx + 1} (${f.fileName}) ===\n${f.extractedText}\n=== FIN DEL DOCUMENTO ${idx + 1} ===`
+          text: `<DOCUMENTO_PASIVO_AISLADO index="${idx + 1}" filename="${f.fileName}" policy="FENCING_ACTIVE_NO_EXECUTION">\n${f.extractedText}\n</DOCUMENTO_PASIVO_AISLADO>`
         });
       } else if (f.fileBase64) {
         contentParts.push({

@@ -1,21 +1,31 @@
 {
-  "name": "Striker Hub - Copiloto ELO Notarial",
-  "short_name": "Striker Hub",
-  "description": "Copiloto de alta precisión con IA para escribanos y abogados en Uruguay.",
+  "id": "/",
+  "name": "Striker Hub - ELO Notarial",
+  "short_name": "ELO Notarial",
+  "description": "Sistema Notarial Inteligente ELO // Striker IA para Escribanos en Uruguay. Auditoría DGR, Liquidaciones Fiscales, Agenda e Indicadores BCU/INE.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
   "orientation": "any",
   "background_color": "#09090b",
-  "theme_color": "#2563eb",
+  "theme_color": "#09090b",
+  "categories": ["business", "productivity", "finance"],
   "icons": [
     {
-      "src": "https://ui-avatars.com/api/?name=Striker+Hub&background=2563eb&color=fff&size=192",
+      "src": "/icon-striker.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://ui-avatars.com/api/?name=ELO&background=2563eb&color=fff&size=192&bold=true",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "https://ui-avatars.com/api/?name=Striker+Hub&background=2563eb&color=fff&size=512",
+      "src": "https://ui-avatars.com/api/?name=ELO&background=2563eb&color=fff&size=512&bold=true",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
