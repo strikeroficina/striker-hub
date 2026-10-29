@@ -1,0 +1,11 @@
+{
+  "name": "Striker Hub - Asistente Notarial ELO",
+  "description": "Dashboard inteligente para escribanos y abogados en Uruguay, con ELO, su asistente de IA especializado en auditoría documental, cálculos arancelarios y gestión jurídica.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

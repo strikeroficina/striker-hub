@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-brand-primary: #2563eb; /* Blue 600 */
+  --color-brand-secondary: #1d4ed8; /* Blue 700 */
+  --color-brand-bg: #09090b; /* Neutral 950/Zinc */
+  --color-brand-card: #0c0c0e; /* Neutral 900 custom */
+  --color-brand-inner: #09090b; /* Neutral 950 */
+  --color-brand-border: #27272a; /* Neutral 800 */
+}
+
+@layer base {
+  body {
+    @apply bg-brand-bg text-neutral-400 font-sans antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight text-white;
+  }
+}
+
+.bento-card {
+  @apply bg-neutral-900 border border-neutral-800 rounded-3xl p-8 transition-all;
+}
+
+.inner-card {
+  @apply bg-neutral-950 border border-neutral-800 rounded-2xl p-5;
+}
+
+.btn-primary {
+  @apply px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-lg transition-all active:scale-95 disabled:opacity-50 disabled:pointer-events-none uppercase tracking-wider;
+}
+
+.btn-secondary {
+  @apply px-4 py-2 bg-neutral-800 hover:bg-neutral-700 text-neutral-200 font-bold text-xs rounded-lg transition-all active:scale-95 uppercase tracking-wider;
+}
+
+.input-field {
+  @apply w-full px-4 py-2 bg-neutral-950 border border-neutral-800 rounded-xl focus:outline-none focus:border-blue-500 text-white text-sm transition-colors;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-neutral-950;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-neutral-800 rounded-full hover:bg-neutral-700;
+}
+
+/* Markdown Content Styling */
+.printable-report h1 { @apply text-3xl font-black mb-6 uppercase tracking-tighter text-white; }
+.printable-report h2 { @apply text-xl font-bold mt-8 mb-4 uppercase tracking-widest text-blue-500 border-b border-neutral-800 pb-2; }
+.printable-report h3 { @apply text-lg font-bold mt-6 mb-2 text-neutral-200; }
+.printable-report p { @apply text-sm leading-relaxed text-neutral-400 mb-4; }
+.printable-report ul { @apply list-disc list-inside space-y-2 mb-6 text-sm text-neutral-400; }
+.printable-report li { @apply marker:text-blue-500; }
+.printable-report hr { @apply border-neutral-800 my-8; }
+.printable-report strong { @apply text-neutral-200; }
